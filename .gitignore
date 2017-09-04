@@ -67,4 +67,5 @@ fabric.properties
 
 /build
 TEST-RESULT/
+/.idea/
 /hotciv.iml

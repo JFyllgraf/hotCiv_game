@@ -147,6 +147,10 @@ public class TestAlphaCiv {
         game.moveUnit(new Position(2, 0), new Position(2, 1));
         assertThat(game.getUnitAt(new Position(2, 1)).getTypeString(), is("archer"));
     }
+    @Test
+    public void shouldBeIllegalForPlayersToMoveOtherPlayersUnits(){
+        assertFalse(game.moveUnit(new Position(3,2),new Position(4,3)));
+    }
 
     @Test
     public void shouldOnlyAllowUnitsToMoveAsFarAsMovecount() {

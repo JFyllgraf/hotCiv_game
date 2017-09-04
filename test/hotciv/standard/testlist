@@ -3,7 +3,7 @@ TEST LIST
 [5] - Red's city is at (1,1)
 [7] - There is ocean at (1,0)
 [] - Units cannot move over mountain
-[] - Red cannot move Blue's unit
+[22] - Red cannot move Blue's unit
 [9] - Cities produce 6 'production' after a round has ended
 [3] - Cities' population size is always 1
 [2] - After Red it is Blue that is in turn

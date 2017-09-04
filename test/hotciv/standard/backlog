@@ -1,0 +1,18 @@
+
+###############################################
+############## BACKLOG ########################
+###############################################
+
+[] - Units cannot move over mountain
+[] - Red cannot move Blue's unit
+[] - Red's unit attack and destroy Blue's unit
+[] - Only one unit is allowed on a tile at any time
+[] - All units do not have any action supported
+[] - The player can produce either archers, legions or settlers.
+[] - Archer costs 10 productions
+[] - Legion cost 15 productions
+[] - Settler costs 30 productions
+[] - Unit can't be moved more than the amount of moves left
+[] - Vertical ex (0,0)->(0,1) counts for one move count
+[] - Horizontal ex (0,0)->(1,0) counts for one move count
+[] - Cross ex (0,0)->(1,1) counts for one move count

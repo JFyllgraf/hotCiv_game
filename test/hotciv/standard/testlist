@@ -46,7 +46,7 @@ Movement
 [23] - Vertical ex (0,0)->(0,1) counts for one move count
 [24] - Horizontal ex (0,0)->(1,0) counts for one move count
 [25] - Cross ex (0,0)->(1,1) counts for one move count
-[] - Units may not move outside the map
+[26] - Units may not move outside the map
 
 Game
 [20] - Game starts at 4000BC

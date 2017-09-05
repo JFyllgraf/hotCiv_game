@@ -119,11 +119,18 @@ public class GameImpl implements Game {
     }
 
     public boolean isValidMove(Position from, Position to){
-        if(from.getRow() <= to.getRow()+1 && from.getRow() >= to.getRow()-1){
-            if(from.getColumn() <= to.getColumn()+1 && from.getColumn() >= to.getColumn()-1)
-            return true;
+        if(isInsideMap(to)) {
+            if (from.getRow() <= to.getRow() + 1 && from.getRow() >= to.getRow() - 1) {
+                if (from.getColumn() <= to.getColumn() + 1 && from.getColumn() >= to.getColumn() - 1)
+                    return true;
+            }
         }
         return false;
+    }
+
+    //Checks wheather the player is about to move the object outside the map or not.
+    public boolean isInsideMap(Position to){
+        return(to.getColumn()<16 && to.getRow()<16 && to.getColumn()>=0 && to.getRow()>=0);
     }
 
     public void endOfTurn() {

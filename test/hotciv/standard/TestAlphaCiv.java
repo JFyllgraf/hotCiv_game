@@ -163,7 +163,6 @@ public class TestAlphaCiv {
     @Test
     public void shouldOnlyAllowPlayersToChooseALegalMovement() {
         assertTrue(game.moveUnit(new Position(2, 0), new Position(2, 1)));
-        System.out.println(game.getUnitAt(new Position(2,1)).getTypeString());
         assertFalse(game.moveUnit(new Position(2, 1), new Position(7, 2)));
 
     }
@@ -228,6 +227,30 @@ public class TestAlphaCiv {
         game.moveUnit(new Position(2,1),new Position(2,0));
         assertThat(game.getUnitAt(new Position(2,0)).getMoveCount(),is(0));
     }
+    @Test
+    public void shouldCostOneMovementForMovingUnit1TileCross(){
+        //This test does the same as shouldCostOneMovementForMovingUnit1TileRightOrLeft(), but up and down instead.
+        assertThat(game.getUnitAt(new Position(2,0)).getMoveCount(),is(1));
+        game.moveUnit(new Position(2,0),new Position(3,1));
+        assertThat(game.getUnitAt(new Position(3,1)).getMoveCount(),is(0));
+        game.endOfTurn();
+        game.endOfTurn();
+        assertThat(game.getUnitAt(new Position(3,1)).getMoveCount(),is(1));
+        game.moveUnit(new Position(3,1),new Position(2,2));
+        assertThat(game.getUnitAt(new Position(2,2)).getMoveCount(),is(0));
+        game.endOfTurn();
+        game.endOfTurn();
+        assertThat(game.getUnitAt(new Position(2,2)).getMoveCount(),is(1));
+        game.moveUnit(new Position(2,2),new Position(1,1));
+        assertThat(game.getUnitAt(new Position(1,1)).getMoveCount(),is(0));
+        game.endOfTurn();
+        game.endOfTurn();
+        assertThat(game.getUnitAt(new Position(1,1)).getMoveCount(),is(1));
+        game.moveUnit(new Position(1,1),new Position(2,0));
+        assertThat(game.getUnitAt(new Position(2,0)).getMoveCount(),is(0));
+    }
+
+
 
     //This is Steve
 

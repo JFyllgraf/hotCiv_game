@@ -43,9 +43,9 @@ Movement
 [15] - Player can move its units when it is his/her turn
 [16] - Unit can't be moved more than the amount of moves left
 [17] - Should only allow player to do legal moves
-[] - Vertical ex (0,0)->(0,1) counts for one move count
-[] - Horizontal ex (0,0)->(1,0) counts for one move count
-[] - Cross ex (0,0)->(1,1) counts for one move count
+[23] - Vertical ex (0,0)->(0,1) counts for one move count
+[24] - Horizontal ex (0,0)->(1,0) counts for one move count
+[25] - Cross ex (0,0)->(1,1) counts for one move count
 [] - Units may not move outside the map
 
 Game

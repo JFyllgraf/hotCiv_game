@@ -35,6 +35,9 @@ Cities
 [8] - Blues city is positioned at (4,1)
 
 Unit production
+[] - Every city can produce either a Legion, settler or Archer.
+[] - Cities produce a unit when enough production is gained automatically.
+[] - The new bourght units are placed in the first free space starting north from the city and then clockwise round.
 [] - Archer costs 10 productions
 [] - Legion cost 15 productions
 [] - Settler costs 30 productions

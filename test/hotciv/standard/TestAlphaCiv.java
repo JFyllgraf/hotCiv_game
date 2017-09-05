@@ -201,6 +201,34 @@ public class TestAlphaCiv {
         assertThat(game.getAge(),is(-3800));
     }
 
+    @Test
+    public void shouldCostOneMovementForMovingUnit1TileRightOrLeft(){
+        //This test takes the red unit at 2,0 and moves it to 3,0. Checks if that costs 1 movecount
+        assertThat(game.getUnitAt(new Position(2,0)).getMoveCount(),is(1));
+        game.moveUnit(new Position(2,0),new Position(3,0));
+        assertThat(game.getUnitAt(new Position(3,0)).getMoveCount(),is(0));
+        //Ends turn two times to shift turn back to red again
+        game.endOfTurn();
+        game.endOfTurn();
+        //Tests the left direction instead of right.
+        assertThat(game.getUnitAt(new Position(3,0)).getMoveCount(),is(1));
+        game.moveUnit(new Position(3,0),new Position(2,0));
+        assertThat(game.getUnitAt(new Position(2,0)).getMoveCount(),is(0));
+    }
+
+    @Test
+    public void shouldCostOneMovementForMovingUnit1TileUpOrDown(){
+        //This test does the same as shouldCostOneMovementForMovingUnit1TileRightOrLeft(), but up and down instead.
+        assertThat(game.getUnitAt(new Position(2,0)).getMoveCount(),is(1));
+        game.moveUnit(new Position(2,0),new Position(2,1));
+        assertThat(game.getUnitAt(new Position(2,1)).getMoveCount(),is(0));
+        game.endOfTurn();
+        game.endOfTurn();
+        assertThat(game.getUnitAt(new Position(2,1)).getMoveCount(),is(1));
+        game.moveUnit(new Position(2,1),new Position(2,0));
+        assertThat(game.getUnitAt(new Position(2,0)).getMoveCount(),is(0));
+    }
+
     //This is Steve
 
 }

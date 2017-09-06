@@ -278,5 +278,14 @@ public class TestAlphaCiv {
         game.moveUnit(new Position(2,0),new Position(1,0));
         assertThat(game.getUnitAt(new Position(2,0)).getMoveCount(),is(1));
     }
+    @Test
+    public void shouldLetRedAttackAndDestroyBlue(){
+        // in this example, red moves towards blues unit and when red comes close enough, the archer kills blue's unit.
+        game.moveUnit(new Position(2,0),new Position(3,1));
+        game.endOfTurn();
+        game.endOfTurn();
+        game.attackUnit(new Position(3,1),new Position(3,2));
+        assertThat(game.getUnitAt(new Position(3,2)).getOwner(),is(Player.RED));
+    }
 
 }

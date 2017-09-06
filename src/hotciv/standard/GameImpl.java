@@ -169,5 +169,10 @@ public class GameImpl implements Game {
     }
 
 
+    public void attackUnit(Position position, Position position1) {
+        if(getUnitAt(position1).getOwner()!=currentPlayer) {
+            moveUnit(position, position1);
+        }
+    }
 }
 

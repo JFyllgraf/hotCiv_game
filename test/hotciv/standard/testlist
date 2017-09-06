@@ -8,7 +8,7 @@ TEST LIST
 [3] - Cities' population size is always 1
 [2] - After Red it is Blue that is in turn
 [4] - Red wins to year 3000 BC
-[] - Red's unit attack and destroy Blue's unit
+[29] - Red's unit attack and destroy Blue's unit
 [6] - Map is created when game starts
 
 Tests to expand alphaCiv even further

@@ -174,5 +174,9 @@ public class GameImpl implements Game {
             moveUnit(position, position1);
         }
     }
+    public void spawnRedArcher(){
+        //Just spawning the new one at 15, 15 atm
+        map.putGameUnit(new Position(15,15),new UnitImpl(GameConstants.ARCHER,Player.RED));
+    }
 }
 

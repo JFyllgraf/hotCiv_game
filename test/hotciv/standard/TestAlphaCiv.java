@@ -287,5 +287,16 @@ public class TestAlphaCiv {
         game.attackUnit(new Position(3,1),new Position(3,2));
         assertThat(game.getUnitAt(new Position(3,2)).getOwner(),is(Player.RED));
     }
+    @Test
+    public void shouldLetRedProduceArchers(){
+        //Has to be remade. Have not include that it costs production yet.
+        game.endOfTurn();
+        game.endOfTurn();
+        game.endOfTurn();
+        game.endOfTurn();
+        game.spawnRedArcher();
+        assertThat(game.getUnitAt(new Position(15,15)).getTypeString(),is(GameConstants.ARCHER));
+    }
+
 
 }

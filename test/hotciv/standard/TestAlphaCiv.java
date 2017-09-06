@@ -236,24 +236,46 @@ public class TestAlphaCiv {
         game.endOfTurn();
         game.endOfTurn();
         assertThat(game.getUnitAt(new Position(3,1)).getMoveCount(),is(1));
-        game.moveUnit(new Position(3,1),new Position(2,2));
-        assertThat(game.getUnitAt(new Position(2,2)).getMoveCount(),is(0));
+        game.moveUnit(new Position(3,1),new Position(4,2));
+        assertThat(game.getUnitAt(new Position(4,2)).getMoveCount(),is(0));
         game.endOfTurn();
         game.endOfTurn();
-        assertThat(game.getUnitAt(new Position(2,2)).getMoveCount(),is(1));
-        game.moveUnit(new Position(2,2),new Position(1,1));
-        assertThat(game.getUnitAt(new Position(1,1)).getMoveCount(),is(0));
+        assertThat(game.getUnitAt(new Position(4,2)).getMoveCount(),is(1));
+        game.moveUnit(new Position(4,2),new Position(5,1));
+        assertThat(game.getUnitAt(new Position(5,1)).getMoveCount(),is(0));
         game.endOfTurn();
         game.endOfTurn();
-        assertThat(game.getUnitAt(new Position(1,1)).getMoveCount(),is(1));
-        game.moveUnit(new Position(1,1),new Position(2,0));
-        assertThat(game.getUnitAt(new Position(2,0)).getMoveCount(),is(0));
+        assertThat(game.getUnitAt(new Position(5,1)).getMoveCount(),is(1));
+        game.moveUnit(new Position(5,1),new Position(4,0));
+        assertThat(game.getUnitAt(new Position(4,0)).getMoveCount(),is(0));
+        game.endOfTurn();
+        game.endOfTurn();
+        assertThat(game.getUnitAt(new Position(4,0)).getMoveCount(),is(1));
+        game.moveUnit(new Position(4,0),new Position(3,1));
+        assertThat(game.getUnitAt(new Position(3,1)).getMoveCount(),is(0));
     }
     @Test
     public void shouldNotBePossibleToMoveUnitOutsideOfMap(){
         //We start out by move outside the map and afterwards check if the unit at the start-position is still there
         //By checking the amount of moves left. If it is 1, then there is a unit and it has not been moved.
         game.moveUnit(new Position(2,0),new Position(2,-1));
+        assertThat(game.getUnitAt(new Position(2,0)).getMoveCount(),is(1));
+    }
+    @Test
+    public void shouldNotBePossibleToMoveOverAMountain(){
+        //This tests tries to move the red archer to the mountain. If movecount is still 1 at the starting position
+        //(the move moving from beside to onto mountain), then the archer has not moved, and the test succeed.
+        game.moveUnit(new Position(2,0),new Position(2,1));
+        game.endOfTurn();
+        game.endOfTurn();
+        game.moveUnit(new Position(2,1),new Position(2,2));
+        assertThat(game.getUnitAt(new Position(2,1)).getMoveCount(),is(1));
+    }
+    @Test
+    public void shouldNotBePossibleToMoveOverAnOcean(){
+        //This tests tries to move the red archer into the ocean. If movecount is still 1 at the starting position
+        //then the archer has not moved, and the test succeed.
+        game.moveUnit(new Position(2,0),new Position(1,0));
         assertThat(game.getUnitAt(new Position(2,0)).getMoveCount(),is(1));
     }
 

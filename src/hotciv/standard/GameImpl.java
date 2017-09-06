@@ -79,6 +79,8 @@ public class GameImpl implements Game {
         return map.getGameUnit(p);
     }
 
+    private String getSurfaceType(Position p){ return map.getGameConstant(p);}
+
     public City getCityAt(Position p) {
         if (p.getRow() == redCity.getRow() && p.getColumn() == redCity.getColumn()) {
             return redCity;
@@ -118,8 +120,8 @@ public class GameImpl implements Game {
         return false;
     }
 
-    public boolean isValidMove(Position from, Position to){
-        if(isInsideMap(to)) {
+    private boolean isValidMove(Position from, Position to){
+        if(isInsideMap(to) && isNotAMountain(to)) {
             if (from.getRow() <= to.getRow() + 1 && from.getRow() >= to.getRow() - 1) {
                 if (from.getColumn() <= to.getColumn() + 1 && from.getColumn() >= to.getColumn() - 1)
                     return true;
@@ -127,9 +129,12 @@ public class GameImpl implements Game {
         }
         return false;
     }
+    private boolean isNotAMountain(Position to){
+        return !((getSurfaceType(new Position(to.getRow(), to.getColumn())).equals("mountain")) || (getSurfaceType(new Position(to.getRow(), to.getColumn())).equals("ocean")));
+    }
 
-    //Checks wheather the player is about to move the object outside the map or not.
-    public boolean isInsideMap(Position to){
+    //Checks whether the player is about to move the object outside the map or not.
+    private boolean isInsideMap(Position to){
         return(to.getColumn()<16 && to.getRow()<16 && to.getColumn()>=0 && to.getRow()>=0);
     }
 

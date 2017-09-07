@@ -14,6 +14,6 @@ TEST LIST
 [] - Red's unit attack and destroy Blue's unit
 [] - Should Return null when no city is at the coordinates
 [5] - Game should start at 4000 BC
-[] - Game age increments by 100 years after each round
+[6] - Game age increments by 100 years after each round
 
 

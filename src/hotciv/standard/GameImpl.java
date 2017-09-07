@@ -34,9 +34,13 @@ public class GameImpl implements Game {
 
     private CityImpl redCity;
 
+    private int age;
+
     public GameImpl(){
         currentPlayer=Player.RED;
         this.redCity = new CityImpl();
+
+        this.age = -4000;
     }
 
     @Override
@@ -66,7 +70,7 @@ public class GameImpl implements Game {
 
     @Override
     public int getAge() {
-        return -4000;
+        return age;
     }
 
     @Override
@@ -81,6 +85,8 @@ public class GameImpl implements Game {
         }
         else if(currentPlayer == Player.BLUE){
             currentPlayer = Player.RED;
+
+            this.age += 100;
         }
     }
 

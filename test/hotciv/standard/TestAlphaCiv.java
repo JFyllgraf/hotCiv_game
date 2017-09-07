@@ -40,5 +40,12 @@ import java.util.*;
 public class TestAlphaCiv {
 
 
+    @Test
+    public void shouldBeRedAsTheStartingPlayer(){
+        GameImpl game;
+        game = new GameImpl();
+        assertThat(game.getPlayerInTurn(),is(Player.RED));
+    }
+
 
 }

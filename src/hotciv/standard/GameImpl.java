@@ -49,7 +49,7 @@ public class GameImpl implements Game {
 
     @Override
     public Player getPlayerInTurn() {
-        return null;
+        return Player.RED;
     }
 
     @Override

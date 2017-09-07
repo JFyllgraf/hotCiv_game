@@ -17,7 +17,7 @@ public class CityImpl implements City {
 
     @Override
     public int getProduction() {
-        return 0;
+        return 6;
     }
 
     @Override

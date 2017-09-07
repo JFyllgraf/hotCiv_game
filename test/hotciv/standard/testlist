@@ -9,7 +9,7 @@ CITIES
 GAME STATS
 [5] - Game should start at 4000 BC
 [6] - Game age increments by 100 years after each round
-[] - Red wins to year 3000 BC
+[7] - Red wins to year 3000 BC
 
 UNITS
 [] - Players can move their own units

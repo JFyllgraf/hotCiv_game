@@ -91,6 +91,22 @@ public class TestAlphaCiv {
         assertThat(game.getWinner(), is(Player.RED));
     }
 
+    @Test
+    public void shouldBeProduced6productionForCitiesAfter1Round(){
+        game.endOfTurn();
+        game.endOfTurn();
+        assertThat(game.getCityAt(new Position(2,1)).getProduction(),is(6));
+    }
+    @Test
+    public void shouldBeProduced6productionsForCitiesAfterEveryRound(){
+        game.endOfTurn();
+        game.endOfTurn();
+        game.endOfTurn();
+        game.endOfTurn();
+        assertThat(game.getCityAt(new Position(2,1)).getProduction(),is(12));
+
+    }
+
 
 
 

@@ -3,7 +3,8 @@ TEST LIST
 CITIES
 [4] - Red's city is at (1,1)
 [] - Should Return null when no city is at the coordinates
-[] - Cities produce 6 'production' after a round has ended
+[8] - Cities produce 6 'production' after one round has ended
+[9] - Cities produce 6 'production' for every round that has ended
 [] - Cities' population size is always 1
 
 GAME STATS

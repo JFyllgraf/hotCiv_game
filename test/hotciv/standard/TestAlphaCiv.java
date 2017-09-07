@@ -104,7 +104,6 @@ public class TestAlphaCiv {
         game.endOfTurn();
         game.endOfTurn();
         assertThat(game.getCityAt(new Position(2,1)).getProduction(),is(12));
-
     }
 
 

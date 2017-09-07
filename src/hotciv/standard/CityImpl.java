@@ -4,7 +4,11 @@ import hotciv.framework.City;
 import hotciv.framework.Player;
 
 public class CityImpl implements City {
+    public int production;
 
+    public CityImpl(){
+        production = 0;
+    }
     @Override
     public Player getOwner() {
         return Player.RED;
@@ -17,7 +21,7 @@ public class CityImpl implements City {
 
     @Override
     public int getProduction() {
-        return 6;
+        return production;
     }
 
     @Override

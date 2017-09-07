@@ -1,17 +1,45 @@
 TEST LIST
 
-[1] - Red is the first player in turn
-[2] - Blue is in turn after red Player
+CITIES
 [4] - Red's city is at (1,1)
-[] - There is ocean at (1,0)
-[] - Units cannot move over mountain
-[] - Red cannot move Blue's unit
+[] - Should Return null when no city is at the coordinates
 [] - Cities produce 6 'production' after a round has ended
 [] - Cities' population size is always 1
-[3] - After Red it is Blue that is in turn
-[] - Red wins to year 3000 BC
-[] - Red's unit attack and destroy Blue's unit
-[] - Should Return null when no city is at the coordinates
+
+GAME STATS
 [5] - Game should start at 4000 BC
 [6] - Game age increments by 100 years after each round
+[] - Red wins to year 3000 BC
+
+UNITS
+[] - Players can move their own units
+[] - Units cannot move over mountains
+[] - Units cannot move over Oceans
+[] - Units cannot move outside of the world map
+[] - Red cannot move Blue's unit
+[] - Red's unit attack and destroy Blue's unit
+[] - Units can only be produced at cities
+[] - Produced units start at the city coordinates
+[] - Archers cost 10 production
+[] - Legions cost 15 production
+[] - Settlers cost 30 production
+[] - Units can move 1 distance each round
+[] - Units have their movement restored after each round
+[] - Units attack by moving to an other players unit
+[] - If an attacking unit wins, it removes the defending unit from the world map
+
+
+TILES
+[] - There is ocean at (1,0)
+[] - Game should have a 16x16 tile world map
+[] - Each tile in the game should have a certain terrain type
+
+PLAYERS
+[1] - Red is the first player in turn
+[2] - Blue is in turn after red Player
+[3] - After Red it is Blue that is in turn
+[] - The game should have two or four players
+[] - When the game has four players, the turns are red, blue, yellow and green - respectively
 ([]) - Red doesn't always win
+
+36.1.6.............

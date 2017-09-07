@@ -32,8 +32,11 @@ import hotciv.framework.*;
 public class GameImpl implements Game {
     private Player currentPlayer;
 
+    private CityImpl redCity;
+
     public GameImpl(){
         currentPlayer=Player.RED;
+        this.redCity = new CityImpl();
     }
 
     @Override
@@ -48,7 +51,7 @@ public class GameImpl implements Game {
 
     @Override
     public City getCityAt(Position p) {
-        return null;
+        return redCity;
     }
 
     @Override

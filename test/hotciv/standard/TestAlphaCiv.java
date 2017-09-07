@@ -38,13 +38,12 @@ import java.util.*;
  * limitations under the License.
  */
 public class TestAlphaCiv {
-    GameImpl game;
+    private GameImpl game;
 
     @Before
     public void setup(){
         game = new GameImpl();
     }
-
 
     @Test
     public void shouldBeRedAsTheStartingPlayer(){
@@ -60,6 +59,12 @@ public class TestAlphaCiv {
         game.endOfTurn();
         game.endOfTurn();
         assertThat(game.getPlayerInTurn(),is(Player.RED));
+    }
+
+    @Test
+    public void shouldBeRedCityAt1_1(){
+        assertNotNull(game.getCityAt(new Position(1,1)));
+        assertThat(game.getCityAt(new Position(1,1)).getOwner(), is(Player.RED));
     }
 
 

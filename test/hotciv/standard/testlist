@@ -1,7 +1,8 @@
 TEST LIST
 s
 [1] - Red is the first player in turn
-[] - Blue is in turn after red Player
+[2] - Blue is in turn after red Player
+[3] - Blues turn after reds turn
 
 [] - Red's city is at (1,1)
 [] - There is ocean at (1,0)

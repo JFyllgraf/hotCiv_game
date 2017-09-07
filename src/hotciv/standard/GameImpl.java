@@ -73,8 +73,12 @@ public class GameImpl implements Game {
 
     @Override
     public void endOfTurn() {
-        currentPlayer = Player.BLUE;
-
+        if(currentPlayer == Player.RED){
+            currentPlayer = Player.BLUE;
+        }
+        else if(currentPlayer == Player.BLUE){
+            currentPlayer = Player.RED;
+        }
     }
 
     @Override

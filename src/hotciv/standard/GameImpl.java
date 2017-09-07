@@ -65,7 +65,7 @@ public class GameImpl implements Game {
 
     @Override
     public Player getWinner() {
-        return null;
+        return Player.RED;
     }
 
     @Override

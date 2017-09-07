@@ -2,18 +2,16 @@ TEST LIST
 
 [1] - Red is the first player in turn
 [2] - Blue is in turn after red Player
-[3] - Blues turn after reds turn
 [4] - Red's city is at (1,1)
 [] - There is ocean at (1,0)
 [] - Units cannot move over mountain
 [] - Red cannot move Blue's unit
 [] - Cities produce 6 'production' after a round has ended
 [] - Cities' population size is always 1
-[] - After Red it is Blue that is in turn
+[3] - After Red it is Blue that is in turn
 [] - Red wins to year 3000 BC
 [] - Red's unit attack and destroy Blue's unit
 [] - Should Return null when no city is at the coordinates
 [5] - Game should start at 4000 BC
 [6] - Game age increments by 100 years after each round
-
-
+([]) - Red doesn't always win

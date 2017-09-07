@@ -1,6 +1,8 @@
 TEST LIST
 s
-[] - Red is the first player in turn
+[1] - Red is the first player in turn
+[] - Blue is in turn after red Player
+
 [] - Red's city is at (1,1)
 [] - There is ocean at (1,0)
 [] - Units cannot move over mountain

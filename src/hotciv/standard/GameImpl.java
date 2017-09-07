@@ -30,7 +30,11 @@ import hotciv.framework.*;
  */
 
 public class GameImpl implements Game {
+    private Player currentPlayer;
 
+    public GameImpl(){
+        currentPlayer=Player.RED;
+    }
 
     @Override
     public Tile getTileAt(Position p) {
@@ -49,7 +53,7 @@ public class GameImpl implements Game {
 
     @Override
     public Player getPlayerInTurn() {
-        return Player.RED;
+        return currentPlayer;
     }
 
     @Override
@@ -69,6 +73,7 @@ public class GameImpl implements Game {
 
     @Override
     public void endOfTurn() {
+        currentPlayer = Player.BLUE;
 
     }
 

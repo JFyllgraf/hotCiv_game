@@ -38,14 +38,24 @@ import java.util.*;
  * limitations under the License.
  */
 public class TestAlphaCiv {
+    GameImpl game;
+
+    @Before
+    public void setup(){
+        game = new GameImpl();
+    }
 
 
     @Test
     public void shouldBeRedAsTheStartingPlayer(){
-        GameImpl game;
-        game = new GameImpl();
         assertThat(game.getPlayerInTurn(),is(Player.RED));
     }
+    @Test
+    public void shouldBeBluesTurnAfterRed(){
+        game.endOfTurn();
+        assertThat(game.getPlayerInTurn(),is(Player.BLUE));
+    }
+
 
 
 }

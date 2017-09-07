@@ -67,6 +67,11 @@ public class TestAlphaCiv {
         assertThat(game.getCityAt(new Position(1,1)).getOwner(), is(Player.RED));
     }
 
+    @Test
+    public void shouldStartGameAt4000BC(){
+        assertThat(game.getAge(), is(-4000));
+    }
+
 
 
 }

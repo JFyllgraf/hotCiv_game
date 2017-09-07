@@ -66,7 +66,7 @@ public class GameImpl implements Game {
 
     @Override
     public int getAge() {
-        return 0;
+        return -4000;
     }
 
     @Override

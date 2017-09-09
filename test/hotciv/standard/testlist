@@ -25,7 +25,7 @@ UNITS
 [31] - Units cannot move over Oceans
 [34] - Units cannot move outside of the world map
 [] - Red's unit attack and destroy Blue's unit
-[] - Players can produce new units
+[36] - Players can produce new units
 [] - Units can only be produced at cities
 [] - Produced units start at the city coordinates
 [] - Archers cost 10 production
@@ -35,7 +35,7 @@ UNITS
 [29] - Movescount gets decremented by 1 for a move
 [30] - Units can move 1 distance each round
 [33] - Units have their movement restored after each round
-[] - Units can only move as far as their movecount
+[35] - Units can only move as far as their movecount
 [] - Units attack by moving to an other players unit
 [] - If an attacking unit wins, it removes the defending unit from the world map
 

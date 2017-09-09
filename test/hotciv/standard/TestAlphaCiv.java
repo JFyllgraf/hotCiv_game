@@ -274,6 +274,10 @@ public class TestAlphaCiv {
         assertThat(game.moveUnit(blueLegion, new Position(2,3)), is(true));
     }
     
-    
+    @Test
+    public void shouldBePossibleToProduceNewUnits(){
+        assertThat(game.produceUnit(redCity, new UnitImpl(GameConstants.ARCHER, Player.RED)), is(true));
+        assertThat(game.getUnitAt(redCity).getTypeString(), is(GameConstants.ARCHER));
+    }
 
 }

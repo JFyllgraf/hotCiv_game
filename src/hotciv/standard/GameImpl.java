@@ -192,6 +192,11 @@ public class GameImpl implements Game {
         }
     }
 
+    public boolean produceUnit(Position position, UnitImpl unit){
+        unitMap.put(position, unit);
+        return true;
+    }
+
 
 }
 

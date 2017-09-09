@@ -106,13 +106,18 @@ public class TestAlphaCiv {
     }
 
     @Test
-    public void shouldHaveA16x16MapWithPlains(){
-        for(int i = 0; i<15; i++){
-            for(int j = 0; j<15; j++){
+    public void shouldHaveA16x16MapWithPlainsFrom3_3to15_15(){
+        for(int i = 3; i<15; i++){
+            for(int j = 3; j<15; j++){
                 assertThat(game.getTileAt(new Position(i,j)).getTypeString(),is(GameConstants.PLAINS));
                 //This has to be changed to all different kind of gameconstants. Could not find solution for that.
             }
         }
+    }
+
+    @Test
+    public void shouldBeOceanAt1_0(){
+        assertThat(game.getTileAt(new Position(1,0)).getTypeString(),is(GameConstants.OCEANS));
     }
 
 

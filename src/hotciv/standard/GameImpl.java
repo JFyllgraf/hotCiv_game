@@ -38,12 +38,14 @@ public class GameImpl implements Game {
     //mapTile is a map that can contain tileTypes
     private HashMap<Position, TileImpl> mapComponent = new HashMap<>();
 
+
     private CityImpl redCity;
 
     private int age;
 
     public GameImpl(){
         setDefaultMap();
+        mapComponent.put(new Position(1,0),new TileImpl(GameConstants.OCEANS));
         currentPlayer=Player.RED;
         this.redCity = new CityImpl();
         this.age = -4000;

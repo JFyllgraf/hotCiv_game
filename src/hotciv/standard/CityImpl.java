@@ -9,6 +9,7 @@ public class CityImpl implements City {
     private Position cityPosition;
     private Player player;
     private int size;
+
     public CityImpl(Position position, Player player){
         this.player = player;
         this.cityPosition = position;
@@ -20,7 +21,6 @@ public class CityImpl implements City {
     public Player getOwner() {
         return this.player;
     }
-
 
     public int getRow() { return cityPosition.getRow(); }
 

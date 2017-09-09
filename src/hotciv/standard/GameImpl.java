@@ -148,6 +148,7 @@ public class GameImpl implements Game {
 
             this.age += 100;
             this.redCity.production+=6;
+            this.blueCity.production+=6;
 
             resetAllUnitsMovecount();
         }

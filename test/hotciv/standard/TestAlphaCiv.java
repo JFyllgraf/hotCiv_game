@@ -108,6 +108,7 @@ public class TestAlphaCiv {
         game.endOfTurn();
         game.endOfTurn();
         assertThat(game.getCityAt(redCity).getProduction(),is(6));
+        assertThat(game.getCityAt(blueCity).getProduction(),is(6));
     }
 
     @Test
@@ -116,6 +117,7 @@ public class TestAlphaCiv {
             game.endOfTurn();
         }
         assertThat(game.getCityAt(redCity).getProduction(),is(12));
+        assertThat(game.getCityAt(blueCity).getProduction(),is(12));
     }
 
     @Test

@@ -40,6 +40,7 @@ public class GameImpl implements Game {
 
 
     private CityImpl redCity;
+    private CityImpl blueCity;
 
     private int age;
 
@@ -49,7 +50,8 @@ public class GameImpl implements Game {
         mapComponent.put(new Position(0,1),new TileImpl(GameConstants.HILLS));
         mapComponent.put(new Position(2,2),new TileImpl(GameConstants.MOUNTAINS));
         currentPlayer=Player.RED;
-        this.redCity = new CityImpl();
+        this.redCity = new CityImpl(new Position(1, 1), Player.RED);
+        this.blueCity = new CityImpl(new Position(4, 1), Player.BLUE);
         this.age = -4000;
     }
 
@@ -65,7 +67,14 @@ public class GameImpl implements Game {
 
     @Override
     public City getCityAt(Position p) {
-        return redCity;
+        if (p.getRow() == redCity.getRow() && p.getColumn() == redCity.getColumn()) {
+            return redCity;
+        }
+        if (p.getRow() == blueCity.getRow() && p.getColumn() == blueCity.getColumn()) {
+            return blueCity;
+        } else {
+            return null;
+        }
     }
 
     @Override

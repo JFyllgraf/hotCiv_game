@@ -2,16 +2,28 @@ package hotciv.standard;
 
 import hotciv.framework.City;
 import hotciv.framework.Player;
+import hotciv.framework.Position;
 
 public class CityImpl implements City {
     public int production;
-
-    public CityImpl(){
+    private Position cityPosition;
+    private Player player;
+    public CityImpl(Position position, Player player){
+        this.player = player;
+        this.cityPosition = position;
         production = 0;
     }
 
     @Override
-    public Player getOwner() {return Player.RED;
+    public Player getOwner() {
+        return this.player;
+    }
+
+
+    public int getRow() { return cityPosition.getRow(); }
+
+    public int getColumn() {
+        return cityPosition.getColumn();
     }
 
     @Override

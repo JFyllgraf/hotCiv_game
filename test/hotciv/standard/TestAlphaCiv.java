@@ -95,14 +95,14 @@ public class TestAlphaCiv {
     public void shouldBeProduced6productionForCitiesAfter1Round(){
         game.endOfTurn();
         game.endOfTurn();
-        assertThat(game.getCityAt(new Position(2,1)).getProduction(),is(6));
+        assertThat(game.getCityAt(new Position(1,1)).getProduction(),is(6));
     }
     @Test
     public void shouldBeProduced6productionsForCitiesAfterEveryRound(){
         for (int i=0; i<4; i++){
             game.endOfTurn();
         }
-        assertThat(game.getCityAt(new Position(2,1)).getProduction(),is(12));
+        assertThat(game.getCityAt(new Position(1,1)).getProduction(),is(12));
     }
 
     @Test
@@ -129,6 +129,31 @@ public class TestAlphaCiv {
     public void shouldBeMountainsAt2_2(){
         assertThat(game.getTileAt(new Position(2,2)).getTypeString(),is(GameConstants.MOUNTAINS));
     }
+    @Test
+    public void shouldReturnOwnerWhenUsingGetOwner(){
+        assertThat(game.getCityAt(new Position(1,1)).getOwner(),is(Player.RED));
+    }
+    @Test
+    public void shouldReturnColumnWhenUsingGetColumn(){
+        assertThat(new Position(1,1).getColumn(),is(1));
+    }
+    @Test
+    public void shouldReturnRowWhenUsingGetRow(){
+        assertThat(new Position(1,1).getColumn(),is(1));
+    }
+    @Test
+    public void shouldReturnThePlayerInTurn(){
+        assertThat(game.getPlayerInTurn(),is(Player.RED));
+        game.endOfTurn();
+        assertThat(game.getPlayerInTurn(),is(Player.BLUE));
+    }
+
+    @Test
+    public void shouldBeBlueAt4_1(){
+        assertThat(game.getCityAt(new Position(4,1)).getOwner(),is(Player.BLUE));
+    }
+
+
 
 
 }

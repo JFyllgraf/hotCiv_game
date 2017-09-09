@@ -191,6 +191,8 @@ public class TestAlphaCiv {
     @Test
     public void shouldBePossibleToMoveAUnit(){
         assertThat(game.getUnitAt(new Position(2,0)).getTypeString(),is(GameConstants.ARCHER));
+        game.moveUnit(new Position(2,0),new Position(3,0));
+        assertThat(game.getUnitAt(new Position(3,0)).getTypeString(),is(GameConstants.ARCHER));
 
     }
 

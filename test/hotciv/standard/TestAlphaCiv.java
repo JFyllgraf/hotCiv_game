@@ -249,6 +249,11 @@ public class TestAlphaCiv {
         assertThat(game.moveUnit(new Position(3,2), new Position(2,2)), is(false));
     }
 
+    @Test
+    public void shouldBeIllegalToMoveOutsideTheMap(){
+        assertThat(game.moveUnit(new Position(2,0), new Position(2, -1)), is(false));
+    }
+
 
 
 }

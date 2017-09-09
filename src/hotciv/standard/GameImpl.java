@@ -103,15 +103,15 @@ public class GameImpl implements Game {
 
     @Override
     public boolean moveUnit(Position from, Position to) {
-        if(onlyMovePlayersOwnUnits(from) && onlyMoveIfMovecountisgreaterthan0(from) && onlyMoveToLegalTiles(to)) {
-            unitMap.put(to, new UnitImpl(getUnitAt(from).getTypeString(), getUnitAt(from).getOwner()));
-            deleteUnit(from);
-            unitMap.get(to).moveUnit();
-            return true;
+        if((to.getRow() < 16 && to.getRow() >= 0) && (to.getColumn() < 16 && to.getColumn() >= 0)){
+            if(onlyMovePlayersOwnUnits(from) && onlyMoveIfMovecountisgreaterthan0(from) && onlyMoveToLegalTiles(to)) {
+                unitMap.put(to, new UnitImpl(getUnitAt(from).getTypeString(), getUnitAt(from).getOwner()));
+                deleteUnit(from);
+                unitMap.get(to).moveUnit();
+                return true;
+            }
         }
-        else{
-            return false;
-        }
+        return false;
     }
 
     private boolean onlyMoveIfMovecountisgreaterthan0(Position from){

@@ -196,6 +196,7 @@ public class TestAlphaCiv {
     }
     @Test
     public void shouldDeleteUnitFromWhenMoving(){
+        //d
         assertThat(game.getUnitAt(new Position(2,0)).getTypeString(),is(GameConstants.ARCHER));
         game.moveUnit(new Position(2,0),new Position(3,0));
         assertNull(game.getUnitAt(new Position(2,0)));

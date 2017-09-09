@@ -23,7 +23,7 @@ UNITS
 [27] - Red cannot move Blue's unit
 [32] - Units cannot move over mountains
 [31] - Units cannot move over Oceans
-[] - Units cannot move outside of the world map
+[33] - Units cannot move outside of the world map
 [] - Red's unit attack and destroy Blue's unit
 [] - Units can only be produced at cities
 [] - Produced units start at the city coordinates
@@ -34,6 +34,7 @@ UNITS
 [29] - Movescount gets decremented by 1 for a move
 [30] - Units can move 1 distance each round
 [33] - Units have their movement restored after each round
+[] - Units can only move as far as their movecount
 [] - Units attack by moving to an other players unit
 [] - If an attacking unit wins, it removes the defending unit from the world map
 

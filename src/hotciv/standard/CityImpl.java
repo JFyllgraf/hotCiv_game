@@ -42,4 +42,5 @@ public class CityImpl implements City {
     public String getWorkforceFocus() {
         return null;
     }
+
 }

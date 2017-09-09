@@ -294,4 +294,14 @@ public class TestAlphaCiv {
         assertThat(game.produceUnit(redCity, new UnitImpl(GameConstants.LEGION, Player.RED)), is(true));
     }
 
+    @Test
+    public void shouldCost10ProductionToProduceArchers(){
+        assertThat(game.produceUnit(redCity, new UnitImpl(GameConstants.LEGION, Player.RED)), is(false));
+        game.endOfTurn();
+        game.endOfTurn();
+        assertThat(game.getCityAt(redCity).getProduction(), is(12));
+        assertThat(game.produceUnit(redCity, new UnitImpl(GameConstants.LEGION, Player.RED)), is(true));
+        assertThat(game.getCityAt(redCity).getProduction(), is(2));
+    }
+
 }

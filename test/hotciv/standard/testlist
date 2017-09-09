@@ -27,7 +27,7 @@ UNITS
 [] - Red's unit attack and destroy Blue's unit
 [36] - Players can produce new units
 [37] - Units can only be produced at cities
-[] - Players can only produce units at their own cities
+[38] - Players can only produce units at their own cities
 [] - Archers cost 10 production
 [] - Legions cost 15 production
 [] - Settlers cost 30 production

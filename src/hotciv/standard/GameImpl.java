@@ -121,7 +121,7 @@ public class GameImpl implements Game {
     }
 
     public boolean onlyMoveToLegalTiles(Position to){
-        if (mapComponent.get(to).getTypeString() == GameConstants.OCEANS){
+        if ((mapComponent.get(to).getTypeString() == GameConstants.OCEANS) || (mapComponent.get(to).getTypeString() == GameConstants.MOUNTAINS)){
             return false;
         }
         return true;

@@ -170,5 +170,11 @@ public class TestAlphaCiv {
         assertThat(game.getUnitAt(new Position(3,2)).getTypeString(),is(GameConstants.LEGION));
     }
 
+    @Test
+    public void shuildBeARedSettlerAt4_3(){
+        assertThat(game.getUnitAt(new Position(4,3)).getOwner(),is(Player.RED));
+        assertThat(game.getUnitAt(new Position(4,3)).getTypeString(),is(GameConstants.SETTLER));
+    }
+
 
 }

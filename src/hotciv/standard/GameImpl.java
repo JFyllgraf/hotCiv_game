@@ -52,6 +52,8 @@ public class GameImpl implements Game {
         mapComponent.put(new Position(2,2),new TileImpl(GameConstants.MOUNTAINS));
 
         unitMap.put(new Position(3,2),new UnitImpl(GameConstants.LEGION,Player.BLUE));
+        unitMap.put(new Position(4,3),new UnitImpl(GameConstants.SETTLER,Player.RED));
+        
 
         currentPlayer=Player.RED;
         this.redCity = new CityImpl(new Position(1, 1), Player.RED);

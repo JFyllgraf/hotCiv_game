@@ -2,6 +2,8 @@ package hotciv.standard;
 
 import hotciv.framework.*;
 
+import java.util.HashMap;
+
 /**
  * Skeleton implementation of HotCiv.
  * <p>
@@ -31,21 +33,25 @@ import hotciv.framework.*;
 
 public class GameImpl implements Game {
     private Player currentPlayer;
+    private int mapSize = GameConstants.WORLDSIZE;
+    private String plain = GameConstants.PLAINS;
+    //mapTile is a map that can contain tileTypes
+    private HashMap<Position, TileImpl> mapComponent = new HashMap<>();
 
     private CityImpl redCity;
 
     private int age;
 
     public GameImpl(){
+        setDefaultMap();
         currentPlayer=Player.RED;
         this.redCity = new CityImpl();
-
         this.age = -4000;
     }
 
     @Override
     public Tile getTileAt(Position p) {
-        return null;
+        return mapComponent.get(p);
     }
 
     @Override
@@ -105,5 +111,14 @@ public class GameImpl implements Game {
     public void performUnitActionAt(Position p) {
 
     }
+
+    private void setDefaultMap() {
+        for (int i = 0; i < mapSize; i++) {
+            for (int j = 0; j < mapSize; j++) {
+                mapComponent.put(new Position(i, j), new TileImpl(GameConstants.PLAINS));
+            }
+        }
+    }
+
 }
 

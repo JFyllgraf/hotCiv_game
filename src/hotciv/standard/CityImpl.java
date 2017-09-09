@@ -9,9 +9,9 @@ public class CityImpl implements City {
     public CityImpl(){
         production = 0;
     }
+
     @Override
-    public Player getOwner() {
-        return Player.RED;
+    public Player getOwner() {return Player.RED;
     }
 
     @Override

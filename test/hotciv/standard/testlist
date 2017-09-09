@@ -23,8 +23,9 @@ UNITS
 [27] - Red cannot move Blue's unit
 [32] - Units cannot move over mountains
 [31] - Units cannot move over Oceans
-[33] - Units cannot move outside of the world map
+[34] - Units cannot move outside of the world map
 [] - Red's unit attack and destroy Blue's unit
+[] - Players can produce new units
 [] - Units can only be produced at cities
 [] - Produced units start at the city coordinates
 [] - Archers cost 10 production

@@ -104,7 +104,7 @@ public class GameImpl implements Game {
     @Override
     public boolean moveUnit(Position from, Position to) {
         if((to.getRow() < 16 && to.getRow() >= 0) && (to.getColumn() < 16 && to.getColumn() >= 0)){
-            if(onlyMovePlayersOwnUnits(from) && onlyMoveIfMovecountisgreaterthan0(from) && onlyMoveToLegalTiles(to) && distanceIsLegal(from, to)) {
+            if(onlyMovePlayersOwnUnits(from) && onlyMoveIfMovecountisgreaterthan0(from) && onlyMoveToLegalTiles(to) && MoveDistanceIsLegal(from, to)) {
                 unitMap.put(to, new UnitImpl(getUnitAt(from).getTypeString(), getUnitAt(from).getOwner()));
                 deleteUnit(from);
                 unitMap.get(to).moveUnit();
@@ -118,7 +118,7 @@ public class GameImpl implements Game {
         return (unitMap.get(from).getMoveCount()>0);
     }
 
-    private boolean distanceIsLegal(Position from, Position to){
+    private boolean MoveDistanceIsLegal(Position from, Position to){
         if(to.getRow() <= from.getRow()+1 && to.getRow() >= from.getRow()-1){
             if(to.getColumn() <= from.getColumn()+1 && to.getColumn() >= from.getColumn()-1){
                 return true;
@@ -191,6 +191,7 @@ public class GameImpl implements Game {
             return false;
         }
     }
+
 
 }
 

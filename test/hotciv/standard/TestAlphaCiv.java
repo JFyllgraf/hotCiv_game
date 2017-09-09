@@ -39,10 +39,22 @@ import java.util.*;
  */
 public class TestAlphaCiv {
     private GameImpl game;
+    
+    private Position redCity;
+    private Position blueCity;
+    private Position redArcher;
+    private Position redSettler;
+    private Position blueLegion;
 
     @Before
     public void setup(){
         game = new GameImpl();
+
+        redCity = new Position(1,1);
+        blueCity = new Position(4,1);
+        redArcher = new Position(2,0);
+        redSettler = new Position(4,3);
+        blueLegion = new Position(3,2);
     }
 
     @Test
@@ -63,8 +75,8 @@ public class TestAlphaCiv {
 
     @Test
     public void shouldBeRedCityAt1_1(){
-        assertNotNull(game.getCityAt(new Position(1,1)));
-        assertThat(game.getCityAt(new Position(1,1)).getOwner(), is(Player.RED));
+        assertNotNull(game.getCityAt(redCity));
+        assertThat(game.getCityAt(redCity).getOwner(), is(Player.RED));
     }
 
     @Test
@@ -95,7 +107,7 @@ public class TestAlphaCiv {
     public void shouldBeProduced6productionForCitiesAfter1Round(){
         game.endOfTurn();
         game.endOfTurn();
-        assertThat(game.getCityAt(new Position(1,1)).getProduction(),is(6));
+        assertThat(game.getCityAt(redCity).getProduction(),is(6));
     }
 
     @Test
@@ -103,7 +115,7 @@ public class TestAlphaCiv {
         for (int i=0; i<4; i++){
             game.endOfTurn();
         }
-        assertThat(game.getCityAt(new Position(1,1)).getProduction(),is(12));
+        assertThat(game.getCityAt(redCity).getProduction(),is(12));
     }
 
     @Test
@@ -132,15 +144,15 @@ public class TestAlphaCiv {
     }
     @Test
     public void shouldReturnOwnerWhenUsingGetOwner(){
-        assertThat(game.getCityAt(new Position(1,1)).getOwner(),is(Player.RED));
+        assertThat(game.getCityAt(redCity).getOwner(),is(Player.RED));
     }
     @Test
     public void shouldReturnColumnWhenUsingGetColumn(){
-        assertThat(new Position(1,1).getColumn(),is(1));
+        assertThat(redCity.getColumn(),is(1));
     }
     @Test
     public void shouldReturnRowWhenUsingGetRow(){
-        assertThat(new Position(1,1).getColumn(),is(1));
+        assertThat(redCity.getColumn(),is(1));
     }
     @Test
     public void shouldReturnThePlayerInTurn(){
@@ -151,7 +163,7 @@ public class TestAlphaCiv {
 
     @Test
     public void shouldBeBlueAt4_1(){
-        assertThat(game.getCityAt(new Position(4,1)).getOwner(),is(Player.BLUE));
+        assertThat(game.getCityAt(blueCity).getOwner(),is(Player.BLUE));
     }
 
     @Test
@@ -161,68 +173,68 @@ public class TestAlphaCiv {
 
     @Test
     public void shouldAlwaysHaveASizeOf1prCity(){
-        assertThat(game.getCityAt(new Position(1,1)).getSize(),is(1));
-        assertThat(game.getCityAt(new Position(4,1)).getSize(),is(1));
+        assertThat(game.getCityAt(redCity).getSize(),is(1));
+        assertThat(game.getCityAt(blueCity).getSize(),is(1));
     }
 
     @Test
     public void shouldBeBlueLegionAt3_2(){
-        assertThat(game.getUnitAt(new Position(3,2)).getOwner(),is(Player.BLUE));
-        assertThat(game.getUnitAt(new Position(3,2)).getTypeString(),is(GameConstants.LEGION));
+        assertThat(game.getUnitAt(blueLegion).getOwner(),is(Player.BLUE));
+        assertThat(game.getUnitAt(blueLegion).getTypeString(),is(GameConstants.LEGION));
     }
 
     @Test
     public void shouldBeARedSettlerAt4_3(){
-        assertThat(game.getUnitAt(new Position(4,3)).getOwner(),is(Player.RED));
-        assertThat(game.getUnitAt(new Position(4,3)).getTypeString(),is(GameConstants.SETTLER));
+        assertThat(game.getUnitAt(redSettler).getOwner(),is(Player.RED));
+        assertThat(game.getUnitAt(redSettler).getTypeString(),is(GameConstants.SETTLER));
     }
 
     @Test
     public void shouldbeARedArcherAt2_0(){
-        assertThat(game.getUnitAt(new Position(2,0)).getOwner(),is(Player.RED));
-        assertThat(game.getUnitAt(new Position(2,0)).getTypeString(),is(GameConstants.ARCHER));
+        assertThat(game.getUnitAt(redArcher).getOwner(),is(Player.RED));
+        assertThat(game.getUnitAt(redArcher).getTypeString(),is(GameConstants.ARCHER));
     }
 
     @Test
     public void shouldBePossibleToDeleteAUnit(){
-        game.deleteUnit(new Position(2,0));
-        assertNull(game.getUnitAt(new Position(2,0)));
+        game.deleteUnit(redArcher);
+        assertNull(game.getUnitAt(redArcher));
     }
 
     @Test
     public void shouldBePossibleToMoveAUnit(){
-        assertThat(game.getUnitAt(new Position(2,0)).getTypeString(),is(GameConstants.ARCHER));
-        game.moveUnit(new Position(2,0),new Position(3,0));
+        assertThat(game.getUnitAt(redArcher).getTypeString(),is(GameConstants.ARCHER));
+        game.moveUnit(redArcher,new Position(3,0));
         assertThat(game.getUnitAt(new Position(3,0)).getTypeString(),is(GameConstants.ARCHER));
     }
     @Test
     public void shouldDeleteUnitFromWhenMoving(){
-        assertThat(game.getUnitAt(new Position(2,0)).getTypeString(),is(GameConstants.ARCHER));
-        game.moveUnit(new Position(2,0),new Position(3,0));
-        assertNull(game.getUnitAt(new Position(2,0)));
+        assertThat(game.getUnitAt(redArcher).getTypeString(),is(GameConstants.ARCHER));
+        game.moveUnit(redArcher,new Position(3,0));
+        assertNull(game.getUnitAt(redArcher));
     }
     @Test
     public void shouldOnlyBePossibleForThePlayerToMoveHisOwnUnits(){
-        assertFalse(game.moveUnit(new Position(3,2),new Position(4,2)));
+        assertFalse(game.moveUnit(blueLegion,new Position(4,2)));
     }
     @Test
     public void shouldHave1MovecountForAllUnits(){
-        assertThat(game.getUnitAt(new Position(2,0)).getMoveCount(),is(1));
-        assertThat(game.getUnitAt(new Position(3,2)).getMoveCount(),is(1));
-        assertThat(game.getUnitAt(new Position(4,3)).getMoveCount(),is(1));
+        assertThat(game.getUnitAt(redArcher).getMoveCount(),is(1));
+        assertThat(game.getUnitAt(blueLegion).getMoveCount(),is(1));
+        assertThat(game.getUnitAt(redSettler).getMoveCount(),is(1));
 
     }
 
     @Test
     public void shouldDecrementMovescountForAMove(){
-        assertThat(game.getUnitAt(new Position(2,0)).getMoveCount(),is(1));
-        game.moveUnit(new Position(2,0),new Position(3,0));
+        assertThat(game.getUnitAt(redArcher).getMoveCount(),is(1));
+        game.moveUnit(redArcher,new Position(3,0));
         assertThat(game.getUnitAt(new Position(3,0)).getMoveCount(),is(0));
     }
 
     @Test
     public void shouldOnlyBeAbleToMoveMovecountMovesEachRound(){
-        game.moveUnit(new Position(2,0),new Position(3,0));
+        game.moveUnit(redArcher,new Position(3,0));
         assertThat(game.getUnitAt(new Position(3,0)).getMoveCount(),is(0));
         game.moveUnit(new Position(3,0),new Position(4,0));
         assertThat(game.getUnitAt(new Position(3,0)).getMoveCount(),is(0));
@@ -230,8 +242,8 @@ public class TestAlphaCiv {
 
     @Test
     public void shouldResetUnitsMovescountAfterEndedRound(){
-        assertThat(game.getUnitAt(new Position(2,0)).getMoveCount(),is(1));
-        game.moveUnit(new Position(2,0),new Position(3,0));
+        assertThat(game.getUnitAt(redArcher).getMoveCount(),is(1));
+        game.moveUnit(redArcher,new Position(3,0));
         assertThat(game.getUnitAt(new Position(3,0)).getMoveCount(),is(0));
         game.endOfTurn();
         game.endOfTurn();
@@ -240,26 +252,28 @@ public class TestAlphaCiv {
 
     @Test
     public void shouldBeIllegalToMoveUnitsOverOceans(){
-        assertThat(game.moveUnit(new Position(2,0),new Position(1, 0)), is(false));
+        assertThat(game.moveUnit(redArcher,new Position(1, 0)), is(false));
     }
 
     @Test
     public void shouldBeIllegalToMoveUnitsOverMountains(){
         game.endOfTurn();
-        assertThat(game.moveUnit(new Position(3,2), new Position(2,2)), is(false));
+        assertThat(game.moveUnit(blueLegion, new Position(2,2)), is(false));
     }
 
     @Test
     public void shouldBeIllegalToMoveOutsideTheMap(){
-        assertThat(game.moveUnit(new Position(2,0), new Position(2,-1)), is(false));
+        assertThat(game.moveUnit(redArcher, new Position(2,-1)), is(false));
     }
 
     @Test
     public void shouldOnlyBePossibleToMoveUnitsAsFarAsTheirMoveCount(){
-        assertThat(game.moveUnit(new Position(2,0), new Position(4, 0)), is(false));
-        assertThat(game.moveUnit(new Position(2,0), new Position(3,1)), is(true));
+        assertThat(game.moveUnit(redArcher, new Position(4, 0)), is(false));
+        assertThat(game.moveUnit(redArcher, new Position(3,1)), is(true));
         game.endOfTurn();
-        assertThat(game.moveUnit(new Position(3,2), new Position(2,3)), is(true));
+        assertThat(game.moveUnit(blueLegion, new Position(2,3)), is(true));
     }
+    
+    
 
 }

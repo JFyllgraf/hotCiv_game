@@ -37,6 +37,7 @@ public class GameImpl implements Game {
     private String plain = GameConstants.PLAINS;
     //mapTile is a map that can contain tileTypes
     private HashMap<Position, TileImpl> mapComponent = new HashMap<>();
+    private HashMap<Position, UnitImpl> unitMap = new HashMap<>();
 
 
     private CityImpl redCity;
@@ -49,6 +50,9 @@ public class GameImpl implements Game {
         mapComponent.put(new Position(1,0),new TileImpl(GameConstants.OCEANS));
         mapComponent.put(new Position(0,1),new TileImpl(GameConstants.HILLS));
         mapComponent.put(new Position(2,2),new TileImpl(GameConstants.MOUNTAINS));
+
+        unitMap.put(new Position(3,2),new UnitImpl(GameConstants.LEGION,Player.BLUE));
+
         currentPlayer=Player.RED;
         this.redCity = new CityImpl(new Position(1, 1), Player.RED);
         this.blueCity = new CityImpl(new Position(4, 1), Player.BLUE);
@@ -62,7 +66,7 @@ public class GameImpl implements Game {
 
     @Override
     public Unit getUnitAt(Position p) {
-        return null;
+        return unitMap.get(p);
     }
 
     @Override

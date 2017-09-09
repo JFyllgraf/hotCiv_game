@@ -6,7 +6,7 @@ CITIES
 [19] - Should Return null when no city is at the coordinates
 [8] - Cities produce 6 'production' after one round has ended
 [9] - Cities produce 6 'production' for every round that has endedd
-[] - Cities' population size is always 1
+[20] - Cities' population size is always 1
 
 GAME STATS
 [5] - Game should start at 4000 BC
@@ -14,6 +14,9 @@ GAME STATS
 [7] - Red wins to year 3000 BC
 
 UNITS
+[21] - Blue has legion at 3,2
+[] - Red has settler at 4,3
+[] - Red has archer at 2,0
 [] - Players can move their own units
 [] - Units cannot move over mountains
 [] - Units cannot move over Oceans
@@ -36,7 +39,6 @@ TILES
 [12] - There is Hills at (0,1)
 [13] - There is Mountains at (2,2)
 [10] - Game should have a 16x16 tile world map
-[] - Game should have a map for units
 
 PLAYERS
 [1] - Red is the first player in turn

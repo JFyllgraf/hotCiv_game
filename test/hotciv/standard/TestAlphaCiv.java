@@ -164,6 +164,11 @@ public class TestAlphaCiv {
         assertThat(game.getCityAt(new Position(4,1)).getSize(),is(1));
     }
 
+    @Test
+    public void shouldBeBlueLegionAt3_2(){
+        assertThat(game.getUnitAt(new Position(3,2)).getOwner(),is(Player.BLUE));
+        assertThat(game.getUnitAt(new Position(3,2)).getTypeString(),is(GameConstants.LEGION));
+    }
 
 
 }

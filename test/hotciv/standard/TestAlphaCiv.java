@@ -280,4 +280,10 @@ public class TestAlphaCiv {
         assertThat(game.getUnitAt(redCity).getTypeString(), is(GameConstants.ARCHER));
     }
 
+    @Test
+    public void shouldOnlyBePossibleToProduceUnitsAtCities(){
+        assertThat(game.produceUnit(new Position(10, 10), new UnitImpl(GameConstants.LEGION, Player.RED)), is(false));
+        assertThat(game.produceUnit(new Position(4, 1), new UnitImpl(GameConstants.LEGION, Player.RED)), is(true));
+    }
+
 }

@@ -101,7 +101,7 @@ public class GameImpl implements Game {
 
     @Override
     public boolean moveUnit(Position from, Position to) {
-        return false;
+        return true;
     }
 
     @Override
@@ -137,6 +137,15 @@ public class GameImpl implements Game {
             for (int j = 0; j < mapSize; j++) {
                 mapComponent.put(new Position(i, j), new TileImpl(GameConstants.PLAINS));
             }
+        }
+    }
+
+    public boolean deleteUnit(Position from) {
+        if (unitMap.get(from) != null) {
+            unitMap.remove(from);
+            return true;
+        } else {
+            return false;
         }
     }
 

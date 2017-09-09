@@ -17,6 +17,8 @@ UNITS
 [21] - Blue has legion at 3,2
 [22] - Red has settler at 4,3
 [23] - Red has archer at 2,0
+[24] - Units can be deleted
+[] - Units can be moved
 [] - Players can move their own units
 [] - Units cannot move over mountains
 [] - Units cannot move over Oceans

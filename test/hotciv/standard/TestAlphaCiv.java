@@ -171,7 +171,7 @@ public class TestAlphaCiv {
     }
 
     @Test
-    public void shuildBeARedSettlerAt4_3(){
+    public void shouldBeARedSettlerAt4_3(){
         assertThat(game.getUnitAt(new Position(4,3)).getOwner(),is(Player.RED));
         assertThat(game.getUnitAt(new Position(4,3)).getTypeString(),is(GameConstants.SETTLER));
     }
@@ -180,6 +180,18 @@ public class TestAlphaCiv {
     public void shouldbeARedArcherAt2_0(){
         assertThat(game.getUnitAt(new Position(2,0)).getOwner(),is(Player.RED));
         assertThat(game.getUnitAt(new Position(2,0)).getTypeString(),is(GameConstants.ARCHER));
+    }
+
+    @Test
+    public void shouldBePossibleToDeleteAUnit(){
+        game.deleteUnit(new Position(2,0));
+        assertNull(game.getUnitAt(new Position(2,0)));
+    }
+
+    @Test
+    public void shouldBePossibleToMoveAUnit(){
+        assertThat(game.getUnitAt(new Position(2,0)).getTypeString(),is(GameConstants.ARCHER));
+
     }
 
 

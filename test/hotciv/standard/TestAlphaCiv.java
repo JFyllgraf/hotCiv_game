@@ -238,6 +238,10 @@ public class TestAlphaCiv {
         assertThat(game.getUnitAt(new Position(3,0)).getMoveCount(),is(1));
     }
 
+    @Test
+    public void shouldBeIllegalToMoveUnitsOverOceans(){
+        assertThat(game.moveUnit(new Position(2,0),new Position(1, 0)), is(false));
+    }
 
-    //Test - Jesper
+
 }

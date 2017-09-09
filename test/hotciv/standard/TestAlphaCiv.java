@@ -97,6 +97,7 @@ public class TestAlphaCiv {
         game.endOfTurn();
         assertThat(game.getCityAt(new Position(1,1)).getProduction(),is(6));
     }
+
     @Test
     public void shouldBeProduced6productionsForCitiesAfterEveryRound(){
         for (int i=0; i<4; i++){

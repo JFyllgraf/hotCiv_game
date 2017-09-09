@@ -32,44 +32,35 @@ import java.util.HashMap;
  */
 
 public class GameImpl implements Game {
-    private Player currentPlayer;
-    private int mapSize = GameConstants.WORLDSIZE;
-    private String plain = GameConstants.PLAINS;
-    //mapTile is a map that can contain tileTypes
-    private HashMap<Position, TileImpl> mapComponent = new HashMap<>();
-    private HashMap<Position, UnitImpl> unitMap = new HashMap<>();
 
+    private Player currentPlayer;
 
     private CityImpl redCity;
     private CityImpl blueCity;
 
     private int age;
 
+    private World world;
+
     public GameImpl(){
-        setDefaultMap();
-        mapComponent.put(new Position(1,0),new TileImpl(GameConstants.OCEANS));
-        mapComponent.put(new Position(0,1),new TileImpl(GameConstants.HILLS));
-        mapComponent.put(new Position(2,2),new TileImpl(GameConstants.MOUNTAINS));
-
-        unitMap.put(new Position(3,2),new UnitImpl(GameConstants.LEGION,Player.BLUE));
-        unitMap.put(new Position(4,3),new UnitImpl(GameConstants.SETTLER,Player.RED));
-        unitMap.put(new Position(2,0),new UnitImpl(GameConstants.ARCHER, Player.RED));
-
+        this.world = new World();
 
         currentPlayer=Player.RED;
+
         this.redCity = new CityImpl(new Position(1, 1), Player.RED);
         this.blueCity = new CityImpl(new Position(4, 1), Player.BLUE);
+
         this.age = -4000;
     }
 
     @Override
     public Tile getTileAt(Position p) {
-        return mapComponent.get(p);
+        return world.getTile(p);
     }
 
     @Override
     public Unit getUnitAt(Position p) {
-        return unitMap.get(p);
+        return world.getUnit(p);
     }
 
     @Override
@@ -101,22 +92,16 @@ public class GameImpl implements Game {
 
     @Override
     public boolean moveUnit(Position from, Position to) {
-        if(onlyMovePlayersOwnUnits(from) && onlyMoveIfMovecountisgreaterthan0(from)) {
+        if(onlyMovePlayersOwnUnits(from)) {
             unitMap.put(to, new UnitImpl(getUnitAt(from).getTypeString(), getUnitAt(from).getOwner()));
             deleteUnit(from);
-            unitMap.get(to).moveUnit();
             return true;
         }
         else{
             return false;
         }
     }
-    private boolean onlyMoveIfMovecountisgreaterthan0(Position from){
-        return (unitMap.get(from).getMoveCount()>0);
-    }
-    private boolean onlyMovePlayersOwnUnits(Position from){
-        return (unitMap.get(from).getOwner() == currentPlayer);
-    }
+
 
     @Override
     public void endOfTurn() {
@@ -146,13 +131,6 @@ public class GameImpl implements Game {
 
     }
 
-    private void setDefaultMap() {
-        for (int i = 0; i < mapSize; i++) {
-            for (int j = 0; j < mapSize; j++) {
-                mapComponent.put(new Position(i, j), new TileImpl(GameConstants.PLAINS));
-            }
-        }
-    }
 
     public boolean deleteUnit(Position from) {
         if (unitMap.get(from) != null) {
@@ -162,8 +140,6 @@ public class GameImpl implements Game {
             return false;
         }
     }
-
-
 
 }
 

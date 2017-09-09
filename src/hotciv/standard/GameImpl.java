@@ -101,9 +101,18 @@ public class GameImpl implements Game {
 
     @Override
     public boolean moveUnit(Position from, Position to) {
-        unitMap.put(to, new UnitImpl(getUnitAt(from).getTypeString(),getUnitAt(from).getOwner()));
-        deleteUnit(from);
-        return true;
+        if(onlyMovePlayersOwnUnits(from)) {
+            unitMap.put(to, new UnitImpl(getUnitAt(from).getTypeString(), getUnitAt(from).getOwner()));
+            deleteUnit(from);
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public boolean onlyMovePlayersOwnUnits(Position from){
+        return (unitMap.get(from).getOwner() == currentPlayer);
     }
 
     @Override

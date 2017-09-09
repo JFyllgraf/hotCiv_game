@@ -125,6 +125,10 @@ public class TestAlphaCiv {
         assertThat(game.getTileAt(new Position(0,1)).getTypeString(),is(GameConstants.HILLS));
     }
 
+    @Test
+    public void shouldBeMountainsAt2_2(){
+        assertThat(game.getTileAt(new Position(2,2)).getTypeString(),is(GameConstants.MOUNTAINS));
+    }
 
 
 }

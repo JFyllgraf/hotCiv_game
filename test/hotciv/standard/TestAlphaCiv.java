@@ -204,6 +204,20 @@ public class TestAlphaCiv {
     public void shouldOnlyBePossibleForThePlayerToMoveHisOwnUnits(){
         assertFalse(game.moveUnit(new Position(3,2),new Position(4,2)));
     }
+    @Test
+    public void shouldHave1MovecountForAllUnits(){
+        assertThat(game.getUnitAt(new Position(2,0)).getMoveCount(),is(1));
+        assertThat(game.getUnitAt(new Position(3,2)).getMoveCount(),is(1));
+        assertThat(game.getUnitAt(new Position(4,3)).getMoveCount(),is(1));
+
+    }
+
+    @Test
+    public void shouldDecrementMovescountForAMove(){
+        assertThat(game.getUnitAt(new Position(2,0)).getMoveCount(),is(1));
+        game.moveUnit(new Position(2,0),new Position(3,0));
+        assertThat(game.getUnitAt(new Position(3,0)).getMoveCount(),is(0));
+    }
 
 
 }

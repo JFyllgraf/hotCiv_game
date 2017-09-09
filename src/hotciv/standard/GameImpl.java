@@ -104,6 +104,7 @@ public class GameImpl implements Game {
         if(onlyMovePlayersOwnUnits(from)) {
             unitMap.put(to, new UnitImpl(getUnitAt(from).getTypeString(), getUnitAt(from).getOwner()));
             deleteUnit(from);
+            unitMap.get(to).moveUnit();
             return true;
         }
         else{
@@ -111,7 +112,7 @@ public class GameImpl implements Game {
         }
     }
 
-    public boolean onlyMovePlayersOwnUnits(Position from){
+    private boolean onlyMovePlayersOwnUnits(Position from){
         return (unitMap.get(from).getOwner() == currentPlayer);
     }
 
@@ -159,6 +160,8 @@ public class GameImpl implements Game {
             return false;
         }
     }
+
+
 
 }
 

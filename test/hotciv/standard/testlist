@@ -20,17 +20,18 @@ UNITS
 [24] - Units can be deleted
 [25] - Units can be moved
 [26] - Old instances of units will be deleted when moving.
-[] - Players can move their own units
+[27] - Red cannot move Blue's unit
 [] - Units cannot move over mountains
 [] - Units cannot move over Oceans
 [] - Units cannot move outside of the world map
-[] - Red cannot move Blue's unit
 [] - Red's unit attack and destroy Blue's unit
 [] - Units can only be produced at cities
 [] - Produced units start at the city coordinates
 [] - Archers cost 10 production
 [] - Legions cost 15 production
 [] - Settlers cost 30 production
+[28] - Units have 1 movescount
+[29] - Movescount gets decremented by 1 for a move
 [] - Units can move 1 distance each round
 [] - Units have their movement restored after each round
 [] - Units attack by moving to an other players unit

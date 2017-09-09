@@ -46,6 +46,7 @@ public class GameImpl implements Game {
     public GameImpl(){
         setDefaultMap();
         mapComponent.put(new Position(1,0),new TileImpl(GameConstants.OCEANS));
+        mapComponent.put(new Position(0,1),new TileImpl(GameConstants.HILLS));
         currentPlayer=Player.RED;
         this.redCity = new CityImpl();
         this.age = -4000;

@@ -120,6 +120,10 @@ public class TestAlphaCiv {
         assertThat(game.getTileAt(new Position(1,0)).getTypeString(),is(GameConstants.OCEANS));
     }
 
+    @Test
+    public void shouldBeHillsAt0_1(){
+        assertThat(game.getTileAt(new Position(0,1)).getTypeString(),is(GameConstants.HILLS));
+    }
 
 
 

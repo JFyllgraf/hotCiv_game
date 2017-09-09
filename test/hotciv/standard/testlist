@@ -31,8 +31,8 @@ UNITS
 
 
 TILES
-[] - There is ocean at (1,0)
-[] - There is Hills at (0,1)
+[11] - There is ocean at (1,0)
+[12] - There is Hills at (0,1)
 [] - There is Mountains at (2,2)
 [10] - Game should have a 16x16 tile world map
 [] - Game should have a map for units

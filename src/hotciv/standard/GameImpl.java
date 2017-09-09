@@ -194,10 +194,10 @@ public class GameImpl implements Game {
     }
 
     public boolean produceUnit(Position position, UnitImpl unit){
-        if((position.getRow() == 1 && position.getColumn() == 1) || (position.getRow() == 4 && position.getColumn() == 1)){
-            unitMap.put(position, unit);
-            return true;
-        }
+            if((position.getRow() == 1 && position.getColumn() == 1 && unit.getOwner()==Player.RED) || (position.getRow() == 4 && position.getColumn() == 1 && unit.getOwner()==Player.BLUE)){
+                unitMap.put(position, unit);
+                return true;
+            }
         return false;
     }
 

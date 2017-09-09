@@ -285,7 +285,13 @@ public class TestAlphaCiv {
     @Test
     public void shouldOnlyBePossibleToProduceUnitsAtCities(){
         assertThat(game.produceUnit(new Position(10, 10), new UnitImpl(GameConstants.LEGION, Player.RED)), is(false));
-        assertThat(game.produceUnit(new Position(4, 1), new UnitImpl(GameConstants.LEGION, Player.RED)), is(true));
+        assertThat(game.produceUnit(redCity, new UnitImpl(GameConstants.LEGION, Player.RED)), is(true));
+    }
+
+    @Test
+    public void shouldOnlyBePossibleToProduceUnitsAtOwnCity(){
+        assertThat(game.produceUnit(blueCity, new UnitImpl(GameConstants.LEGION, Player.RED)), is(false));
+        assertThat(game.produceUnit(redCity, new UnitImpl(GameConstants.LEGION, Player.RED)), is(true));
     }
 
 }

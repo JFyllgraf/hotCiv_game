@@ -153,6 +153,10 @@ public class TestAlphaCiv {
         assertThat(game.getCityAt(new Position(4,1)).getOwner(),is(Player.BLUE));
     }
 
+    @Test
+    public void shouldReturnNullWhenTheresNoCityAtPosition(){
+        assertNull(game.getCityAt(new Position(8,8)));
+    }
 
 
 

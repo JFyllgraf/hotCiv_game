@@ -32,7 +32,7 @@ UNITS
 [] - Settlers cost 30 production
 [28] - Units have 1 movescount
 [29] - Movescount gets decremented by 1 for a move
-[] - Units can move 1 distance each round
+[30] - Units can move 1 distance each round
 [] - Units have their movement restored after each round
 [] - Units attack by moving to an other players unit
 [] - If an attacking unit wins, it removes the defending unit from the world map

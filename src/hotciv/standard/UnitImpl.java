@@ -47,4 +47,9 @@ public class UnitImpl implements Unit {
     public void moveUnit() {
         this.movecount -= 1;
     }
+
+
+    public void resetMoveCount() {
+        this.movecount = 1;
+    }
 }

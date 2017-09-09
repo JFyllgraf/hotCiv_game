@@ -110,7 +110,6 @@ public class GameImpl implements Game {
         }
         else if(currentPlayer == Player.BLUE){
             currentPlayer = Player.RED;
-
             this.age += 100;
             this.redCity.production+=6;
         }

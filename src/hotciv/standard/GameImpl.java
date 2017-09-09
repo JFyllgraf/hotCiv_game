@@ -3,6 +3,8 @@ package hotciv.standard;
 import hotciv.framework.*;
 
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 /**
  * Skeleton implementation of HotCiv.
@@ -137,8 +139,17 @@ public class GameImpl implements Game {
 
             this.age += 100;
             this.redCity.production+=6;
+
+            resetAllUnitsMovecount();
         }
     }
+
+    public void resetAllUnitsMovecount(){
+        for(Map.Entry<Position, UnitImpl> entry : unitMap.entrySet()){
+            entry.getValue().resetMoveCount();
+        }
+    }
+
 
     @Override
     public void changeWorkForceFocusInCityAt(Position p, String balance) {

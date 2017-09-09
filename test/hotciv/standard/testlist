@@ -21,7 +21,7 @@ UNITS
 [25] - Units can be moved
 [26] - Old instances of units will be deleted when moving.
 [27] - Red cannot move Blue's unit
-[] - Units cannot move over mountains
+[32] - Units cannot move over mountains
 [31] - Units cannot move over Oceans
 [] - Units cannot move outside of the world map
 [] - Red's unit attack and destroy Blue's unit

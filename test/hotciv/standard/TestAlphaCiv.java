@@ -228,7 +228,7 @@ public class TestAlphaCiv {
         assertThat(game.getUnitAt(new Position(3,0)).getMoveCount(),is(0));
     }
 
-    //@Test
+    @Test
     public void shouldResetUnitsMovescountAfterEndedRound(){
         assertThat(game.getUnitAt(new Position(2,0)).getMoveCount(),is(1));
         game.moveUnit(new Position(2,0),new Position(3,0));
@@ -248,6 +248,7 @@ public class TestAlphaCiv {
         game.endOfTurn();
         assertThat(game.moveUnit(new Position(3,2), new Position(2,2)), is(false));
     }
+
 
 
 }

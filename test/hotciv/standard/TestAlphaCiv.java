@@ -219,6 +219,14 @@ public class TestAlphaCiv {
         assertThat(game.getUnitAt(new Position(3,0)).getMoveCount(),is(0));
     }
 
+    @Test
+    public void shouldOnlyBeAbleToMoveMovecountMovesEachRound(){
+        game.moveUnit(new Position(2,0),new Position(3,0));
+        assertThat(game.getUnitAt(new Position(3,0)).getMoveCount(),is(0));
+        game.moveUnit(new Position(3,0),new Position(4,0));
+        assertThat(game.getUnitAt(new Position(3,0)).getMoveCount(),is(0));
+    }
+
 
     //Test - Jesper
 }

@@ -101,7 +101,7 @@ public class GameImpl implements Game {
 
     @Override
     public boolean moveUnit(Position from, Position to) {
-        if(onlyMovePlayersOwnUnits(from)) {
+        if(onlyMovePlayersOwnUnits(from) && onlyMoveIfMovecountisgreaterthan0(from)) {
             unitMap.put(to, new UnitImpl(getUnitAt(from).getTypeString(), getUnitAt(from).getOwner()));
             deleteUnit(from);
             unitMap.get(to).moveUnit();
@@ -111,7 +111,9 @@ public class GameImpl implements Game {
             return false;
         }
     }
-
+    private boolean onlyMoveIfMovecountisgreaterthan0(Position from){
+        return (unitMap.get(from).getMoveCount()>0);
+    }
     private boolean onlyMovePlayersOwnUnits(Position from){
         return (unitMap.get(from).getOwner() == currentPlayer);
     }

@@ -8,9 +8,11 @@ public class CityImpl implements City {
     public int production;
     private Position cityPosition;
     private Player player;
+    private int size;
     public CityImpl(Position position, Player player){
         this.player = player;
         this.cityPosition = position;
+        this.size = 1;
         production = 0;
     }
 
@@ -28,7 +30,7 @@ public class CityImpl implements City {
 
     @Override
     public int getSize() {
-        return 0;
+        return size;
     }
 
     @Override

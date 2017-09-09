@@ -37,15 +37,12 @@ TILES
 [13] - There is Mountains at (2,2)
 [10] - Game should have a 16x16 tile world map
 [] - Game should have a map for units
-[] - Each tile in the game should have a certain terrain type
 
 PLAYERS
 [1] - Red is the first player in turn
 [2] - Blue is in turn after red Player
 [3] - After Red it is Blue that is in turn
-[] - The game should have two or four players
-[] - When the game has four players, the turns are red, blue, yellow and green - respectively
-([]) - Red doesn't always win
+
 
 IMPLEMENTED METHODS THAT HAVE TO BE TESTED
 [14] - get owner from city has to return the right owner

@@ -158,6 +158,12 @@ public class TestAlphaCiv {
         assertNull(game.getCityAt(new Position(8,8)));
     }
 
+    @Test
+    public void shouldAlwaysHaveASizeOf1prCity(){
+        assertThat(game.getCityAt(new Position(1,1)).getSize(),is(1));
+        assertThat(game.getCityAt(new Position(4,1)).getSize(),is(1));
+    }
+
 
 
 }

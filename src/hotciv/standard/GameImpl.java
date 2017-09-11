@@ -93,7 +93,12 @@ public class GameImpl implements Game {
 
     @Override
     public Player getWinner() {
-        return Player.RED;
+        if(age==-3000) {
+            return Player.RED;
+        }
+        else {
+            return null;
+        }
     }
 
     @Override
@@ -132,10 +137,7 @@ public class GameImpl implements Game {
     }
 
     public boolean onlyMoveToLegalTiles(Position to){
-        if ((mapComponent.get(to).getTypeString() == GameConstants.OCEANS) || (mapComponent.get(to).getTypeString() == GameConstants.MOUNTAINS)){
-            return false;
-        }
-        return true;
+        return !((mapComponent.get(to).getTypeString().equals(GameConstants.OCEANS)) || (mapComponent.get(to).getTypeString().equals(GameConstants.MOUNTAINS)));
     }
 
     @Override

@@ -24,13 +24,13 @@ UNITS
 [32] - Units cannot move over mountains
 [31] - Units cannot move over Oceans
 [34] - Units cannot move outside of the world map
-[] - Red's unit attack and destroy Blue's unit
+[42] - Red's unit attack and destroy Blue's unit
 [36] - Players can produce new units
 [37] - Units can only be produced at cities
 [38] - Players can only produce units at their own cities
 [39] - Red City's workforcefocus is on archers when the game starts
 [40] - Blue City's workforcefocus is on settlers when the game starts
-[] - A player can change the workforcefocus to other units
+[41] - A player can change the workforcefocus to other units
 [] - Archers cost 10 production
 [] - Legions cost 15 production
 [] - Settlers cost 30 production
@@ -40,8 +40,6 @@ UNITS
 [30] - Units can move 1 distance each round
 [33] - Units have their movement restored after each round
 [35] - Units can only move as far as their movecount
-[] - Units attack by moving to an other players unit
-[] - If an attacking unit wins, it removes the defending unit from the world map
 
 
 TILES

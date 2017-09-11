@@ -106,6 +106,11 @@ public class TestAlphaCiv {
     }
 
     @Test
+    public void shouldReturnNullAsWinnerOfWinnerMethodIsCalledWhenItsNotYear3000BCYet(){
+        assertThat(game.getWinner(),is(nullValue()));
+    }
+
+    @Test
     public void shouldBeProduced6productionForCitiesAfter1Round(){
         advanceRound();
         assertThat(Integer.valueOf(game.getCityAt(redCity).getProduction()),is(6));

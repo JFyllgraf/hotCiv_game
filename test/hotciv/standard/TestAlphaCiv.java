@@ -294,5 +294,10 @@ public class TestAlphaCiv {
         assertThat(game.produceUnit(redCity, new UnitImpl(GameConstants.LEGION, Player.RED)), is(true));
     }
 
+    @Test
+    public void shouldGiveRedCityWorkforceFocusArcher(){
+        assertThat(game.getCityAt(redCity).getWorkforceFocus(),is(GameConstants.ARCHER));
+    }
+
     
 }

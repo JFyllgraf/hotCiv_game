@@ -28,7 +28,7 @@ UNITS
 [36] - Players can produce new units
 [37] - Units can only be produced at cities
 [38] - Players can only produce units at their own cities
-[] - Red City's workforcefocus is on archers when the game starts
+[39] - Red City's workforcefocus is on archers when the game starts
 [] - Blue City's workforcefocus is on settlers when the game starts
 [] - A player can change the workforcefocus to other units
 [] - Archers cost 10 production

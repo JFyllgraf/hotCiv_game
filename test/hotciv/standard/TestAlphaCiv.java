@@ -296,8 +296,13 @@ public class TestAlphaCiv {
 
     @Test
     public void shouldGiveRedCityWorkforceFocusArcher(){
-        assertThat(game.getCityAt(redCity).getWorkforceFocus(),is(GameConstants.ARCHER));
+        assertThat(game.getCityAt(redCity).getWorkforceFocus(), is(GameConstants.ARCHER)); //returns the workforceFocus unit for the city.
     }
 
-    
+    @Test
+    public void shouldGiveBlueCityWorkforceFocusSettler(){
+        assertThat(game.getCityAt(blueCity).getWorkforceFocus(), is(GameConstants.SETTLER)); //returns the workforceFocus unit for the city.
+    }
+
+
 }

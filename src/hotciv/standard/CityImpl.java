@@ -11,11 +11,21 @@ public class CityImpl implements City {
     private Player player;
     private int size;
 
+    private String workforceFocus;
+
+
     public CityImpl(Position position, Player player){
         this.player = player;
         this.cityPosition = position;
         this.size = 1;
         production = 0;
+
+        if (player == Player.RED){
+            this.workforceFocus = GameConstants.ARCHER;
+        }
+        else {
+            this.workforceFocus = GameConstants.SETTLER;
+        }
     }
 
     @Override
@@ -41,7 +51,7 @@ public class CityImpl implements City {
 
     @Override
     public String getWorkforceFocus() {
-        return GameConstants.ARCHER;
+        return workforceFocus;
     }
 
 }

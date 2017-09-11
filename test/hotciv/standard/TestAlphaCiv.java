@@ -46,6 +46,11 @@ public class TestAlphaCiv {
     private Position redSettler;
     private Position blueLegion;
 
+    private void advanceRound(){
+        game.endOfTurn();
+        game.endOfTurn();
+    }
+
     @Before
     public void setup(){
         game = new GameImpl();
@@ -68,8 +73,7 @@ public class TestAlphaCiv {
     }
     @Test
     public void shouldBeRedsTurnAfterBlues(){
-        game.endOfTurn();
-        game.endOfTurn();
+        advanceRound();
         assertThat(game.getPlayerInTurn(),is(Player.RED));
     }
 
@@ -86,11 +90,9 @@ public class TestAlphaCiv {
 
     @Test
     public void shouldIncrementGameAgeBy100EachRound(){
-        game.endOfTurn();
-        game.endOfTurn();
+        advanceRound();
         assertThat(game.getAge(), is(-3900));
-        game.endOfTurn();
-        game.endOfTurn();
+        advanceRound();
         assertThat(game.getAge(), is (-3800));
     }
 
@@ -105,16 +107,15 @@ public class TestAlphaCiv {
 
     @Test
     public void shouldBeProduced6productionForCitiesAfter1Round(){
-        game.endOfTurn();
-        game.endOfTurn();
+        advanceRound();
         assertThat(Integer.valueOf(game.getCityAt(redCity).getProduction()),is(6));
         assertThat(Integer.valueOf(game.getCityAt(blueCity).getProduction()),is(6));
     }
 
     @Test
     public void shouldBeProduced6productionsForCitiesAfterEveryRound(){
-        for (int i=0; i<4; i++){
-            game.endOfTurn();
+        for (int i=0; i<2; i++){
+            advanceRound();
         }
         assertThat(Integer.valueOf(game.getCityAt(redCity).getProduction()),is(12));
         assertThat(Integer.valueOf(game.getCityAt(blueCity).getProduction()),is(12));
@@ -247,8 +248,7 @@ public class TestAlphaCiv {
         assertThat(game.getUnitAt(redArcher).getMoveCount(),is(1));
         game.moveUnit(redArcher,new Position(3,0));
         assertThat(game.getUnitAt(new Position(3,0)).getMoveCount(),is(0));
-        game.endOfTurn();
-        game.endOfTurn();
+        advanceRound();
         assertThat(game.getUnitAt(new Position(3,0)).getMoveCount(),is(1));
     }
 
@@ -308,6 +308,15 @@ public class TestAlphaCiv {
     public void shouldBePossibleToChangeWorkforceFocus(){
         ((CityImpl)game.getCityAt(redCity)).setWorkforceFocus(GameConstants.LEGION);
         assertThat(game.getCityAt(redCity).getWorkforceFocus(), is(GameConstants.LEGION));
+    }
+
+    @Test
+    public void shouldLetRedAttackAndDestroyBluesUnit(){
+        game.moveUnit(new Position(2,0),new Position(3,1));
+        advanceRound();
+        assertThat(game.getUnitAt(new Position(3,2)).getOwner(),is(Player.BLUE));
+        game.moveUnit(new Position(3,1),new Position(3,2));
+        assertThat(game.getUnitAt(new Position(3,2)).getOwner(),is(Player.RED));
     }
 
 }

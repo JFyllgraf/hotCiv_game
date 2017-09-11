@@ -61,7 +61,7 @@ public class GameImpl implements Game {
         currentPlayer=Player.RED;
         this.redCity = new CityImpl(new Position(1, 1), Player.RED);
         this.blueCity = new CityImpl(new Position(4, 1), Player.BLUE);
-        this.age = 4000;
+        this.age = -4000;
     }
 
 

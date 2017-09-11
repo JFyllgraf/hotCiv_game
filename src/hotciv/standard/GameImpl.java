@@ -162,8 +162,9 @@ public class GameImpl implements Game {
             redCity.setProduction(Integer.valueOf(redCity.getProduction())-(getCost(redCity.getWorkforceFocus())));
 
         }
-        else if(Integer.valueOf(this.blueCity.getProduction())>=getCost(blueCity.getWorkforceFocus())){
-            produceUnit(new Position(4,1),new UnitImpl(GameConstants.LEGION,Player.BLUE));
+        if(Integer.valueOf(this.blueCity.getProduction())>=getCost(blueCity.getWorkforceFocus())){
+            produceUnit(new Position(4,1),new UnitImpl(GameConstants.SETTLER,Player.BLUE));
+            blueCity.setProduction(Integer.valueOf(blueCity.getProduction())-(getCost(blueCity.getWorkforceFocus())));
 
         }
     }

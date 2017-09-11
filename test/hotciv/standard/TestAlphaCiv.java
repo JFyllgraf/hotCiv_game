@@ -347,5 +347,18 @@ public class TestAlphaCiv {
         assertThat(game.getCost(GameConstants.LEGION),is(15));
     }
 
+    @Test
+    public void shouldCost30ProductionForASettler(){
+        advanceRound();
+        advanceRound();
+        advanceRound();
+        advanceRound();
+        advanceRound();
+        assertThat(game.getCityAt(blueCity).getProduction(),is("0")); //Assumed that bluecity produces legion and reduces production by 15
+    }
+
+
+
+
 
 }

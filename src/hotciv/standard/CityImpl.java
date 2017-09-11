@@ -34,8 +34,8 @@ public class CityImpl implements City {
     }
 
     @Override
-    public int getProduction() {
-        return production;
+    public String getProduction() {
+        return String.valueOf(production);
     }
 
     @Override

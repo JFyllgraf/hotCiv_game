@@ -107,8 +107,8 @@ public class TestAlphaCiv {
     public void shouldBeProduced6productionForCitiesAfter1Round(){
         game.endOfTurn();
         game.endOfTurn();
-        assertThat(game.getCityAt(redCity).getProduction(),is(6));
-        assertThat(game.getCityAt(blueCity).getProduction(),is(6));
+        assertThat(Integer.valueOf(game.getCityAt(redCity).getProduction()),is(6));
+        assertThat(Integer.valueOf(game.getCityAt(blueCity).getProduction()),is(6));
     }
 
     @Test
@@ -116,8 +116,8 @@ public class TestAlphaCiv {
         for (int i=0; i<4; i++){
             game.endOfTurn();
         }
-        assertThat(game.getCityAt(redCity).getProduction(),is(12));
-        assertThat(game.getCityAt(blueCity).getProduction(),is(12));
+        assertThat(Integer.valueOf(game.getCityAt(redCity).getProduction()),is(12));
+        assertThat(Integer.valueOf(game.getCityAt(blueCity).getProduction()),is(12));
     }
 
     @Test

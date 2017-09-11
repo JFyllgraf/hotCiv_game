@@ -54,4 +54,8 @@ public class CityImpl implements City {
         return workforceFocus;
     }
 
+    public void setWorkforceFocus(String unit){
+        this.workforceFocus = String.valueOf(unit);
+    }
+
 }

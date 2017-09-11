@@ -304,5 +304,10 @@ public class TestAlphaCiv {
         assertThat(game.getCityAt(blueCity).getWorkforceFocus(), is(GameConstants.SETTLER)); //returns the workforceFocus unit for the city.
     }
 
+    @Test
+    public void shouldBePossibleToChangeWorkforceFocus(){
+        ((CityImpl)game.getCityAt(redCity)).setWorkforceFocus(GameConstants.LEGION);
+        assertThat(game.getCityAt(redCity).getWorkforceFocus(), is(GameConstants.LEGION));
+    }
 
 }

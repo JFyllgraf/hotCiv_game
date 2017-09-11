@@ -49,6 +49,10 @@ public class CityImpl implements City {
         return String.valueOf(production);
     }
 
+    public void setProduction(int newValue){
+        production=newValue;
+    }
+
     @Override
     public String getWorkforceFocus() {
         return workforceFocus;

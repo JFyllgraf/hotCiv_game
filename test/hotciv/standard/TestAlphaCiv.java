@@ -122,7 +122,7 @@ public class TestAlphaCiv {
         for (int i=0; i<2; i++){
             advanceRound();
         }
-        assertThat(Integer.valueOf(game.getCityAt(redCity).getProduction()),is(12));
+        assertThat(Integer.valueOf(game.getCityAt(redCity).getProduction()),is(2));
         assertThat(Integer.valueOf(game.getCityAt(blueCity).getProduction()),is(12));
     }
 
@@ -331,6 +331,20 @@ public class TestAlphaCiv {
         assertThat(game.getUnitAt(redCity).getTypeString(),is(GameConstants.ARCHER)); //CHECKS if red automatically spawns an archer
         //When enough production is gained.
 
+    }
+
+    @Test
+    public void shouldCost10ProductionsForAnArcher(){
+        advanceRound();
+        advanceRound();
+        assertThat(game.getCityAt(redCity).getProduction(),is("2")); //Assumed that redcity buys archer and reduces production by 10
+    }
+
+    @Test
+    public void shouldReturnTheCorrectCostValueOfAUnit(){
+        assertThat(game.getCost(GameConstants.ARCHER),is(10));
+        assertThat(game.getCost(GameConstants.SETTLER),is(30));
+        assertThat(game.getCost(GameConstants.LEGION),is(15));
     }
 
 

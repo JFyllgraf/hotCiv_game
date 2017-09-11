@@ -7,6 +7,7 @@ CITIES
 [8] - Cities produce 6 'production' after one round has ended
 [9] - Cities produce 6 'production' for every round that has ended
 [20] - Cities' population size is always 1
+[44] - automatically buy unit when enough production
 
 GAME STATS
 [5] - Game should start at 4000 BC

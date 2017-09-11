@@ -157,10 +157,12 @@ public class GameImpl implements Game {
     }
 
     private void produceUnitIfEnoughProduction(){
-        if(Integer.valueOf(this.redCity.getProduction())>=10){
+        if(Integer.valueOf(this.redCity.getProduction())>=getCost(redCity.getWorkforceFocus())){
             produceUnit(new Position(1,1),new UnitImpl(GameConstants.ARCHER,Player.RED));
+            redCity.setProduction(Integer.valueOf(redCity.getProduction())-(getCost(redCity.getWorkforceFocus())));
+
         }
-        else if(Integer.valueOf(this.blueCity.getProduction())>=15){
+        else if(Integer.valueOf(this.blueCity.getProduction())>=getCost(blueCity.getWorkforceFocus())){
             produceUnit(new Position(4,1),new UnitImpl(GameConstants.LEGION,Player.BLUE));
 
         }
@@ -213,6 +215,21 @@ public class GameImpl implements Game {
         return false;
     }
 
+    public int getCost(String unitType){
+        if(unitType == GameConstants.ARCHER){
+            return 10;
+        }
+        else if(unitType == GameConstants.LEGION){
+            return 15;
+        }
+        else if(unitType == GameConstants.SETTLER){
+            return 30;
+        }
+        else{
+            return 0;
+        }
+
+    }
 
 
 

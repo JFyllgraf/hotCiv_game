@@ -28,9 +28,13 @@ UNITS
 [36] - Players can produce new units
 [37] - Units can only be produced at cities
 [38] - Players can only produce units at their own cities
+[] - Red City's workforcefocus is on archers when the game starts
+[] - Blue City's workforcefocus is on settlers when the game starts
+[] - A player can change the workforcefocus to other units
 [] - Archers cost 10 production
 [] - Legions cost 15 production
 [] - Settlers cost 30 production
+[] - Cities produce their workforcefocus unit when they enough production
 [28] - Units have 1 movescount
 [29] - Movescount gets decremented by 1 for a move
 [30] - Units can move 1 distance each round
@@ -58,4 +62,4 @@ IMPLEMENTED METHODS THAT HAVE TO BE TESTED
 [16] - get city row
 [17] - return the correct player in turn
 
-36.1.6.............
+36.1.6............

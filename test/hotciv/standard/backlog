@@ -3,3 +3,12 @@
 ############## BACKLOG ########################
 ###############################################
 
+[] - Der mangler at blive implementeret pris for produktion af units.
+[] - Units skal blive produceret automatisk efter hver runde, og fratrække production til de tilhørende byer.
+[] - Når produktion af units sker automatisk, mangler vi også at implementere koordinater.
+    Dvs. at når units bliver produceret i byen, skal de sættes på de rigtige koordinater rundt om byen. (clockwise)
+[] - Der mangler at blive implementeret få tests i forhold til attacking af units. Attacking units skal altid vinde, og der må kun være ét unit på hver tile.
+    Dette er stort set implementeret i koden pga. andre tests, men mangler at blive testet isoleret.
+[] - Vi har desuden opdaget, at der mangler at blive refaktoriseret, for at ungå dublikation enkelte steder. Her mener vi
+"changeWorkForceFocusInCityAt", og "ChangeProductionInCityAt" metoderne, som eksisterer inde i GameImpl klassen. Vi har selv lavet lignende metoder,
+men mangler at refaktorisere dem, så de rigtige metoder virker.

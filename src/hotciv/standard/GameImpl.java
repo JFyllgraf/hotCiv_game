@@ -61,8 +61,10 @@ public class GameImpl implements Game {
         currentPlayer=Player.RED;
         this.redCity = new CityImpl(new Position(1, 1), Player.RED);
         this.blueCity = new CityImpl(new Position(4, 1), Player.BLUE);
-        this.age = -4000;
+        this.age = 4000;
     }
+
+
 
     @Override
     public Tile getTileAt(Position p) {
@@ -160,13 +162,24 @@ public class GameImpl implements Game {
         if(Integer.valueOf(this.redCity.getProduction())>=getCost(redCity.getWorkforceFocus())){
             produceUnit(new Position(1,1),new UnitImpl(GameConstants.ARCHER,Player.RED));
             redCity.setProduction(Integer.valueOf(redCity.getProduction())-(getCost(redCity.getWorkforceFocus())));
-
         }
         if(Integer.valueOf(this.blueCity.getProduction())>=getCost(blueCity.getWorkforceFocus())){
-            produceUnit(new Position(4,1),new UnitImpl(GameConstants.SETTLER,Player.BLUE));
+            produceUnit(new Position(1,1),new UnitImpl(GameConstants.SETTLER,Player.BLUE));
             blueCity.setProduction(Integer.valueOf(blueCity.getProduction())-(getCost(blueCity.getWorkforceFocus())));
+        }
+    }
+    public int getCost(String unitType){
+        if(unitType==GameConstants.ARCHER){
+            return 10;
+        }
+        else if(unitType == GameConstants.LEGION){
+            return 15;
 
         }
+        else if(unitType == GameConstants.SETTLER){
+            return 30;
+        }
+        return 0;
     }
 
     private void resetAllUnitsMovecount(){
@@ -216,21 +229,6 @@ public class GameImpl implements Game {
         return false;
     }
 
-    public int getCost(String unitType){
-        if(unitType == GameConstants.ARCHER){
-            return 10;
-        }
-        else if(unitType == GameConstants.LEGION){
-            return 15;
-        }
-        else if(unitType == GameConstants.SETTLER){
-            return 30;
-        }
-        else{
-            return 0;
-        }
-
-    }
 
 
 

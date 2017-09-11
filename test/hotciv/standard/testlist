@@ -33,9 +33,9 @@ UNITS
 [40] - Blue City's workforcefocus is on settlers when the game starts
 [41] - A player can change the workforcefocus to other units
 [45] - Archers cost 10 production
-[46] - Get cost value from any archers, legions or settler
+[] - Get cost value from any archers, legions or settler
 [] - Legions cost 15 production
-[47] - Settlers cost 30 production
+[] - Settlers cost 30 production
 [] - Cities produce their workforcefocus unit when they enough production
 [28] - Units have 1 movescount
 [29] - Movescount gets decremented by 1 for a move

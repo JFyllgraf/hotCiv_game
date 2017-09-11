@@ -324,4 +324,14 @@ public class TestAlphaCiv {
         assertThat(game.getUnitAt(new Position(3,2)).getOwner(),is(Player.RED));
     }
 
+    @Test
+    public void shouldAutomaticallyBuyUnitWhenProductionIsHighEnough(){
+        advanceRound();
+        advanceRound();
+        assertThat(game.getUnitAt(redCity).getTypeString(),is(GameConstants.ARCHER)); //CHECKS if red automatically spawns an archer
+        //When enough production is gained.
+
+    }
+
+
 }

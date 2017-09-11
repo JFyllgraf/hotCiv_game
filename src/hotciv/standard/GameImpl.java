@@ -132,11 +132,11 @@ public class GameImpl implements Game {
         return false;
     }
 
-    public boolean onlyMovePlayersOwnUnits(Position from){
+    private boolean onlyMovePlayersOwnUnits(Position from){
         return (unitMap.get(from).getOwner() == currentPlayer);
     }
 
-    public boolean onlyMoveToLegalTiles(Position to){
+    private boolean onlyMoveToLegalTiles(Position to){
         return !((mapComponent.get(to).getTypeString().equals(GameConstants.OCEANS)) || (mapComponent.get(to).getTypeString().equals(GameConstants.MOUNTAINS)));
     }
 
@@ -151,12 +151,22 @@ public class GameImpl implements Game {
             this.age += 100;
             this.redCity.production+=6;
             this.blueCity.production+=6;
-
+            produceUnitIfEnoughProduction();
             resetAllUnitsMovecount();
         }
     }
 
-    public void resetAllUnitsMovecount(){
+    private void produceUnitIfEnoughProduction(){
+        if(Integer.valueOf(this.redCity.getProduction())>=10){
+            produceUnit(new Position(1,1),new UnitImpl(GameConstants.ARCHER,Player.RED));
+        }
+        else if(Integer.valueOf(this.blueCity.getProduction())>=15){
+            produceUnit(new Position(4,1),new UnitImpl(GameConstants.LEGION,Player.BLUE));
+
+        }
+    }
+
+    private void resetAllUnitsMovecount(){
         for(Map.Entry<Position, UnitImpl> entry : unitMap.entrySet()){
             entry.getValue().resetMoveCount();
         }
@@ -202,6 +212,8 @@ public class GameImpl implements Game {
         }
         return false;
     }
+
+
 
 
 }

@@ -6,7 +6,8 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses(
         { TestAlphaCiv.class,
-            TestAlphaLinearAgeing.class
+            TestAlphaLinearAgeing.class,
+            TestBetaLadderAgeing.class
         }
 )
 

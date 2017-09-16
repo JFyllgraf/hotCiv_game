@@ -1,6 +1,6 @@
 package hotciv.standard;
 
-public interface AgingStrategy {
+public interface AgeingStrategy {
 
     public int incrementAge(int age);
 

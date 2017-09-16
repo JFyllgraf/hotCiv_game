@@ -51,6 +51,7 @@ public class TestAlphaCiv {
         game.endOfTurn();
     }
 
+
     @Before
     public void setup(){
         game = new GameImpl();

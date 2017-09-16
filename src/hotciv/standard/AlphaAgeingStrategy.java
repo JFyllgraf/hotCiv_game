@@ -1,6 +1,6 @@
 package hotciv.standard;
 
-public class AlphaAgingStrategy implements AgingStrategy {
+public class AlphaAgeingStrategy implements AgeingStrategy {
 
     @Override
     public int incrementAge(int age) {

@@ -139,6 +139,10 @@ HotCiv build management for SWEA Course
       </batchtest>
       <classpath refid="class-path"/>
     </junit>
+      <java classname="org.junit.runner.JUnitCore">
+          <arg value="hotciv.standard.TestAll"/>
+          <classpath refid="class-path"/>
+      </java>
   </target>
 
   <!-- Run JUnit with JaCoCo code coverage -->
@@ -201,5 +205,12 @@ HotCiv build management for SWEA Course
     </jacoco:report>
     <echo message="To see report, browse to index.html at ${jacoco.report.dir}."/>
   </target>
+
+    <!--<target name="test" depends="build-all">
+        <java classname="org.junit.runner.JUnitCore">
+            <arg value=""/>
+            <classpath refid="class-path"/>
+        </java>
+    </target>-->
 
 </project>

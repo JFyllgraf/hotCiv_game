@@ -62,4 +62,10 @@ IMPLEMENTED METHODS THAT HAVE TO BE TESTED
 [16] - get city row
 [17] - return the correct player in turn
 
-36.1.6............
+___________________________________________________________
+Compositional Proposal Testlist
+___________________________________________________________
+[48]- refactor AlphaCiv to use a compositional design
+    [49] - Game should age 100 years each round
+    
+[] - handle aging structure for BetaCiv

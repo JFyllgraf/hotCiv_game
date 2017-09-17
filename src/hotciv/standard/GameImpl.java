@@ -3,7 +3,6 @@ package hotciv.standard;
 import hotciv.framework.*;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -38,7 +37,7 @@ public class GameImpl implements Game {
     private int mapSize = GameConstants.WORLDSIZE;
     private String plain = GameConstants.PLAINS;
     //mapTile is a map that can contain tileTypes
-    private HashMap<Position, TileImpl> mapComponent = new HashMap<>();
+    private HashMap<Position, TileImpl> tileMap = new HashMap<>();
     private HashMap<Position, UnitImpl> unitMap = new HashMap<>();
 
     private AgeingStrategy ageingStrategy;
@@ -52,9 +51,9 @@ public class GameImpl implements Game {
         ageingStrategy = new AlphaAgeingStrategy();
 
         setDefaultMap();
-        mapComponent.put(new Position(1,0),new TileImpl(GameConstants.OCEANS));
-        mapComponent.put(new Position(0,1),new TileImpl(GameConstants.HILLS));
-        mapComponent.put(new Position(2,2),new TileImpl(GameConstants.MOUNTAINS));
+        tileMap.put(new Position(1,0),new TileImpl(GameConstants.OCEANS));
+        tileMap.put(new Position(0,1),new TileImpl(GameConstants.HILLS));
+        tileMap.put(new Position(2,2),new TileImpl(GameConstants.MOUNTAINS));
 
         unitMap.put(new Position(3,2),new UnitImpl(GameConstants.LEGION,Player.BLUE));
         unitMap.put(new Position(4,3),new UnitImpl(GameConstants.SETTLER,Player.RED));
@@ -71,7 +70,7 @@ public class GameImpl implements Game {
 
     @Override
     public Tile getTileAt(Position p) {
-        return mapComponent.get(p);
+        return tileMap.get(p);
     }
 
     @Override
@@ -114,7 +113,7 @@ public class GameImpl implements Game {
     @Override
     public boolean moveUnit(Position from, Position to) {
         if((to.getRow() < 16 && to.getRow() >= 0) && (to.getColumn() < 16 && to.getColumn() >= 0)){
-            if(onlyMovePlayersOwnUnits(from) && onlyMoveIfMovecountisgreaterthan0(from) && onlyMoveToLegalTiles(to) && MoveDistanceIsLegal(from, to)) {
+            if(onlyMovePlayersOwnUnits(from) && onlyMoveIfMoveCountisgreaterthan0(from) && onlyMoveToLegalTiles(to) && MoveDistanceIsLegal(from, to)) {
                 unitMap.put(to, new UnitImpl(getUnitAt(from).getTypeString(), getUnitAt(from).getOwner()));
                 deleteUnit(from);
                 unitMap.get(to).moveUnit();
@@ -124,7 +123,7 @@ public class GameImpl implements Game {
         return false;
     }
 
-    private boolean onlyMoveIfMovecountisgreaterthan0(Position from){
+    private boolean onlyMoveIfMoveCountisgreaterthan0(Position from){
         return (unitMap.get(from).getMoveCount()>0);
     }
 
@@ -142,7 +141,7 @@ public class GameImpl implements Game {
     }
 
     private boolean onlyMoveToLegalTiles(Position to){
-        return !((mapComponent.get(to).getTypeString().equals(GameConstants.OCEANS)) || (mapComponent.get(to).getTypeString().equals(GameConstants.MOUNTAINS)));
+        return !((tileMap.get(to).getTypeString().equals(GameConstants.OCEANS)) || (tileMap.get(to).getTypeString().equals(GameConstants.MOUNTAINS)));
     }
 
     @Override
@@ -155,8 +154,8 @@ public class GameImpl implements Game {
 
             this.age = ageingStrategy.incrementAge(age);
 
-            this.redCity.production+=6;
-            this.blueCity.production+=6;
+            this.redCity.setProduction(Integer.valueOf(this.redCity.getProduction())+6);
+            this.blueCity.setProduction(Integer.valueOf(this.blueCity.getProduction())+6);
             produceUnitIfEnoughProduction();
             resetAllUnitsMovecount();
         }
@@ -173,15 +172,13 @@ public class GameImpl implements Game {
         }
     }
     public int getCost(String unitType){
-        if(unitType==GameConstants.ARCHER){
-            return 10;
-        }
-        else if(unitType == GameConstants.LEGION){
-            return 15;
-
-        }
-        else if(unitType == GameConstants.SETTLER){
-            return 30;
+        switch (unitType) {
+            case GameConstants.ARCHER:
+                return 10;
+            case GameConstants.LEGION:
+                return 15;
+            case GameConstants.SETTLER:
+                return 30;
         }
         return 0;
     }
@@ -211,7 +208,7 @@ public class GameImpl implements Game {
     private void setDefaultMap() {
         for (int i = 0; i < mapSize; i++) {
             for (int j = 0; j < mapSize; j++) {
-                mapComponent.put(new Position(i, j), new TileImpl(GameConstants.PLAINS));
+                tileMap.put(new Position(i, j), new TileImpl(GameConstants.PLAINS));
             }
         }
     }

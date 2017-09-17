@@ -6,7 +6,7 @@ import hotciv.framework.Player;
 import hotciv.framework.Position;
 
 public class CityImpl implements City {
-    public int production;
+    private int production;
     private Position cityPosition;
     private Player player;
     private int size;

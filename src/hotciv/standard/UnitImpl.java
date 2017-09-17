@@ -10,12 +10,12 @@ public class UnitImpl implements Unit {
 
     private final String unitType;
     private final Player owner;
-    private int movecount;
+    private int moveCount;
 
     public UnitImpl(String gameconstant, Player owner) {
         this.unitType = gameconstant;
         this.owner = owner;
-        this.movecount = 1;
+        this.moveCount = 1;
     }
 
     @Override
@@ -30,7 +30,7 @@ public class UnitImpl implements Unit {
 
     @Override
     public int getMoveCount() {
-        return movecount;
+        return moveCount;
     }
 
 
@@ -45,11 +45,11 @@ public class UnitImpl implements Unit {
     }
 
     public void moveUnit() {
-        this.movecount -= 1;
+        this.moveCount -= 1;
     }
 
 
     public void resetMoveCount() {
-        this.movecount = 1;
+        this.moveCount = 1;
     }
 }

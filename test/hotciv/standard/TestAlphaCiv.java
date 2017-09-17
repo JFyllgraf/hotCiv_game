@@ -53,6 +53,7 @@ public class TestAlphaCiv {
         game.endOfTurn();
     }
 
+
     @Before
     public void setup(){
         game = new GameImpl();
@@ -358,9 +359,6 @@ public class TestAlphaCiv {
         advanceRound();
         assertThat(game.getCityAt(blueCity).getProduction(),is("0")); //Assumed that bluecity produces legion and reduces production by 15
     }
-
-
-
 
 
 }

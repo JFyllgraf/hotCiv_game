@@ -62,4 +62,18 @@ IMPLEMENTED METHODS THAT HAVE TO BE TESTED
 [16] - get city row
 [17] - return the correct player in turn
 
-36.1.6............
+___________________________________________________________
+Compositional Proposal Testlist
+___________________________________________________________
+[48-49]- refactor AlphaCiv to use a compositional design
+    [49] - Game should age 100 years each round
+
+[50-57] - handle aging structure for BetaCiv
+    [50] - Game should age 100 years between 4000 and 100 BC
+    [51] - Game should age 99 years between 100 and 1 BC
+    [52] - Game should age 2 between 1 BC and 1 AD
+    [53] - Game should age 49 between 1 and 50 AD
+    [54] - Game should age 50 between 50 and 1750 AD
+    [55] - Game should age 25 between 1750 and 1900 AD
+    [56] - Game should age 5 between 1900 and 1970 AD
+    [57] - Game should age 1 from 1970 AD and beyond

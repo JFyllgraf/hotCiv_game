@@ -41,6 +41,7 @@ public class GameImpl implements Game {
     private HashMap<Position, TileImpl> mapComponent = new HashMap<>();
     private HashMap<Position, UnitImpl> unitMap = new HashMap<>();
 
+    private AgeingStrategy ageingStrategy;
 
     private CityImpl redCity;
     private CityImpl blueCity;
@@ -48,6 +49,8 @@ public class GameImpl implements Game {
     private int age;
 
     public GameImpl(){
+        ageingStrategy = new AlphaAgeingStrategy();
+
         setDefaultMap();
         mapComponent.put(new Position(1,0),new TileImpl(GameConstants.OCEANS));
         mapComponent.put(new Position(0,1),new TileImpl(GameConstants.HILLS));
@@ -150,7 +153,8 @@ public class GameImpl implements Game {
         else if(currentPlayer == Player.BLUE){
             currentPlayer = Player.RED;
 
-            this.age += 100;
+            this.age = ageingStrategy.incrementAge(age);
+
             this.redCity.production+=6;
             this.blueCity.production+=6;
             produceUnitIfEnoughProduction();

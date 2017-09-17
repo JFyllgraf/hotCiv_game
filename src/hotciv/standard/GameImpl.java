@@ -44,12 +44,16 @@ public class GameImpl implements Game {
 
     private CityImpl redCity;
     private CityImpl blueCity;
+    private Position redCityPos;
+    private Position blueCityPos;
 
     private int age;
 
     public GameImpl(){
         ageingStrategy = new AlphaAgeingStrategy();
 
+        redCityPos = new Position(1,1);
+        blueCityPos = new Position(4,1);
         setDefaultMap();
         tileMap.put(new Position(1,0),new TileImpl(GameConstants.OCEANS));
         tileMap.put(new Position(0,1),new TileImpl(GameConstants.HILLS));
@@ -61,8 +65,8 @@ public class GameImpl implements Game {
 
 
         currentPlayer=Player.RED;
-        this.redCity = new CityImpl(new Position(1, 1), Player.RED);
-        this.blueCity = new CityImpl(new Position(4, 1), Player.BLUE);
+        this.redCity = new CityImpl(redCityPos, Player.RED);
+        this.blueCity = new CityImpl(blueCityPos, Player.BLUE);
         this.age = -4000;
     }
 
@@ -80,10 +84,10 @@ public class GameImpl implements Game {
 
     @Override
     public City getCityAt(Position p) {
-        if (p.getRow() == redCity.getRow() && p.getColumn() == redCity.getColumn()) {
+        if (p.getRow() == redCityPos.getRow() && p.getColumn() == redCityPos.getColumn()) {
             return redCity;
         }
-        if (p.getRow() == blueCity.getRow() && p.getColumn() == blueCity.getColumn()) {
+        if (p.getRow() == blueCityPos.getRow() && p.getColumn() == blueCityPos.getColumn()) {
             return blueCity;
         } else {
             return null;
@@ -171,7 +175,8 @@ public class GameImpl implements Game {
             blueCity.setProduction(Integer.valueOf(blueCity.getProduction())-(getCost(blueCity.getWorkforceFocus())));
         }
     }
-    public int getCost(String unitType){
+
+    int getCost(String unitType){
         switch (unitType) {
             case GameConstants.ARCHER:
                 return 10;
@@ -213,7 +218,7 @@ public class GameImpl implements Game {
         }
     }
 
-    public boolean deleteUnit(Position from) {
+    boolean deleteUnit(Position from) {
         if (unitMap.get(from) != null) {
             unitMap.remove(from);
             return true;
@@ -222,7 +227,7 @@ public class GameImpl implements Game {
         }
     }
 
-    public boolean produceUnit(Position position, UnitImpl unit){
+    boolean produceUnit(Position position, UnitImpl unit){
         if((position.getRow() == 1 && position.getColumn() == 1 && unit.getOwner()==Player.RED) || (position.getRow() == 4 && position.getColumn() == 1 && unit.getOwner()==Player.BLUE)){
             unitMap.put(position, unit);
             return true;

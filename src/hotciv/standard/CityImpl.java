@@ -33,11 +33,6 @@ public class CityImpl implements City {
         return this.player;
     }
 
-    public int getRow() { return cityPosition.getRow(); }
-
-    public int getColumn() {
-        return cityPosition.getColumn();
-    }
 
     @Override
     public int getSize() {

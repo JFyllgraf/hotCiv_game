@@ -40,6 +40,13 @@ public class TestGammaCivUnitAction {
         assertThat(game.getUnitAt(new Position(2,0)).getDefensiveStrength(),is(6));
     }
 
+    @Test
+    public void shouldFreezeArcherAfterActionIsPerformed(){
+        game.performUnitActionAt(new Position(2,0));
+        assertThat(game.getUnitAt(new Position(2,0)).getMoveCount(),is(-1));
+        assertThat(game.moveUnit(new Position(2,0),new Position(3,1)),is(false));
+    }
+
 
 
 

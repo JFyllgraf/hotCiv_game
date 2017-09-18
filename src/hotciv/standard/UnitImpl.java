@@ -54,7 +54,14 @@ public class UnitImpl implements Unit {
     }
 
 
-    public void resetMoveCount() {
-        this.moveCount = 1;
+    public void setMoveCount() {
+        if(this.moveCount>=0) {
+            this.moveCount = 1;
+        }
     }
+
+    public void freezeUnit(){
+        this.moveCount = -1;
+    }
+
 }

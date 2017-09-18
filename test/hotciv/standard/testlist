@@ -89,4 +89,4 @@ ___________________________________________________________
 [62] - Settlers action produces a city on it's position. (GammaCiv)
 [63] - Settlers are removed from the game when they have performed their action. (GammaCiv)
 [65] - Archers defensive streangth is doubled when their action is performed (GammaCiv)
-[] - Archers cannot move when their action has been performed (GammaCiv)
+[66] - Archers cannot move when their action has been performed (GammaCiv)

@@ -2,7 +2,6 @@ package hotciv.standard;
 
 import hotciv.framework.*;
 import hotciv.standard.StrategyClasses.AlphaAgeingStrategy;
-import hotciv.standard.StrategyClasses.AlphaWinnerStrategy;
 import hotciv.standard.StrategyInterfaces.AgeingStrategy;
 import hotciv.standard.StrategyInterfaces.UnitActionStrategy;
 import hotciv.standard.StrategyInterfaces.WinnerStrategy;
@@ -211,7 +210,9 @@ public class GameImpl implements Game {
 
     private void resetAllUnitsMovecount(){
         for(Map.Entry<Position, UnitImpl> entry : unitMap.entrySet()){
-            entry.getValue().resetMoveCount();
+            if(entry.getValue().getMoveCount() == 0){
+                entry.getValue().setMoveCount();
+            }
         }
     }
 

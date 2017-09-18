@@ -9,7 +9,8 @@ import org.junit.runners.Suite;
                 TestAlphaLinearAgeing.class,
                 TestBetaLadderAgeing.class,
                 TestAlphaWinnerStrategy.class,
-                TestBetaWinnerStrategy.class
+                TestBetaWinnerStrategy.class,
+                TestAlphaCivUnitAction.class
         }
 )
 

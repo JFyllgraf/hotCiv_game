@@ -4,6 +4,7 @@ import hotciv.framework.*;
 import hotciv.standard.StrategyClasses.AlphaAgeingStrategy;
 import hotciv.standard.StrategyClasses.AlphaWinnerStrategy;
 import hotciv.standard.StrategyInterfaces.AgeingStrategy;
+import hotciv.standard.StrategyInterfaces.UnitActionStrategy;
 import hotciv.standard.StrategyInterfaces.WinnerStrategy;
 //H
 import java.util.HashMap;
@@ -47,6 +48,7 @@ public class GameImpl implements Game {
 
     private AgeingStrategy ageingStrategy;
     private WinnerStrategy winnerStrategy;
+    private UnitActionStrategy unitActionStrategy;
 
     private CityImpl redCity;
     private CityImpl blueCity;
@@ -57,9 +59,10 @@ public class GameImpl implements Game {
 
     private int age;
 
-    public GameImpl(WinnerStrategy winnerStrategy){
+    public GameImpl(WinnerStrategy winnerStrategy, UnitActionStrategy unitActionStrategy){
         ageingStrategy = new AlphaAgeingStrategy();
         this.winnerStrategy = winnerStrategy;
+        this.unitActionStrategy = unitActionStrategy;
 
         redCityPos = new Position(1,1);
         blueCityPos = new Position(4,1);
@@ -231,6 +234,7 @@ public class GameImpl implements Game {
 
     @Override
     public void performUnitActionAt(Position p) {
+        unitActionStrategy.performAction();
 
     }
 

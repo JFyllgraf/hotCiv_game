@@ -2,8 +2,10 @@ package hotciv.standard;
 
 import hotciv.framework.Player;
 import hotciv.standard.StrategyClasses.AlphaAgeingStrategy;
+import hotciv.standard.StrategyClasses.AlphaUnitActionStrategy;
 import hotciv.standard.StrategyClasses.AlphaWinnerStrategy;
 import hotciv.standard.StrategyInterfaces.AgeingStrategy;
+import hotciv.standard.StrategyInterfaces.UnitActionStrategy;
 import hotciv.standard.StrategyInterfaces.WinnerStrategy;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,7 +20,7 @@ public class TestAlphaWinnerStrategy {
     @Before
     public void setup(){
         winnerStrategy = new AlphaWinnerStrategy();
-        game = new GameImpl(winnerStrategy);
+        game = new GameImpl(winnerStrategy, null);
     }
 
     private void advanceRound(){

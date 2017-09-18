@@ -2,7 +2,9 @@ package hotciv.standard;
 
 import hotciv.framework.*;
 
+import hotciv.standard.StrategyClasses.AlphaUnitActionStrategy;
 import hotciv.standard.StrategyClasses.AlphaWinnerStrategy;
+import hotciv.standard.StrategyInterfaces.UnitActionStrategy;
 import hotciv.standard.StrategyInterfaces.WinnerStrategy;
 import org.junit.*;
 
@@ -51,6 +53,7 @@ public class TestAlphaCiv {
     private Position blueLegion;
 
     private WinnerStrategy winnerStrategy;
+    private UnitActionStrategy unitActionStrategy;
 
     private void advanceRound(){
         game.endOfTurn();
@@ -61,7 +64,8 @@ public class TestAlphaCiv {
     @Before
     public void setup(){
         winnerStrategy = new AlphaWinnerStrategy();
-        game = new GameImpl(winnerStrategy);
+        unitActionStrategy = new AlphaUnitActionStrategy();
+        game = new GameImpl(winnerStrategy,unitActionStrategy);
 
         redCity = new Position(1,1);
         blueCity = new Position(4,1);

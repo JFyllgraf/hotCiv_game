@@ -20,7 +20,7 @@ public class TestBetaWinnerStrategy {
     public void setup(){
         this.blueCityPos = new Position(4,1);
         winnerStrategy = new BetaWinnerStrategy();
-        game = new GameImpl(winnerStrategy);
+        game = new GameImpl(winnerStrategy,null);
     }
 
     @Test

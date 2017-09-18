@@ -13,10 +13,12 @@ import static org.junit.Assert.assertThat;
 
 public class TestAlphaWinnerStrategy {
     private GameImpl game;
+    private  WinnerStrategy winnerStrategy;
 
     @Before
     public void setup(){
-        game = new GameImpl();
+        winnerStrategy = new AlphaWinnerStrategy();
+        game = new GameImpl(winnerStrategy);
     }
 
     private void advanceRound(){

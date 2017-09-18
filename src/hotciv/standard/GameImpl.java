@@ -57,9 +57,9 @@ public class GameImpl implements Game {
 
     private int age;
 
-    public GameImpl(){
+    public GameImpl(WinnerStrategy winnerStrategy){
         ageingStrategy = new AlphaAgeingStrategy();
-        winnerStrategy = new AlphaWinnerStrategy();
+        this.winnerStrategy = winnerStrategy;
 
         redCityPos = new Position(1,1);
         blueCityPos = new Position(4,1);
@@ -115,7 +115,7 @@ public class GameImpl implements Game {
 
     @Override
     public Player getWinner() {
-        return winnerStrategy.getWinner(age);
+        return winnerStrategy.getWinner(this, cityMap);
     }
 
     @Override
@@ -132,6 +132,13 @@ public class GameImpl implements Game {
                 unitMap.get(to).moveUnit();
                 return true;
             }
+        }
+        return false;
+    }
+
+    private boolean movedToEnemyCity(Position to){
+        if((getCityAt(to) != null) && (getCityAt(to).getOwner() != currentPlayer ) && (getCityAt(to).getOwner() != null)){
+            return true;
         }
         return false;
     }
@@ -173,17 +180,6 @@ public class GameImpl implements Game {
             produceUnit(blueCityPos,bluePlayerWorkForce);
 
             resetAllUnitsMovecount();
-        }
-    }
-
-    private void produceUnitIfEnoughProduction(){
-        if(Integer.valueOf(this.redCity.getProduction())>=getCost(redCity.getWorkforceFocus())){
-            produceUnit(new Position(1,1),new UnitImpl(GameConstants.ARCHER,Player.RED));
-            redCity.setProduction(Integer.valueOf(redCity.getProduction())-(getCost(redCity.getWorkforceFocus())));
-        }
-        if(Integer.valueOf(this.blueCity.getProduction())>=getCost(blueCity.getWorkforceFocus())){
-            produceUnit(new Position(1,1),new UnitImpl(GameConstants.SETTLER,Player.BLUE));
-            blueCity.setProduction(Integer.valueOf(blueCity.getProduction())-(getCost(blueCity.getWorkforceFocus())));
         }
     }
 

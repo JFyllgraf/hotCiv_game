@@ -2,6 +2,8 @@ package hotciv.standard;
 
 import hotciv.framework.*;
 
+import hotciv.standard.StrategyClasses.AlphaWinnerStrategy;
+import hotciv.standard.StrategyInterfaces.WinnerStrategy;
 import org.junit.*;
 
 import static org.junit.Assert.*;
@@ -48,6 +50,8 @@ public class TestAlphaCiv {
     private Position redSettler;
     private Position blueLegion;
 
+    private WinnerStrategy winnerStrategy;
+
     private void advanceRound(){
         game.endOfTurn();
         game.endOfTurn();
@@ -56,7 +60,8 @@ public class TestAlphaCiv {
 
     @Before
     public void setup(){
-        game = new GameImpl();
+        winnerStrategy = new AlphaWinnerStrategy();
+        game = new GameImpl(winnerStrategy);
 
         redCity = new Position(1,1);
         blueCity = new Position(4,1);
@@ -352,6 +357,17 @@ public class TestAlphaCiv {
         advanceRound();
         advanceRound();
         assertThat(game.getCityAt(blueCity).getProduction(),is("0")); //Assumed that bluecity produces legion and reduces production by 15
+    }
+
+    @Test
+    public void shouldChangeCityOwnerWhenAttackingUnitKillsACitysDeffendingUnit(){
+        game.moveUnit(new Position(2,0), new Position(3,1));
+        //advances the game 5 rounds, to spawn a settler at Blue City.
+        for (int i = 0; i < 5; i++){
+            advanceRound();
+        }
+        game.moveUnit(new Position(3,1), new Position(4,1));
+        assertThat(game.getCityAt(blueCity).getOwner(), is(Player.RED));
     }
 
 

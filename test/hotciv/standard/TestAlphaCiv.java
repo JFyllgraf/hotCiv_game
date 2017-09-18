@@ -375,5 +375,10 @@ public class TestAlphaCiv {
         assertThat(game.getCityAt(blueCity).getOwner(), is(Player.RED));
     }
 
+    @Test
+    public void shouldLetArchersStartOutWith3InDefence(){
+        assertThat(game.getUnitAt(new Position(2,0)).getDefensiveStrength(),is(3));
+    }
+
 
 }

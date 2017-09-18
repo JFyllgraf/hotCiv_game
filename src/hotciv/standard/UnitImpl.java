@@ -36,7 +36,7 @@ public class UnitImpl implements Unit {
 
     @Override
     public int getDefensiveStrength() {
-        return 0;
+        return 3;
     }
 
     @Override

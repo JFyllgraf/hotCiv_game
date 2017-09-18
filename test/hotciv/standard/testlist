@@ -43,6 +43,7 @@ UNITS
 [30] - Units can move 1 distance each round
 [33] - Units have their movement restored after each round
 [35] - Units can only move as far as their movecount
+[] - Archers default defence is 3
 
 
 TILES

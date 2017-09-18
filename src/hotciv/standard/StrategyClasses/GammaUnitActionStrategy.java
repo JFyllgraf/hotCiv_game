@@ -13,6 +13,7 @@ public class GammaUnitActionStrategy implements UnitActionStrategy {
             game.putCityAt(position, game.getUnitAt(position).getOwner());
             game.deleteUnit(position);
         }
+
     }
 
 }

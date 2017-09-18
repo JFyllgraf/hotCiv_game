@@ -34,5 +34,13 @@ public class TestGammaCivUnitAction {
         assertThat(game.getUnitAt(new Position(4,3)), is(nullValue()));
     }
 
+    @Test
+    public void shouldDoubleStrenthForArcherWhenActionIsPerformed(){
+        game.performUnitActionAt(new Position(2,0));
+        assertThat(game.getUnitAt(new Position(2,0)).getDefensiveStrength(),is(6));
+    }
+
+
+
 
 }

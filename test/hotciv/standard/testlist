@@ -8,7 +8,7 @@ CITIES
 [9] - Cities produce 6 'production' for every round that has ended
 [20] - Cities' population size is always 1
 [44] - automatically buy unit when enough production
-[] - Cities will be overtaken when an other player kills the defending unit
+[59] - Cities will be overtaken when an other player kills the defending unit
 
 GAME STATS
 [5] - Game should start at 4000 BC
@@ -83,5 +83,5 @@ ___________________________________________________________
 
 //Integration Testing
 [58] - Refactor AlphaCiv to use AlphaCiv winner strategy
-[] - When a player conqures all cities, he should win the game
+[60] - When a player conqures all cities, he should win the game for betaStrategy
 

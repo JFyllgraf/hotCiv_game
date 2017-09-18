@@ -41,7 +41,6 @@ public class GameImpl implements Game {
     //mapTile is a map that can contain tileTypes
     private HashMap<Position, TileImpl> tileMap = new HashMap<>();
     private HashMap<Position, UnitImpl> unitMap = new HashMap<>();
-    private HashMap<Position, CityImpl> cityMap = new HashMap<>();
 
     private AgeingStrategy ageingStrategy;
 
@@ -49,8 +48,6 @@ public class GameImpl implements Game {
     private CityImpl blueCity;
     private Position redCityPos;
     private Position blueCityPos;
-    private UnitImpl redPlayerWorkForce;
-    private UnitImpl bluePlayerWorkForce;
 
     private int age;
 
@@ -59,15 +56,7 @@ public class GameImpl implements Game {
 
         redCityPos = new Position(1,1);
         blueCityPos = new Position(4,1);
-
-        this.redPlayerWorkForce = new UnitImpl(GameConstants.ARCHER,Player.RED);
-        this.bluePlayerWorkForce = new UnitImpl(GameConstants.SETTLER,Player.BLUE);
-
-        cityMap.put(redCityPos, new CityImpl(redCityPos,Player.RED));
-        cityMap.put(blueCityPos, new CityImpl(blueCityPos,Player.BLUE));
-
         setDefaultMap();
-
         tileMap.put(new Position(1,0),new TileImpl(GameConstants.OCEANS));
         tileMap.put(new Position(0,1),new TileImpl(GameConstants.HILLS));
         tileMap.put(new Position(2,2),new TileImpl(GameConstants.MOUNTAINS));
@@ -97,11 +86,14 @@ public class GameImpl implements Game {
 
     @Override
     public City getCityAt(Position p) {
-        if(cityMap.get(p)!=null){
-            return cityMap.get(p);
+        if (p.getRow() == redCityPos.getRow() && p.getColumn() == redCityPos.getColumn()) {
+            return redCity;
         }
-        return null;
-
+        if (p.getRow() == blueCityPos.getRow() && p.getColumn() == blueCityPos.getColumn()) {
+            return blueCity;
+        } else {
+            return null;
+        }
     }
 
     @Override
@@ -168,11 +160,9 @@ public class GameImpl implements Game {
 
             this.age = ageingStrategy.incrementAge(age);
 
-           increaseAllCitiesProduction();
-
-            produceUnit(redCityPos,redPlayerWorkForce);
-            produceUnit(blueCityPos,bluePlayerWorkForce);
-
+            this.redCity.setProduction(Integer.valueOf(this.redCity.getProduction())+6);
+            this.blueCity.setProduction(Integer.valueOf(this.blueCity.getProduction())+6);
+            produceUnitIfEnoughProduction();
             resetAllUnitsMovecount();
         }
     }
@@ -186,14 +176,6 @@ public class GameImpl implements Game {
             produceUnit(new Position(1,1),new UnitImpl(GameConstants.SETTLER,Player.BLUE));
             blueCity.setProduction(Integer.valueOf(blueCity.getProduction())-(getCost(blueCity.getWorkforceFocus())));
         }
-    }
-
-    private boolean enoughProduction(City city){
-        if(Integer.valueOf(city.getProduction())>=getCost(city.getWorkforceFocus())){
-            return true;
-        }
-        return false;
-
     }
 
     int getCost(String unitType){
@@ -211,12 +193,6 @@ public class GameImpl implements Game {
     private void resetAllUnitsMovecount(){
         for(Map.Entry<Position, UnitImpl> entry : unitMap.entrySet()){
             entry.getValue().resetMoveCount();
-        }
-    }
-
-    private void increaseAllCitiesProduction(){
-        for(Map.Entry<Position, CityImpl> entry: cityMap.entrySet()){
-            entry.getValue().setProduction(Integer.valueOf(entry.getValue().getProduction())+6);
         }
     }
 
@@ -254,17 +230,8 @@ public class GameImpl implements Game {
     }
 
     boolean produceUnit(Position position, UnitImpl unit){
-        if(hasBlueOrRedCity(position,unit) && enoughProduction(getCityAt(position))){
-            unitMap.put(position, unit);
-            ((CityImpl)getCityAt(position)).setProduction(Integer.valueOf(getCityAt(position).getProduction())-(getCost(getCityAt(position).getWorkforceFocus())));
-            return true;
-        }
-        return false;
-    }
-
-    //Checks if position contains the coordinates of blue or red city and if it is owned by the proper owner
-    boolean hasBlueOrRedCity(Position position, UnitImpl unit){
         if((position.getRow() == 1 && position.getColumn() == 1 && unit.getOwner()==Player.RED) || (position.getRow() == 4 && position.getColumn() == 1 && unit.getOwner()==Player.BLUE)){
+            unitMap.put(position, unit);
             return true;
         }
         return false;

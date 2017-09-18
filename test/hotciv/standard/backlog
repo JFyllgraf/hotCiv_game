@@ -3,7 +3,6 @@
 ###############################################
 
 [] - Der mangler at blive implementeret pris for produktion af units.
-[] - Units skal blive produceret automatisk efter hver runde, og fratrække production til de tilhørende byer.
 [] - Når produktion af units sker automatisk, mangler vi også at implementere koordinater.
     Dvs. at når units bliver produceret i byen, skal de sættes på de rigtige koordinater rundt om byen. (clockwise)
 [] - Der mangler at blive implementeret få tests i forhold til attacking af units. Attacking units skal altid vinde, og der må kun være ét unit på hver tile.
@@ -12,6 +11,14 @@
 "changeWorkForceFocusInCityAt", og "ChangeProductionInCityAt" metoderne, som eksisterer inde i GameImpl klassen. Vi har selv lavet lignende metoder,
 men mangler at refaktorisere dem, så de rigtige metoder virker.
 
+[] - Implementerer compositional design for deltaciv.
 
-//Vi havde problemer med commits fra den ene computer hvor vi skrev disse fra. Vi har lavet nogle af dem siden de blev skrevet. Vi
-kunne ikke få lov at lave en zip med den daværende kode, så der er 6 tests mere her.
+
+//Vi har grundet tidspres (Vi har arbejdet på projektet fra 9.00 -> 21.20+ mandag samt eftermiddagen lørdag), men
+//grundet problemer med git har vi ikke kommet helt så langt som ventet (Vi har brugt i omegnen af 5 timer på at få
+//skidtet til at virke...). Derfor mangler vi stadig deltaCiv, hvilket vi ikke håber går ud over vurderingen.
+//Vi har haft fokus på at implementere og bruge compositional design korrekt.
+//Vi smider deltaCiv med i næste aflevering!
+
+//Vi har dog fået rettet de rettelser i productionCode som du beskrev i vores genaflevering (Vi nåede ikke at rette
+//det til aflevering to, da vi afleverede dem samme dag).

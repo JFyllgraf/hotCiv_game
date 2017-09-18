@@ -90,3 +90,4 @@ ___________________________________________________________
 [63] - Settlers are removed from the game when they have performed their action. (GammaCiv)
 [65] - Archers defensive streangth is doubled when their action is performed (GammaCiv)
 [66] - Archers cannot move when their action has been performed (GammaCiv)
+[67] - Archers remove freeze when use ability efter it is frozen.

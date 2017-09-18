@@ -286,20 +286,23 @@ public class TestAlphaCiv {
     
     @Test
     public void shouldBePossibleToProduceNewUnits(){
-        assertThat(game.produceUnit(redCity, new UnitImpl(GameConstants.ARCHER, Player.RED)), is(true));
+        advanceRound();
+        advanceRound();
         assertThat(game.getUnitAt(redCity).getTypeString(), is(GameConstants.ARCHER));
     }
 
     @Test
     public void shouldOnlyBePossibleToProduceUnitsAtCities(){
-        assertThat(game.produceUnit(new Position(10, 10), new UnitImpl(GameConstants.LEGION, Player.RED)), is(false));
-        assertThat(game.produceUnit(redCity, new UnitImpl(GameConstants.LEGION, Player.RED)), is(true));
+        assertThat(game.produceUnit(new Position(1,1 ),new UnitImpl(GameConstants.ARCHER,Player.RED)),is(false));
     }
 
     @Test
     public void shouldOnlyBePossibleToProduceUnitsAtOwnCity(){
-        assertThat(game.produceUnit(blueCity, new UnitImpl(GameConstants.LEGION, Player.RED)), is(false));
-        assertThat(game.produceUnit(redCity, new UnitImpl(GameConstants.LEGION, Player.RED)), is(true));
+        for(int i = 0; i<5; i++){
+            advanceRound();
+        }
+        assertThat(game.getUnitAt(blueCity).getOwner(), is(Player.BLUE));
+        assertThat(game.getUnitAt(redCity).getOwner(), is(Player.RED));
     }
 
     @Test

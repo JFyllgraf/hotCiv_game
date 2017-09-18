@@ -234,7 +234,7 @@ public class GameImpl implements Game {
 
     @Override
     public void performUnitActionAt(Position p) {
-        unitActionStrategy.performAction();
+        unitActionStrategy.performAction(this, p);
 
     }
 
@@ -246,7 +246,7 @@ public class GameImpl implements Game {
         }
     }
 
-    boolean deleteUnit(Position from) {
+    public boolean deleteUnit(Position from) {
         if (unitMap.get(from) != null) {
             unitMap.remove(from);
             return true;
@@ -255,7 +255,7 @@ public class GameImpl implements Game {
         }
     }
 
-    boolean produceUnit(Position position, UnitImpl unit){
+    public boolean produceUnit(Position position, UnitImpl unit){
         if(hasBlueOrRedCity(position,unit) && enoughProduction(getCityAt(position))){
             unitMap.put(position, unit);
             ((CityImpl)getCityAt(position)).setProduction(Integer.valueOf(getCityAt(position).getProduction())-(getCost(getCityAt(position).getWorkforceFocus())));
@@ -265,14 +265,16 @@ public class GameImpl implements Game {
     }
 
     //Checks if position contains the coordinates of blue or red city and if it is owned by the proper owner
-    boolean hasBlueOrRedCity(Position position, UnitImpl unit){
+    private boolean hasBlueOrRedCity(Position position, UnitImpl unit){
         if((position.getRow() == 1 && position.getColumn() == 1 && unit.getOwner()==Player.RED) || (position.getRow() == 4 && position.getColumn() == 1 && unit.getOwner()==Player.BLUE)){
             return true;
         }
         return false;
     }
 
-
+    public void putCityAt(Position position, Player owner){
+        cityMap.put(position, new CityImpl(position, owner));
+    }
 
 
 }

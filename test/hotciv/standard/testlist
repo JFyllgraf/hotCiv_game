@@ -84,4 +84,5 @@ ___________________________________________________________
 //Integration Testing
 [58] - Refactor AlphaCiv to use AlphaCiv winner strategy
 [60] - When a player conqures all cities, he should win the game for betaStrategy
-[] - Refactor alphaCit to use AlphaCiv unit action strategy (Does nothing)
+[61] - Refactor alphaCiv to use AlphaCiv unit action strategy (Does nothing)
+[62] - Settlers action produces a city on it's position. (GammaCiv)

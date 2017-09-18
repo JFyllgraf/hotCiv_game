@@ -19,7 +19,7 @@ public class TestAlphaCivUnitAction {
 
     @Test
     public void shouldDoNothingWhenUnitWantsToPerformUnitAction(){
-        unitActionStrategy.performAction();
+        unitActionStrategy.performAction(null, null);
         //It does nothing, so this is the testCase
     }
 }

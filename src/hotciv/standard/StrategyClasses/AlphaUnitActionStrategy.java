@@ -1,5 +1,7 @@
 package hotciv.standard.StrategyClasses;
 
+import hotciv.framework.Position;
+import hotciv.standard.GameImpl;
 import hotciv.standard.StrategyInterfaces.UnitActionStrategy;
 
 /**
@@ -7,7 +9,7 @@ import hotciv.standard.StrategyInterfaces.UnitActionStrategy;
  */
 public class AlphaUnitActionStrategy implements UnitActionStrategy {
 
-    public void performAction(){
+    public void performAction(GameImpl game, Position position){
 
     }
 }

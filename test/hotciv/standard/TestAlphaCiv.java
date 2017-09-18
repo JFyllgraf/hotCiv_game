@@ -100,15 +100,6 @@ public class TestAlphaCiv {
     }
 
     @Test
-    public void shouldBeRedWinnerAtYear3000BC(){
-        //simulates 10 rounds - or 1000 years.
-        for (int i=0; i<20; i++){
-            game.endOfTurn();
-        }
-        assertThat(game.getWinner(), is(Player.RED));
-    }
-
-    @Test
     public void shouldReturnNullAsWinnerOfWinnerMethodIsCalledWhenItsNotYear3000BCYet(){
         assertThat(game.getWinner(),is(nullValue()));
     }

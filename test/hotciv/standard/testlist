@@ -65,9 +65,11 @@ IMPLEMENTED METHODS THAT HAVE TO BE TESTED
 ___________________________________________________________
 Compositional Proposal Testlist
 ___________________________________________________________
-[48-49]- refactor AlphaCiv to use a compositional design
+//Unit Testing
+[48-49]- refactor AlphaCiv to use a AlphaCiv Aging strategy
     [49] - Game should age 100 years each round
 
+//Unit Testing
 [50-57] - handle aging structure for BetaCiv
     [50] - Game should age 100 years between 4000 and 100 BC
     [51] - Game should age 99 years between 100 and 1 BC
@@ -77,3 +79,8 @@ ___________________________________________________________
     [55] - Game should age 25 between 1750 and 1900 AD
     [56] - Game should age 5 between 1900 and 1970 AD
     [57] - Game should age 1 from 1970 AD and beyond
+
+//Integration Testing
+[58] - Refactor AlphaCiv to use AlphaCiv winner strategy
+[] - When a player conqures all cities, he should win the game
+

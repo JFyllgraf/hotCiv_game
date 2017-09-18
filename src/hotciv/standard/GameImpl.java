@@ -2,7 +2,9 @@ package hotciv.standard;
 
 import hotciv.framework.*;
 import hotciv.standard.StrategyClasses.AlphaAgeingStrategy;
+import hotciv.standard.StrategyClasses.AlphaWinnerStrategy;
 import hotciv.standard.StrategyInterfaces.AgeingStrategy;
+import hotciv.standard.StrategyInterfaces.WinnerStrategy;
 //H
 import java.util.HashMap;
 import java.util.Map;
@@ -44,6 +46,7 @@ public class GameImpl implements Game {
     private HashMap<Position, CityImpl> cityMap = new HashMap<>();
 
     private AgeingStrategy ageingStrategy;
+    private WinnerStrategy winnerStrategy;
 
     private CityImpl redCity;
     private CityImpl blueCity;
@@ -56,6 +59,7 @@ public class GameImpl implements Game {
 
     public GameImpl(){
         ageingStrategy = new AlphaAgeingStrategy();
+        winnerStrategy = new AlphaWinnerStrategy();
 
         redCityPos = new Position(1,1);
         blueCityPos = new Position(4,1);
@@ -111,12 +115,7 @@ public class GameImpl implements Game {
 
     @Override
     public Player getWinner() {
-        if(age==-3000) {
-            return Player.RED;
-        }
-        else {
-            return null;
-        }
+        return winnerStrategy.getWinner(age);
     }
 
     @Override

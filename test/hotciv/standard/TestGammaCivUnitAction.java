@@ -34,5 +34,5 @@ public class TestGammaCivUnitAction {
         assertThat(game.getUnitAt(new Position(4,3)), is(nullValue()));
     }
 
-    
+
 }

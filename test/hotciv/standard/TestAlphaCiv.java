@@ -366,6 +366,7 @@ public class TestAlphaCiv {
         for (int i = 0; i < 5; i++){
             advanceRound();
         }
+        assertThat(game.getCityAt(blueCity).getOwner(), is(Player.BLUE));
         game.moveUnit(new Position(3,1), new Position(4,1));
         assertThat(game.getCityAt(blueCity).getOwner(), is(Player.RED));
     }

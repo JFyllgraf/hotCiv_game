@@ -130,6 +130,9 @@ public class GameImpl implements Game {
                 unitMap.put(to, new UnitImpl(getUnitAt(from).getTypeString(), getUnitAt(from).getOwner()));
                 deleteUnit(from);
                 unitMap.get(to).moveUnit();
+                if(movedToEnemyCity(to)){
+                    cityMap.put(to,new CityImpl(to,currentPlayer));
+                }
                 return true;
             }
         }

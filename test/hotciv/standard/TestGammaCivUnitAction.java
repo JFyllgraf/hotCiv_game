@@ -8,6 +8,7 @@ import hotciv.standard.StrategyInterfaces.UnitActionStrategy;
 import org.junit.Before;
 import org.junit.Test;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 public class TestGammaCivUnitAction {
@@ -27,5 +28,11 @@ public class TestGammaCivUnitAction {
         assertThat(game.getCityAt(new Position(4,3)).getOwner(), is(Player.RED));
     }
 
+    @Test
+    public void shouldRemoveSettlerWhenTheirActionIsPerformed(){
+        game.performUnitActionAt(new Position(4,3));
+        assertThat(game.getUnitAt(new Position(4,3)), is(nullValue()));
+    }
 
+    
 }

@@ -86,3 +86,4 @@ ___________________________________________________________
 [60] - When a player conqures all cities, he should win the game for betaStrategy
 [61] - Refactor alphaCiv to use AlphaCiv unit action strategy (Does nothing)
 [62] - Settlers action produces a city on it's position. (GammaCiv)
+[63] - Settlers are removed from the game when they have performed their action. (GammaCiv)

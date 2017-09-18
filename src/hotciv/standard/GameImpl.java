@@ -235,7 +235,6 @@ public class GameImpl implements Game {
     @Override
     public void performUnitActionAt(Position p) {
         unitActionStrategy.performAction(this, p);
-
     }
 
     private void setDefaultMap() {

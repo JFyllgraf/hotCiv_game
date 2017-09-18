@@ -7,7 +7,7 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses(
         { TestAlphaCiv.class,
             TestAlphaLinearAgeing.class,
-            TestBetaLadderAgeing.class
+            TestBetaCiv.class
         }
 )
 

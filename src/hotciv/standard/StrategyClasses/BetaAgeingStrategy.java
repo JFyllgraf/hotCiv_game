@@ -1,4 +1,6 @@
-package hotciv.standard;
+package hotciv.standard.StrategyClasses;
+
+import hotciv.standard.StrategyInterfaces.AgeingStrategy;
 
 public class BetaAgeingStrategy implements AgeingStrategy {
 

@@ -1,4 +1,4 @@
-package hotciv.standard;
+package hotciv.standard.StrategyInterfaces;
 
 public interface AgeingStrategy {
 

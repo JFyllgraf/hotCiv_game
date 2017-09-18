@@ -1,12 +1,14 @@
 package hotciv.standard;
 
+import hotciv.standard.StrategyClasses.BetaAgeingStrategy;
+import hotciv.standard.StrategyInterfaces.AgeingStrategy;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class TestBetaLadderAgeing {
+public class TestBetaCiv {
     AgeingStrategy as;
 
     @Before
@@ -52,6 +54,11 @@ public class TestBetaLadderAgeing {
     @Test
     public void shouldIncrement1YearFrom1970AndBeyond(){
         assertThat(1970+1 /* Ageing 1 year at 1970 AD*/, is(as.incrementAge(1970)/*1970 AD*/));
+    }
+
+    @Test
+    public void shouldWinTheGameWhenAllCitiesAreConqured(){
+
     }
 
 

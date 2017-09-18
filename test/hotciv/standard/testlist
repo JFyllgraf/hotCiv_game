@@ -43,7 +43,7 @@ UNITS
 [30] - Units can move 1 distance each round
 [33] - Units have their movement restored after each round
 [35] - Units can only move as far as their movecount
-[] - Archers default defence is 3
+[64] - Archers default defence is 3
 
 
 TILES
@@ -88,5 +88,5 @@ ___________________________________________________________
 [61] - Refactor alphaCiv to use AlphaCiv unit action strategy (Does nothing)
 [62] - Settlers action produces a city on it's position. (GammaCiv)
 [63] - Settlers are removed from the game when they have performed their action. (GammaCiv)
-[] - Archers defensive streangth is doubled when their action is performed (GammaCiv)
+[65] - Archers defensive streangth is doubled when their action is performed (GammaCiv)
 [] - Archers cannot move when their action has been performed (GammaCiv)

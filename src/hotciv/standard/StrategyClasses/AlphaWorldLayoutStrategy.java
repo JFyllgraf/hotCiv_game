@@ -41,7 +41,6 @@ public class AlphaWorldLayoutStrategy implements WorldLayoutStrategy {
         return tileMap;
     }
 
-    @Override
     public HashMap setDefaultCities() {
         cityMap.put(redCityPos, new CityImpl(redCityPos, Player.RED));
         cityMap.put(blueCityPos, new CityImpl(blueCityPos,Player.BLUE));
@@ -54,9 +53,5 @@ public class AlphaWorldLayoutStrategy implements WorldLayoutStrategy {
         unitMap.put(new Position(2,0),new UnitImpl(GameConstants.ARCHER, Player.RED));
         return unitMap;
     }
-
-
-
-
 
 }

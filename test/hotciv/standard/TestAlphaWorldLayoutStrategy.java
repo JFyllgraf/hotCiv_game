@@ -2,11 +2,8 @@ package hotciv.standard;
 
 
 import hotciv.framework.GameConstants;
-import hotciv.framework.Player;
 import hotciv.framework.Position;
 import hotciv.standard.StrategyClasses.AlphaWorldLayoutStrategy;
-import hotciv.standard.StrategyClasses.BetaWinnerStrategy;
-import hotciv.standard.StrategyInterfaces.WinnerStrategy;
 import hotciv.standard.StrategyInterfaces.WorldLayoutStrategy;
 import org.junit.Before;
 import org.junit.Test;

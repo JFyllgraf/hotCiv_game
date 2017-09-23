@@ -5,6 +5,7 @@ import hotciv.standard.StrategyClasses.AlphaAgeingStrategy;
 import hotciv.standard.StrategyInterfaces.AgeingStrategy;
 import hotciv.standard.StrategyInterfaces.UnitActionStrategy;
 import hotciv.standard.StrategyInterfaces.WinnerStrategy;
+import hotciv.standard.StrategyInterfaces.WorldLayoutStrategy;
 //H
 import java.util.HashMap;
 import java.util.Map;
@@ -40,7 +41,6 @@ public class GameImpl implements Game {
     private Player currentPlayer;
     private int mapSize = GameConstants.WORLDSIZE;
     private String plain = GameConstants.PLAINS;
-    //mapTile is a map that can contain tileTypes
     private HashMap<Position, TileImpl> tileMap = new HashMap<>();
     private HashMap<Position, UnitImpl> unitMap = new HashMap<>();
     private HashMap<Position, CityImpl> cityMap = new HashMap<>();
@@ -48,9 +48,8 @@ public class GameImpl implements Game {
     private AgeingStrategy ageingStrategy;
     private WinnerStrategy winnerStrategy;
     private UnitActionStrategy unitActionStrategy;
+    private WorldLayoutStrategy worldLayoutStrategy;
 
-    private CityImpl redCity;
-    private CityImpl blueCity;
     private Position redCityPos;
     private Position blueCityPos;
     private UnitImpl redPlayerWorkForce;
@@ -58,10 +57,11 @@ public class GameImpl implements Game {
 
     private int age;
 
-    public GameImpl(WinnerStrategy winnerStrategy, UnitActionStrategy unitActionStrategy){
-        ageingStrategy = new AlphaAgeingStrategy();
+    public GameImpl(WinnerStrategy winnerStrategy, UnitActionStrategy unitActionStrategy, WorldLayoutStrategy worldLayoutStrategy){
+        this.ageingStrategy = new AlphaAgeingStrategy();
         this.winnerStrategy = winnerStrategy;
         this.unitActionStrategy = unitActionStrategy;
+        this.worldLayoutStrategy = worldLayoutStrategy;
 
         redCityPos = new Position(1,1);
         blueCityPos = new Position(4,1);
@@ -69,23 +69,9 @@ public class GameImpl implements Game {
         this.redPlayerWorkForce = new UnitImpl(GameConstants.ARCHER,Player.RED);
         this.bluePlayerWorkForce = new UnitImpl(GameConstants.SETTLER,Player.BLUE);
 
-        cityMap.put(redCityPos, new CityImpl(redCityPos,Player.RED));
-        cityMap.put(blueCityPos, new CityImpl(blueCityPos,Player.BLUE));
-
         setDefaultMap();
 
-        tileMap.put(new Position(1,0),new TileImpl(GameConstants.OCEANS));
-        tileMap.put(new Position(0,1),new TileImpl(GameConstants.HILLS));
-        tileMap.put(new Position(2,2),new TileImpl(GameConstants.MOUNTAINS));
-
-        unitMap.put(new Position(3,2),new UnitImpl(GameConstants.LEGION,Player.BLUE));
-        unitMap.put(new Position(4,3),new UnitImpl(GameConstants.SETTLER,Player.RED));
-        unitMap.put(new Position(2,0),new UnitImpl(GameConstants.ARCHER, Player.RED));
-
-
         currentPlayer=Player.RED;
-        this.redCity = new CityImpl(redCityPos, Player.RED);
-        this.blueCity = new CityImpl(blueCityPos, Player.BLUE);
         this.age = -4000;
     }
 
@@ -239,11 +225,9 @@ public class GameImpl implements Game {
     }
 
     private void setDefaultMap() {
-        for (int i = 0; i < mapSize; i++) {
-            for (int j = 0; j < mapSize; j++) {
-                tileMap.put(new Position(i, j), new TileImpl(GameConstants.PLAINS));
-            }
-        }
+        this.cityMap = worldLayoutStrategy.setDefaultCities();
+        this.tileMap = worldLayoutStrategy.setDefaultTiles();
+        this.unitMap = worldLayoutStrategy.setDefaultUnits();
     }
 
     public boolean deleteUnit(Position from) {

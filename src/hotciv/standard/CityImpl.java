@@ -6,25 +6,25 @@ import hotciv.framework.Player;
 import hotciv.framework.Position;
 
 public class CityImpl implements City {
-    private int production;
+    private int treasury;
     private Position cityPosition;
     private Player player;
     private int size;
 
-    private String workforceFocus;
+    private String productionFocus;
 
 
     public CityImpl(Position position, Player player){
         this.player = player;
         this.cityPosition = position;
         this.size = 1;
-        production = 0;
+        treasury = 0;
 
         if (player == Player.RED){
-            this.workforceFocus = GameConstants.ARCHER;
+            this.productionFocus = GameConstants.ARCHER;
         }
         else {
-            this.workforceFocus = GameConstants.SETTLER;
+            this.productionFocus = GameConstants.SETTLER;
         }
     }
 
@@ -41,20 +41,28 @@ public class CityImpl implements City {
 
     @Override
     public String getProduction() {
-        return String.valueOf(production);
+        return productionFocus;
     }
 
-    public void setProduction(int newValue){
-        production=newValue;
+    public void setProduction(String newProductionFocus){
+        productionFocus = newProductionFocus;
+    }
+
+    protected int getTreasury(){
+        return treasury;
+    }
+
+    protected void setTreasury(int newTreasuryValue){
+        treasury = newTreasuryValue;
     }
 
     @Override
     public String getWorkforceFocus() {
-        return workforceFocus;
+        return productionFocus;
     }
 
     public void setWorkforceFocus(String unit){
-        this.workforceFocus = String.valueOf(unit);
+        this.productionFocus = String.valueOf(unit);
     }
 
 }

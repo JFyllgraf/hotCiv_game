@@ -4,8 +4,10 @@ import hotciv.framework.*;
 
 import hotciv.standard.StrategyClasses.AlphaUnitActionStrategy;
 import hotciv.standard.StrategyClasses.AlphaWinnerStrategy;
+import hotciv.standard.StrategyClasses.AlphaWorldLayoutStrategy;
 import hotciv.standard.StrategyInterfaces.UnitActionStrategy;
 import hotciv.standard.StrategyInterfaces.WinnerStrategy;
+import hotciv.standard.StrategyInterfaces.WorldLayoutStrategy;
 import org.junit.*;
 
 import static org.junit.Assert.*;
@@ -54,6 +56,7 @@ public class TestAlphaCiv {
 
     private WinnerStrategy winnerStrategy;
     private UnitActionStrategy unitActionStrategy;
+    private WorldLayoutStrategy worldLayoutStrategy;
 
     private void advanceRound(){
         game.endOfTurn();
@@ -65,7 +68,8 @@ public class TestAlphaCiv {
     public void setup(){
         winnerStrategy = new AlphaWinnerStrategy();
         unitActionStrategy = new AlphaUnitActionStrategy();
-        game = new GameImpl(winnerStrategy,unitActionStrategy);
+        worldLayoutStrategy = new AlphaWorldLayoutStrategy();
+        game = new GameImpl(winnerStrategy,unitActionStrategy, worldLayoutStrategy);
 
         redCity = new Position(1,1);
         blueCity = new Position(4,1);
@@ -127,16 +131,6 @@ public class TestAlphaCiv {
         }
         assertThat(((CityImpl)game.getCityAt(redCity)).getTreasury(),is(2));
         assertThat(((CityImpl)game.getCityAt(blueCity)).getTreasury(),is(12));
-    }
-
-    @Test
-    public void shouldHaveA16x16MapWithPlainsFrom3_3to15_15(){
-        for(int i = 3; i<15; i++){
-            for(int j = 3; j<15; j++){
-                assertThat(game.getTileAt(new Position(i,j)).getTypeString(),is(GameConstants.PLAINS));
-                //This has to be changed to all different kind of gameconstants. Could not find solution for that.
-            }
-        }
     }
 
     @Test

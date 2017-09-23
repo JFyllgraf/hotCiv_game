@@ -2,8 +2,10 @@ package hotciv.standard;
 
 import hotciv.framework.Player;
 import hotciv.framework.Position;
+import hotciv.standard.StrategyClasses.AlphaWorldLayoutStrategy;
 import hotciv.standard.StrategyClasses.BetaWinnerStrategy;
 import hotciv.standard.StrategyInterfaces.WinnerStrategy;
+import hotciv.standard.StrategyInterfaces.WorldLayoutStrategy;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,6 +15,7 @@ import static org.junit.Assert.assertThat;
 public class TestBetaWinnerStrategy {
 
     private WinnerStrategy winnerStrategy;
+    private WorldLayoutStrategy worldLayoutStrategy;
     private GameImpl game;
     private Position blueCityPos;
 
@@ -20,7 +23,9 @@ public class TestBetaWinnerStrategy {
     public void setup(){
         this.blueCityPos = new Position(4,1);
         winnerStrategy = new BetaWinnerStrategy();
-        game = new GameImpl(winnerStrategy,null);
+        worldLayoutStrategy = new AlphaWorldLayoutStrategy();
+
+        game = new GameImpl(winnerStrategy,null, worldLayoutStrategy);
     }
 
     @Test

@@ -11,7 +11,8 @@ import org.junit.runners.Suite;
                 TestAlphaWinnerStrategy.class,
                 TestBetaWinnerStrategy.class,
                 TestAlphaCivUnitAction.class,
-                TestGammaCivUnitAction.class
+                TestGammaCivUnitAction.class,
+                TestAlphaWorldLayoutStrategy.class
         }
 )
 

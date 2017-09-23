@@ -64,4 +64,8 @@ public class UnitImpl implements Unit {
         this.moveCount = -1;
     }
 
+    public void unfreezeUnit(){
+        this.moveCount = 0;
+    }
+
 }

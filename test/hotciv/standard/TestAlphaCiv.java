@@ -118,19 +118,19 @@ public class TestAlphaCiv {
     }
 
     @Test
-    public void shouldBeProduced6productionForCitiesAfter1Round(){
+    public void shouldBeProduced6TreasuriesForCitiesAfter1Round(){
         advanceRound();
-        assertThat(Integer.valueOf(game.getCityAt(redCity).getProduction()),is(6));
-        assertThat(Integer.valueOf(game.getCityAt(blueCity).getProduction()),is(6));
+        assertThat(((CityImpl) game.getCityAt(redCity)).getTreasury(),is(6));
+        assertThat(((CityImpl)game.getCityAt(redCity)).getTreasury(),is(6));
     }
 
     @Test
-    public void shouldBeProduced6productionsForCitiesAfterEveryRound(){
+    public void shouldBeProduced6TreasuriesForCitiesAfterEveryRound(){
         for (int i=0; i<2; i++){
             advanceRound();
         }
-        assertThat(Integer.valueOf(game.getCityAt(redCity).getProduction()),is(2));
-        assertThat(Integer.valueOf(game.getCityAt(blueCity).getProduction()),is(12));
+        assertThat(((CityImpl)game.getCityAt(redCity)).getTreasury(),is(2));
+        assertThat(((CityImpl)game.getCityAt(blueCity)).getTreasury(),is(12));
     }
 
     @Test
@@ -300,19 +300,19 @@ public class TestAlphaCiv {
     }
 
     @Test
-    public void shouldGiveRedCityWorkforceFocusArcher(){
-        assertThat(game.getCityAt(redCity).getWorkforceFocus(), is(GameConstants.ARCHER)); //returns the workforceFocus unit for the city.
+    public void shouldGiveRedCityProductionFocusArcher(){
+        assertThat(game.getCityAt(redCity).getProduction(), is(GameConstants.ARCHER)); //returns the ProductionFocus unit for the city.
     }
 
     @Test
-    public void shouldGiveBlueCityWorkforceFocusSettler(){
-        assertThat(game.getCityAt(blueCity).getWorkforceFocus(), is(GameConstants.SETTLER)); //returns the workforceFocus unit for the city.
+    public void shouldGiveBlueCityProductionFocusSettler(){
+        assertThat(game.getCityAt(blueCity).getProduction(), is(GameConstants.SETTLER)); //returns the productionFocus unit for the city.
     }
 
     @Test
-    public void shouldBePossibleToChangeWorkforceFocus(){
-        ((CityImpl)game.getCityAt(redCity)).setWorkforceFocus(GameConstants.LEGION);
-        assertThat(game.getCityAt(redCity).getWorkforceFocus(), is(GameConstants.LEGION));
+    public void shouldBePossibleToChangeProductionFocus(){
+        ((CityImpl)game.getCityAt(redCity)).setProduction(GameConstants.LEGION);
+        assertThat(game.getCityAt(redCity).getProduction(), is(GameConstants.LEGION));
     }
 
     @Test
@@ -325,19 +325,19 @@ public class TestAlphaCiv {
     }
 
     @Test
-    public void shouldAutomaticallyBuyUnitWhenProductionIsHighEnough(){
+    public void shouldAutomaticallyBuyUnitWhenTreasuryIsHighEnough(){
         advanceRound();
         advanceRound();
         assertThat(game.getUnitAt(redCity).getTypeString(),is(GameConstants.ARCHER)); //CHECKS if red automatically spawns an archer
-        //When enough production is gained.
+        //When enough treasury is gained.
 
     }
 
     @Test
-    public void shouldCost10ProductionsForAnArcher(){
+    public void shouldCost10TreasuriesForAnArcher(){
         advanceRound();
         advanceRound();
-        assertThat(game.getCityAt(redCity).getProduction(),is("2")); //Assumed that redcity buys archer and reduces production by 10
+        assertThat(((CityImpl)game.getCityAt(redCity)).getTreasury(),is(2)); //Assumed that redcity buys archer and reduces treasuries by 10
     }
 
     @Test
@@ -348,17 +348,17 @@ public class TestAlphaCiv {
     }
 
     @Test
-    public void shouldCost30ProductionForASettler(){
+    public void shouldCost30TreasuriesForASettler(){
         advanceRound();
         advanceRound();
         advanceRound();
         advanceRound();
         advanceRound();
-        assertThat(game.getCityAt(blueCity).getProduction(),is("0")); //Assumed that bluecity produces legion and reduces production by 15
+        assertThat(((CityImpl)game.getCityAt(blueCity)).getTreasury(),is(0)); //Assumed that bluecity produces legion and reduces treasure by 15
     }
 
     @Test
-    public void shouldChangeCityOwnerWhenAttackingUnitKillsACitysDeffendingUnit(){
+    public void shouldChangeCityOwnerWhenAttackingUnitKillsACitysDefendingUnit(){
         game.moveUnit(new Position(2,0), new Position(3,1));
         //advances the game 5 rounds, to spawn a settler at Blue City.
         for (int i = 0; i < 5; i++){

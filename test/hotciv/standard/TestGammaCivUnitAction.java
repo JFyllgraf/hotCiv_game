@@ -51,6 +51,13 @@ public class TestGammaCivUnitAction {
         assertThat(game.moveUnit(new Position(2,0),new Position(3,1)),is(false));
     }
 
+    @Test
+    public void shouldUnFreezeArcherAfterItIsFrozenByUsingAction(){
+        game.performUnitActionAt(new Position(2,0)); //Freeze
+        game.performUnitActionAt(new Position(2,0)); //and then unfreeze
+        assertThat(game.getUnitAt(new Position(2,0)).getMoveCount(),is(0));
+    }
+
 
 
 

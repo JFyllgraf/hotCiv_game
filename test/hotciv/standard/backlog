@@ -7,18 +7,6 @@
     Dvs. at når units bliver produceret i byen, skal de sættes på de rigtige koordinater rundt om byen. (clockwise)
 [] - Der mangler at blive implementeret få tests i forhold til attacking af units. Attacking units skal altid vinde, og der må kun være ét unit på hver tile.
     Dette er stort set implementeret i koden pga. andre tests, men mangler at blive testet isoleret.
-[] - Vi har desuden opdaget, at der mangler at blive refaktoriseret, for at ungå dublikation enkelte steder. Her mener vi
-"changeWorkForceFocusInCityAt", og "ChangeProductionInCityAt" metoderne, som eksisterer inde i GameImpl klassen. Vi har selv lavet lignende metoder,
-men mangler at refaktorisere dem, så de rigtige metoder virker.
 
 [] - Implementerer compositional design for deltaciv.
 
-
-//Vi har grundet tidspres (Vi har arbejdet på projektet fra 9.00 -> 21.20+ mandag samt eftermiddagen lørdag), men
-//grundet problemer med git har vi ikke kommet helt så langt som ventet (Vi har brugt i omegnen af 5 timer på at få
-//skidtet til at virke...). Derfor mangler vi stadig deltaCiv, hvilket vi ikke håber går ud over vurderingen.
-//Vi har haft fokus på at implementere og bruge compositional design korrekt.
-//Vi smider deltaCiv med i næste aflevering!
-
-//Vi har dog fået rettet de rettelser i productionCode som du beskrev i vores genaflevering (Vi nåede ikke at rette
-//det til aflevering to, da vi afleverede dem samme dag).

@@ -90,6 +90,7 @@ ___________________________________________________________
 [63] - Settlers are removed from the game when they have performed their action. (GammaCiv)
 [65] - Archers defensive streangth is doubled when their action is performed (GammaCiv)
 [66] - Archers cannot move when their action has been performed (GammaCiv)
+[67] - Archers can move after their action has been performed when they were freezed before.
 [] - Refactor Alhphaciv to use AlphaCiv World Layout strategy
 [] - When world layout is created, it should reflect figure 36.1 from the book, there should be a red city at (8,12) and a blue city at (4,5)
         and it should be easy for programmers to change the world layout without changing source code - For DeltaCiv.

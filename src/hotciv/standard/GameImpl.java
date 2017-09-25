@@ -165,7 +165,7 @@ public class GameImpl implements Game {
 
             this.age = ageingStrategy.incrementAge(age);
 
-           increaseAllCitiesProduction();
+           increaseAllCitiesTreasury();
 
             produceUnit(redCityPos, redPlayerProductionFocus);
             produceUnit(blueCityPos, bluePlayerProductionFocus);
@@ -174,7 +174,7 @@ public class GameImpl implements Game {
         }
     }
 
-    private boolean enoughProduction(Position position){
+    private boolean enoughTreasury(Position position){
         //returns true if the citys treasury is higher than the cost of the unit.
         return ((CityImpl) getCityAt(position)).getTreasury() >= getCost(getCityAt(position).getProduction());
     }
@@ -199,7 +199,7 @@ public class GameImpl implements Game {
         }
     }
 
-    private void increaseAllCitiesProduction(){
+    private void increaseAllCitiesTreasury(){
         for(Map.Entry<Position, CityImpl> entry: cityMap.entrySet()){
             entry.getValue().setTreasury(entry.getValue().getTreasury()+6);
         }
@@ -234,9 +234,9 @@ public class GameImpl implements Game {
     }
 
     public boolean produceUnit(Position position, UnitImpl unit){
-        if(hasBlueOrRedCity(position,unit) && enoughProduction(position)){
+        if(hasBlueOrRedCity(position,unit) && enoughTreasury(position)){
             unitMap.put(position, unit);
-            ((CityImpl)getCityAt(position)).setTreasury(((CityImpl) getCityAt(position)).getTreasury() -(getCost(getCityAt(position).getWorkforceFocus())));
+            ((CityImpl)getCityAt(position)).setTreasury(((CityImpl) getCityAt(position)).getTreasury() -(getCost(getCityAt(position).getProduction())));
             return true;
         }
         return false;

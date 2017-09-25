@@ -165,7 +165,7 @@ public class GameImpl implements Game {
 
             this.age = ageingStrategy.incrementAge(age);
 
-           increaseAllCitiesTreasury();
+           increaseAllCitiesProduction();
 
             produceUnit(redCityPos, redPlayerProductionFocus);
             produceUnit(blueCityPos, bluePlayerProductionFocus);
@@ -174,12 +174,12 @@ public class GameImpl implements Game {
         }
     }
 
-    private boolean enoughTreasury(Position position){
+    private boolean enoughProduction(Position position){
         //returns true if the citys treasury is higher than the cost of the unit.
         return ((CityImpl) getCityAt(position)).getTreasury() >= getCost(getCityAt(position).getProduction());
     }
 
-    int getCost(String unitType){
+    public int getCost(String unitType){
         switch (unitType) {
             case GameConstants.ARCHER:
                 return 10;
@@ -199,9 +199,9 @@ public class GameImpl implements Game {
         }
     }
 
-    private void increaseAllCitiesTreasury(){
+    private void increaseAllCitiesProduction(){
         for(Map.Entry<Position, CityImpl> entry: cityMap.entrySet()){
-            entry.getValue().setTreasury(entry.getValue().getTreasury()+6);
+            entry.getValue().setTreasury(6);
         }
     }
 
@@ -233,17 +233,16 @@ public class GameImpl implements Game {
         }
     }
 
-    public boolean produceUnit(Position position, UnitImpl unit){
-        if(hasBlueOrRedCity(position,unit) && enoughTreasury(position)){
+    public void produceUnit(Position position, UnitImpl unit){
+        if(isAtCity(position,unit) && enoughProduction(position)){
             unitMap.put(position, unit);
-            ((CityImpl)getCityAt(position)).setTreasury(((CityImpl) getCityAt(position)).getTreasury() -(getCost(getCityAt(position).getProduction())));
-            return true;
+            CityImpl city = (CityImpl)getCityAt(position);
+            city.setTreasury(-getCost(city.getProduction()));
         }
-        return false;
     }
 
     //Checks if position contains the coordinates of blue or red city and if it is owned by the proper owner
-    private boolean hasBlueOrRedCity(Position position, UnitImpl unit){
+    private boolean isAtCity(Position position, UnitImpl unit){
         return (position.getRow() == 1 && position.getColumn() == 1 && unit.getOwner() == Player.RED) || (position.getRow() == 4 && position.getColumn() == 1 && unit.getOwner() == Player.BLUE);
     }
 

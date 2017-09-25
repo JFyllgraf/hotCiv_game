@@ -18,7 +18,7 @@ public class CityImpl implements City {
         this.player = player;
         this.cityPosition = position;
         this.size = 1;
-        treasury = 0;
+        this.treasury = 0;
 
         if (player == Player.RED){
             this.productionFocus = GameConstants.ARCHER;
@@ -52,8 +52,8 @@ public class CityImpl implements City {
         return treasury;
     }
 
-    protected void setTreasury(int newTreasuryValue){
-        treasury = newTreasuryValue;
+    public void setTreasury(int newTreasuryValue){
+        treasury += newTreasuryValue;
     }
 
     @Override

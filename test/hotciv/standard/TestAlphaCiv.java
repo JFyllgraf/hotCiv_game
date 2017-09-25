@@ -1,5 +1,7 @@
 package hotciv.standard;
 
+import com.sun.org.apache.xpath.internal.SourceTree;
+import com.sun.prism.shader.Solid_TextureYV12_AlphaTest_Loader;
 import hotciv.framework.*;
 
 import hotciv.standard.StrategyClasses.AlphaUnitActionStrategy;
@@ -268,6 +270,7 @@ public class TestAlphaCiv {
     @Test
     public void shouldBeIllegalToMoveOutsideTheMap(){
         assertThat(game.moveUnit(redArcher, new Position(2,-1)), is(false));
+
     }
 
     @Test

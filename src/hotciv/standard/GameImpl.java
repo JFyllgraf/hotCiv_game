@@ -113,29 +113,29 @@ public class GameImpl implements Game {
 
     @Override
     public boolean moveUnit(Position from, Position to) {
-        if((to.getRow() < 16 && to.getRow() >= 0) && (to.getColumn() < 16 && to.getColumn() >= 0)){
-            if(onlyMovePlayersOwnUnits(from) && onlyMoveIfMoveCountisgreaterthan0(from) && onlyMoveToLegalTiles(to) && MoveDistanceIsLegal(from, to)) {
-                unitMap.put(to, new UnitImpl(getUnitAt(from).getTypeString(), getUnitAt(from).getOwner()));
-                deleteUnit(from);
-                unitMap.get(to).moveUnit();
-                if(movedToEnemyCity(to)){
-                    cityMap.put(to,new CityImpl(to,currentPlayer));
-                }
-                return true;
-            }
+        if (!isPlayersOwnUnit(from))return false;
+        if (!hasMoveCountLeft(from))return false;
+        if (!isLegalTile(to))return false;
+        if (!distanceIsLegal(from, to))return false;
+
+        unitMap.put(to, new UnitImpl(getUnitAt(from).getTypeString(), getUnitAt(from).getOwner()));
+        unitMap.remove(from);
+        unitMap.get(to).moveUnit();
+        if(movedToEnemyCity(to)){
+            cityMap.put(to,new CityImpl(to,currentPlayer));
         }
-        return false;
+        return true;
     }
 
     private boolean movedToEnemyCity(Position to){
         return (getCityAt(to) != null) && (getCityAt(to).getOwner() != currentPlayer) && (getCityAt(to).getOwner() != null);
     }
 
-    private boolean onlyMoveIfMoveCountisgreaterthan0(Position from){
+    private boolean hasMoveCountLeft(Position from){
         return (unitMap.get(from).getMoveCount()>0);
     }
 
-    private boolean MoveDistanceIsLegal(Position from, Position to){
+    private boolean distanceIsLegal(Position from, Position to){
         if(to.getRow() <= from.getRow()+1 && to.getRow() >= from.getRow()-1){
             if(to.getColumn() <= from.getColumn()+1 && to.getColumn() >= from.getColumn()-1){
                 return true;
@@ -144,12 +144,15 @@ public class GameImpl implements Game {
         return false;
     }
 
-    private boolean onlyMovePlayersOwnUnits(Position from){
+    private boolean isPlayersOwnUnit(Position from){
         return (unitMap.get(from).getOwner() == currentPlayer);
     }
 
-    private boolean onlyMoveToLegalTiles(Position to){
-        return !((tileMap.get(to).getTypeString().equals(GameConstants.OCEANS)) || (tileMap.get(to).getTypeString().equals(GameConstants.MOUNTAINS)));
+    private boolean isLegalTile(Position to){
+        if((to.getRow() < mapSize && to.getRow() >= 0) && (to.getColumn() < mapSize && to.getColumn() >= 0)) {
+            return !((tileMap.get(to).getTypeString().equals(GameConstants.OCEANS)) || (tileMap.get(to).getTypeString().equals(GameConstants.MOUNTAINS)));
+        }
+        return false;
     }
 
     @Override

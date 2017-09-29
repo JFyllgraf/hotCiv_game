@@ -24,7 +24,7 @@ public class TestAlphaWinnerStrategy {
     public void setup(){
         worldLayoutStrategy = new AlphaWorldLayoutStrategy();
         winnerStrategy = new AlphaWinnerStrategy();
-        game = new GameImpl(winnerStrategy, null, worldLayoutStrategy);
+        game = new GameImpl(winnerStrategy, null, worldLayoutStrategy, null);
     }
 
     private void advanceRound(){

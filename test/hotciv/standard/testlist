@@ -97,3 +97,27 @@ ___________________________________________________________
     [69] - should have red City at 8,12 (DeltaCiv)
     [70] - should have blue City at 4,5 (DeltaCiv)
     [71] - Tiles should represent figure 36.1 image from the book (DeltaCiv)
+[] - Refactor AlphaCit to use AlphaCiv Attacking Strategy
+    [] - The attacker wins any combat no matter attacking- and defensive strength.
+        ## For EpsilonCiv
+[] - Archer should have 2 attack strength
+[] - Archer should have 3 defence strenght
+[] - Legion should have 2 defence strength
+[] - Legion should have 4 attack strength
+[] - Settler should have 0 attack strength
+[] - Settler should have 3 defence strength
+[] - Units attacking strength (including strength gained by team-units) should be multiplied by the dice roll
+[] - Defenders defence strength (including strength gained by team-units) should be multiplied by the dice roll
+[] - player's unit gets boosted defence by 1 by every team unit that surrounds the player's unit
+[] - player's unit gets boosted attack by 1 by every team unit that surrounds the player's unit
+##Different combat scenarios for epsilonCiv
+[] - A settler with 4 team archers surrounding win an attack against other players archer which has no surroundings.
+Fixed dice for settler: 6. Fixed for archer: 1.
+[] -
+[] -
+[] -
+[] -
+[] -
+[] - When a blue legion placed in a blue town surrounded by two friendly archers and the legion attacks a red archer,
+who is in reach of the legion and is surrounded by 1 friendly archer. The legion is boosted by a dice of 3 and the archer
+is boosted by a dice of 3. Legion should win.

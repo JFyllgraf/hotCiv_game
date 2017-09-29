@@ -23,7 +23,7 @@ public class TestGammaCivUnitAction {
     public void setup(){
         unitActionStrategy = new GammaUnitActionStrategy();
         worldLayoutStrategy = new AlphaWorldLayoutStrategy();
-        this.game = new GameImpl(null, unitActionStrategy, worldLayoutStrategy);
+        this.game = new GameImpl(null, unitActionStrategy, worldLayoutStrategy,null);
     }
 
     @Test

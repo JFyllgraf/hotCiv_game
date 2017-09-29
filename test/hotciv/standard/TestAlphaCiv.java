@@ -4,9 +4,11 @@ import com.sun.org.apache.xpath.internal.SourceTree;
 import com.sun.prism.shader.Solid_TextureYV12_AlphaTest_Loader;
 import hotciv.framework.*;
 
+import hotciv.standard.StrategyClasses.AlphaAttackingStrategy;
 import hotciv.standard.StrategyClasses.AlphaUnitActionStrategy;
 import hotciv.standard.StrategyClasses.AlphaWinnerStrategy;
 import hotciv.standard.StrategyClasses.AlphaWorldLayoutStrategy;
+import hotciv.standard.StrategyInterfaces.AttackingStrategy;
 import hotciv.standard.StrategyInterfaces.UnitActionStrategy;
 import hotciv.standard.StrategyInterfaces.WinnerStrategy;
 import hotciv.standard.StrategyInterfaces.WorldLayoutStrategy;
@@ -59,6 +61,7 @@ public class TestAlphaCiv {
     private WinnerStrategy winnerStrategy;
     private UnitActionStrategy unitActionStrategy;
     private WorldLayoutStrategy worldLayoutStrategy;
+    private AttackingStrategy attackingStrategy;
 
     private void advanceRound(){
         game.endOfTurn();
@@ -71,7 +74,9 @@ public class TestAlphaCiv {
         winnerStrategy = new AlphaWinnerStrategy();
         unitActionStrategy = new AlphaUnitActionStrategy();
         worldLayoutStrategy = new AlphaWorldLayoutStrategy();
-        game = new GameImpl(winnerStrategy,unitActionStrategy, worldLayoutStrategy);
+        attackingStrategy = new AlphaAttackingStrategy();
+
+        game = new GameImpl(winnerStrategy,unitActionStrategy, worldLayoutStrategy, attackingStrategy);
 
         redCity = new Position(1,1);
         blueCity = new Position(4,1);

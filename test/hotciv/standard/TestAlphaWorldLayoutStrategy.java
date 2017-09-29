@@ -19,7 +19,7 @@ public class TestAlphaWorldLayoutStrategy {
     @Before
     public void setup(){
         worldLayoutStrategy = new AlphaWorldLayoutStrategy();
-        this.game = new GameImpl(null, null,  worldLayoutStrategy);
+        this.game = new GameImpl(null, null,  worldLayoutStrategy, null);
     }
 
     @Test

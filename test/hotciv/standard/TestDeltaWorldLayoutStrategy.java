@@ -18,7 +18,7 @@ public class TestDeltaWorldLayoutStrategy {
     @Before
     public void setup(){
         this.worldLayoutStrategy = new DeltaWorldLayoutStrategy();
-        this.game = new GameImpl(null, null, worldLayoutStrategy);
+        this.game = new GameImpl(null, null, worldLayoutStrategy,null);
     }
 
     @Test

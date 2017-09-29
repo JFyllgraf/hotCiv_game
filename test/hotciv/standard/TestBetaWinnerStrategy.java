@@ -2,8 +2,10 @@ package hotciv.standard;
 
 import hotciv.framework.Player;
 import hotciv.framework.Position;
+import hotciv.standard.StrategyClasses.AlphaAttackingStrategy;
 import hotciv.standard.StrategyClasses.AlphaWorldLayoutStrategy;
 import hotciv.standard.StrategyClasses.BetaWinnerStrategy;
+import hotciv.standard.StrategyInterfaces.AttackingStrategy;
 import hotciv.standard.StrategyInterfaces.WinnerStrategy;
 import hotciv.standard.StrategyInterfaces.WorldLayoutStrategy;
 import org.junit.Before;
@@ -16,6 +18,7 @@ public class TestBetaWinnerStrategy {
 
     private WinnerStrategy winnerStrategy;
     private WorldLayoutStrategy worldLayoutStrategy;
+    private AttackingStrategy attackingStrategy;
     private GameImpl game;
     private Position blueCityPos;
 
@@ -24,8 +27,10 @@ public class TestBetaWinnerStrategy {
         this.blueCityPos = new Position(4,1);
         winnerStrategy = new BetaWinnerStrategy();
         worldLayoutStrategy = new AlphaWorldLayoutStrategy();
+        attackingStrategy = new AlphaAttackingStrategy();
 
-        game = new GameImpl(winnerStrategy,null, worldLayoutStrategy);
+
+        game = new GameImpl(winnerStrategy,null, worldLayoutStrategy, attackingStrategy);
     }
 
     @Test

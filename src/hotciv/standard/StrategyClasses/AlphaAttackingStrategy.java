@@ -8,9 +8,18 @@ import hotciv.standard.StrategyInterfaces.AttackingStrategy;
  */
 public class AlphaAttackingStrategy implements AttackingStrategy {
 
+    @Override
+    public boolean moveUnit(Position from, Position to) {
+        return false;
+    }
 
     @Override
-    public void attackUnit(Position from, Position to) {
+    public int getAttackStrength() {
+        return 0;
+    }
 
+    @Override
+    public int getDefensiveStrength() {
+        return 3;
     }
 }

@@ -1,5 +1,6 @@
 package hotciv.standard.StrategyClasses;
 
+import hotciv.framework.Game;
 import hotciv.framework.Position;
 import hotciv.standard.StrategyInterfaces.AttackingStrategy;
 
@@ -13,7 +14,17 @@ public class EpsilonAttackingStrategy implements AttackingStrategy{
     }
 
     @Override
-    public void attackUnit(Position from, Position to) {
+    public boolean moveUnit(Position from, Position to) {
+    return false;
+    }
 
+    @Override
+    public int getAttackStrength() {
+        return 0;
+    }
+
+    @Override
+    public int getDefensiveStrength(){
+        return 0;
     }
 }

@@ -1,16 +1,17 @@
 package hotciv.standard.StrategyClasses;
 
-import hotciv.framework.Game;
 import hotciv.framework.Position;
 import hotciv.standard.StrategyInterfaces.AttackingStrategy;
+
+import java.util.HashMap;
 
 /**
  * Created by csdev on 9/29/17.
  */
 public class EpsilonAttackingStrategy implements AttackingStrategy{
 
-    public EpsilonAttackingStrategy(){
 
+    public EpsilonAttackingStrategy(){
     }
 
     @Override

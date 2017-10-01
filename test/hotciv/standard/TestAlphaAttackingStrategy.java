@@ -19,12 +19,6 @@ import static org.junit.Assert.*;
 public class TestAlphaAttackingStrategy {
     private GameImpl game;
 
-    private Position redCity;
-    private Position blueCity;
-    private Position redArcher;
-    private Position redSettler;
-    private Position blueLegion;
-
     private WinnerStrategy winnerStrategy;
     private UnitActionStrategy unitActionStrategy;
     private WorldLayoutStrategy worldLayoutStrategy;
@@ -32,17 +26,26 @@ public class TestAlphaAttackingStrategy {
 
     @Before
     public void setup(){
+        winnerStrategy = new AlphaWinnerStrategy();
+        unitActionStrategy = new AlphaUnitActionStrategy();
+        worldLayoutStrategy = new AlphaWorldLayoutStrategy();
+        attackingStrategy = new AlphaAttackingStrategy();
 
+        game = new GameImpl(winnerStrategy,unitActionStrategy, worldLayoutStrategy, attackingStrategy);
     }
-    public void advanceRound(){
+
+    private void advanceRound(){
         game.endOfTurn();
         game.endOfTurn();
     }
 
     @Test
-    public void shouldDoSomething(){
-
+    public void shouldLetRedAttackAndDestroyBluesUnit(){
+        game.moveUnit(new Position(2,0),new Position(3,1));
+        assertThat(game.getUnitAt(new Position(3,2)).getOwner(),is(Player.BLUE));
+        advanceRound();
+        game.moveUnit(new Position(3,1),new Position(3,2));
+        assertThat(game.getUnitAt(new Position(3,2)).getOwner(),is(Player.RED));
     }
-
 
 }

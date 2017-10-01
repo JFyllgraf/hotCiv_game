@@ -97,13 +97,15 @@ ___________________________________________________________
     [69] - should have red City at 8,12 (DeltaCiv)
     [70] - should have blue City at 4,5 (DeltaCiv)
     [71] - Tiles should represent figure 36.1 image from the book (DeltaCiv)
-[72] - Refactor AlphaCit to use AlphaCiv Attacking Strategy
+[72] - Refactor AlphaCiv to use AlphaCiv Attacking Strategy
     [73] - Should return 3 as defensive Strength
     [74] - Should return 0 as attacking strength
     [75] - The attacker wins any combat no matter attacking- and defensive strength.
-        ## For EpsilonCiv
+[76] - Refactor alphaciv to use attacking strategy (Necessary for EpsilonCiv)
+
+##### For EpsilonCiv
 [] - Archer should have 2 attack strength
-[] - Archer should have 3 defence strenght
+[] - Archer should have 3 defence strength
 [] - Legion should have 2 defence strength
 [] - Legion should have 4 attack strength
 [] - Settler should have 0 attack strength

@@ -60,6 +60,7 @@ public class GameImpl implements Game {
         this.winnerStrategy = winnerStrategy;
         this.unitActionStrategy = unitActionStrategy;
         this.worldLayoutStrategy = worldLayoutStrategy;
+        this.attackingStrategy = attackingStrategy;
 
         redCityPos = new Position(1,1);
         blueCityPos = new Position(4,1);
@@ -116,9 +117,22 @@ public class GameImpl implements Game {
         if (!isLegalTile(to))return false;
         if (!distanceIsLegal(from, to))return false;
 
-        unitMap.put(to, new UnitImpl(getUnitAt(from).getTypeString(), getUnitAt(from).getOwner()));
-        unitMap.remove(from);
-        unitMap.get(to).moveUnit();
+        String battleOutcome = "";
+        if (getUnitAt(to) != null){
+            battleOutcome = attackingStrategy.attackUnit(this, from, to);
+        } else {
+            unitMap.put(to, new UnitImpl(getUnitAt(from).getTypeString(), getUnitAt(from).getOwner()));
+            unitMap.remove(from);
+            unitMap.get(to).moveUnit();
+        }
+
+        if (battleOutcome == "Attacker"){
+            unitMap.put(to, new UnitImpl(getUnitAt(from).getTypeString(), getUnitAt(from).getOwner()));
+            unitMap.remove(from);
+            unitMap.get(to).moveUnit();
+        } if (battleOutcome == "Deffender") {
+            unitMap.remove(from);
+        }
 
         if(movedToEnemyCity(to)){
             cityMap.put(to,new CityImpl(to,currentPlayer));

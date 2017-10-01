@@ -324,14 +324,6 @@ public class TestAlphaCiv {
         assertThat(game.getCityAt(redCity).getProduction(), is(GameConstants.LEGION));
     }
 
-    @Test
-    public void shouldLetRedAttackAndDestroyBluesUnit(){
-        game.moveUnit(new Position(2,0),new Position(3,1));
-        advanceRound();
-        assertThat(game.getUnitAt(new Position(3,2)).getOwner(),is(Player.BLUE));
-        game.moveUnit(new Position(3,1),new Position(3,2));
-        assertThat(game.getUnitAt(new Position(3,2)).getOwner(),is(Player.RED));
-    }
 
     @Test
     public void shouldAutomaticallyBuyUnitWhenTreasuryIsHighEnough(){

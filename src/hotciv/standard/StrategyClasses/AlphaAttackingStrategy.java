@@ -1,5 +1,6 @@
 package hotciv.standard.StrategyClasses;
 
+import hotciv.framework.Game;
 import hotciv.framework.Position;
 import hotciv.standard.StrategyInterfaces.AttackingStrategy;
 
@@ -8,18 +9,10 @@ import hotciv.standard.StrategyInterfaces.AttackingStrategy;
  */
 public class AlphaAttackingStrategy implements AttackingStrategy {
 
-    @Override
-    public boolean moveUnit(Position from, Position to) {
-        return false;
-    }
 
     @Override
-    public int getAttackStrength() {
-        return 0;
+    public String attackUnit(Game game, Position from, Position to) {
+        return "Attacker";
     }
 
-    @Override
-    public int getDefensiveStrength() {
-        return 3;
-    }
 }

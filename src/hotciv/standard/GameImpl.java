@@ -139,7 +139,6 @@ public class GameImpl implements Game {
             unitMap.remove(from);
             unitMap.get(to).moveUnit();
         } if (battleOutcome.equals("Defender")) {
-            updateAttackWinCounter(to);
             unitMap.remove(from);
         }
         if(movedToEnemyCity(to)){

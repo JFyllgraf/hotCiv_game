@@ -130,7 +130,7 @@ public class GameImpl implements Game {
             unitMap.put(to, new UnitImpl(getUnitAt(from).getTypeString(), getUnitAt(from).getOwner()));
             unitMap.remove(from);
             unitMap.get(to).moveUnit();
-        } if (battleOutcome == "Deffender") {
+        } if (battleOutcome == "Defender") {
             unitMap.remove(from);
         }
 

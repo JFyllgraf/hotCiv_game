@@ -2,6 +2,8 @@ package hotciv.standard;
 
 import hotciv.framework.*;
 import hotciv.standard.StrategyClasses.AlphaAgeingStrategy;
+import hotciv.standard.StrategyClasses.EpsilonAttackingStrategy;
+import hotciv.standard.StrategyClasses.EpsilonWinnerStrategy;
 import hotciv.standard.StrategyInterfaces.*;
 //H
 import java.util.HashMap;
@@ -55,6 +57,9 @@ public class GameImpl implements Game {
 
     private int age;
 
+    private int redAttackWinCounter;
+    private int blueAttackWinCounter;
+
     public GameImpl(WinnerStrategy winnerStrategy, UnitActionStrategy unitActionStrategy, WorldLayoutStrategy worldLayoutStrategy, AttackingStrategy attackingStrategy){
         this.ageingStrategy = new AlphaAgeingStrategy();
         this.winnerStrategy = winnerStrategy;
@@ -72,6 +77,9 @@ public class GameImpl implements Game {
 
         currentPlayer=Player.RED;
         this.age = -4000;
+
+        redAttackWinCounter = 0;
+        blueAttackWinCounter = 0;
     }
 
 
@@ -126,10 +134,12 @@ public class GameImpl implements Game {
             unitMap.get(to).moveUnit();
         }
         if (battleOutcome.equals("Attacker")){
+            updateAttackWinCounter(from);
             unitMap.put(to, new UnitImpl(getUnitAt(from).getTypeString(), getUnitAt(from).getOwner()));
             unitMap.remove(from);
             unitMap.get(to).moveUnit();
         } if (battleOutcome.equals("Defender")) {
+            updateAttackWinCounter(to);
             unitMap.remove(from);
         }
         if(movedToEnemyCity(to)){
@@ -260,6 +270,23 @@ public class GameImpl implements Game {
 
     public void putCityAt(Position position, Player owner){
         cityMap.put(position, new CityImpl(position, owner));
+    }
+
+    public void updateAttackWinCounter(Position position){
+        if(getUnitAt(position).getOwner() == Player.RED){
+            redAttackWinCounter++;
+        }if(getUnitAt(position).getOwner() == Player.BLUE){
+            blueAttackWinCounter++;
+        }
+    }
+
+    public Player getAttackWinCounter(){
+        if (redAttackWinCounter >= 3){
+            return Player.RED;
+        } if (blueAttackWinCounter >= 3){
+            return Player.BLUE;
+        }
+        return null;
     }
 
 

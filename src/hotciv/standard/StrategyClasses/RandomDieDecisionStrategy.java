@@ -8,5 +8,4 @@ public class RandomDieDecisionStrategy implements DieDecisionStrategy {
     public int rollDie() {
         return (int) (Math.random() * 6)+1;
     }
-
 }

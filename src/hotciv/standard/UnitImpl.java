@@ -37,7 +37,6 @@ public class UnitImpl implements Unit {
         return moveCount;
     }
 
-
     @Override
     public int getDefensiveStrength() {
         return defensiveStrength;
@@ -55,7 +54,6 @@ public class UnitImpl implements Unit {
     public void moveUnit() {
         this.moveCount -= 1;
     }
-
 
     public void setMoveCount() {
         if(this.moveCount>=0) {

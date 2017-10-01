@@ -13,10 +13,15 @@ import hotciv.standard.Utility;
  */
 public class EpsilonAttackingStrategy implements AttackingStrategy{
     DieDecisionStrategy dieDecisionStrategy;
+    int redAttackWinCounter;
+    int blueAttackWinCounter;
 
     public EpsilonAttackingStrategy(DieDecisionStrategy dieDecisionStrategy){
         this.dieDecisionStrategy = dieDecisionStrategy;
+        this.redAttackWinCounter = 0;
+        this.blueAttackWinCounter = 0;
     }
+
     @Override
     public String attackUnit(Game game, Position from, Position to) {
         if(attackingUnitTotalAttackStrength(game,from)>defendingUnitTotalDefendingStrength(game,to)){
@@ -25,15 +30,15 @@ public class EpsilonAttackingStrategy implements AttackingStrategy{
         return "Defender";
     }
 
-    public int attackingUnitTotalAttackStrength(Game game, Position position){
+    private int attackingUnitTotalAttackStrength(Game game, Position position){
         int rawUnitAttackStrength = getAttackStrength(game.getUnitAt(position).getTypeString());
         int boostByTerrain = Utility.getTerrainFactor(game,position);
         int boostByFriendlyUnits = Utility.getFriendlySupport(game, position, game.getUnitAt(position).getOwner());
         int randomDieFactor = dieDecisionStrategy.rollDie();
         return (rawUnitAttackStrength+boostByTerrain+boostByFriendlyUnits)*randomDieFactor;
-
     }
-    public int defendingUnitTotalDefendingStrength(Game game, Position position){
+
+    private int defendingUnitTotalDefendingStrength(Game game, Position position){
         int rawUnitDefendStrength = getDefendStrength(game.getUnitAt(position).getTypeString());
         int boostByTerrain = Utility.getTerrainFactor(game,position);
         int boostByFriendlyUnits = Utility.getFriendlySupport(game, position, game.getUnitAt(position).getOwner());
@@ -52,6 +57,7 @@ public class EpsilonAttackingStrategy implements AttackingStrategy{
         }
         return 0;
     }
+
     private int getDefendStrength(String unitType){
         switch (unitType) {
             case GameConstants.ARCHER:
@@ -63,4 +69,5 @@ public class EpsilonAttackingStrategy implements AttackingStrategy{
         }
         return 0;
     }
+
 }

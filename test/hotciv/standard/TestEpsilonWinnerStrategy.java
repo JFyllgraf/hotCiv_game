@@ -31,6 +31,11 @@ public class TestEpsilonWinnerStrategy {
         this.game = new GameImpl(winnerStrategy, null, worldLayoutStrategy, null);
     }
 
+    private void advanceRound(){
+        game.endOfTurn();
+        game.endOfTurn();
+    }
+
     @Test
     public void shouldWinTheGameAfter3SuccessfulAttacks() {
 

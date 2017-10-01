@@ -16,7 +16,8 @@ import org.junit.runners.Suite;
                 TestDeltaWorldLayoutStrategy.class,
                 TestAlphaAttackingStrategy.class,
                 TestEpsilonAttackingStrategy.class,
-                TestUtility.class
+                TestUtility.class,
+                TestEpsilonWinnerStrategy.class
         }
 )
 

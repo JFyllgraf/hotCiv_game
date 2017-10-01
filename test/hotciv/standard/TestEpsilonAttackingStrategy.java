@@ -57,6 +57,5 @@ public class TestEpsilonAttackingStrategy {
         advanceRound();
         game.moveUnit(new Position(3,1),new Position(3,2));
         assertThat(game.getUnitAt(new Position(3,2)).getOwner(),is(Player.BLUE));
-
     }
 }

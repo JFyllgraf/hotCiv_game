@@ -2,6 +2,7 @@ package hotciv.standard.StrategyClasses;
 
 import hotciv.framework.Game;
 import hotciv.framework.GameConstants;
+import hotciv.framework.Player;
 import hotciv.framework.Position;
 import hotciv.standard.StrategyInterfaces.AttackingStrategy;
 import hotciv.standard.StrategyInterfaces.DieDecisionStrategy;
@@ -62,7 +63,4 @@ public class EpsilonAttackingStrategy implements AttackingStrategy{
         }
         return 0;
     }
-
-
-
 }

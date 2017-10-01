@@ -26,7 +26,7 @@ public class TestEpsilonWinnerStrategy {
     @Before
     public void setup() {
         winnerStrategy = new EpsilonWinnerStrategy();
-        worldLayoutStrategy = new AlphaWorldLayoutStrategy();   
+        worldLayoutStrategy = new AlphaWorldLayoutStrategy();
 
         this.game = new GameImpl(winnerStrategy, null, worldLayoutStrategy, null);
     }

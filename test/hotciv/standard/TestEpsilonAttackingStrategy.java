@@ -58,4 +58,12 @@ public class TestEpsilonAttackingStrategy {
         game.moveUnit(new Position(3,1),new Position(3,2));
         assertThat(game.getUnitAt(new Position(3,2)).getOwner(),is(Player.BLUE));
     }
+
+    @Test
+    public void shouldNotLetSettlerWinAgainstLegion(){
+        game.moveUnit(new Position(4,3), new Position(3,3));
+        advanceRound();
+        game.moveUnit(new Position(3,3),new Position(3,2));
+        assertThat(game.getUnitAt(new Position(3,2)).getOwner(),is(Player.BLUE));
+    }
 }

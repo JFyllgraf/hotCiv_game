@@ -125,3 +125,5 @@ Fixed dice for settler: 6. Fixed for archer: 1.
 [] - When a blue legion placed in a blue town surrounded by two friendly archers and the legion attacks a red archer,
 who is in reach of the legion and is surrounded by 1 friendly archer. The legion is boosted by a dice of 3 and the archer
 is boosted by a dice of 3. Legion should win.
+[77] - Create DieDecisionStrategy with random and fixed die roll
+    [77] - Fixed die roll always returns the same value

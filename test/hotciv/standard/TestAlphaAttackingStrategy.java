@@ -32,18 +32,7 @@ public class TestAlphaAttackingStrategy {
 
     @Before
     public void setup(){
-        winnerStrategy = new AlphaWinnerStrategy();
-        unitActionStrategy = new AlphaUnitActionStrategy();
-        worldLayoutStrategy = new AlphaWorldLayoutStrategy();
-        attackingStrategy = new AlphaAttackingStrategy();
 
-        game = new GameImpl(winnerStrategy,unitActionStrategy, worldLayoutStrategy, attackingStrategy);
-
-        redCity = new Position(1,1);
-        blueCity = new Position(4,1);
-        redArcher = new Position(2,0);
-        redSettler = new Position(4,3);
-        blueLegion = new Position(3,2);
     }
     public void advanceRound(){
         game.endOfTurn();
@@ -51,21 +40,9 @@ public class TestAlphaAttackingStrategy {
     }
 
     @Test
-    public void shouldReturn0AsAttackingStrength(){
-        assertThat(game.getUnitAt(redArcher).getAttackingStrength(),is(0));
+    public void shouldDoSomething(){
+
     }
 
-    @Test
-    public void shouldReturn3AsDefensiveStrength(){
-        assertThat(game.getUnitAt(redArcher).getDefensiveStrength(),is(3));
-    }
 
-    @Test
-    public void shouldLetRedAttackAndDestroyBluesUnit(){
-        game.moveUnit(new Position(2,0),new Position(3,1));
-        assertThat(game.getUnitAt(new Position(3,2)).getOwner(),is(Player.BLUE));
-        advanceRound();
-        game.moveUnit(new Position(3,1),new Position(3,2));
-        assertThat(game.getUnitAt(new Position(3,2)).getOwner(),is(Player.RED));
-    }
 }

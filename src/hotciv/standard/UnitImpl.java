@@ -14,13 +14,12 @@ public class UnitImpl implements Unit {
     private final Player owner;
     private int moveCount;
     private int defensiveStrength;
-    private AttackingStrategy attackingStrategy;
+
     public UnitImpl(String gameconstant, Player owner) {
         this.unitType = gameconstant;
         this.owner = owner;
         this.moveCount = 1;
         this.defensiveStrength = 3;
-        this.attackingStrategy = new AlphaAttackingStrategy();
     }
 
     @Override
@@ -41,7 +40,7 @@ public class UnitImpl implements Unit {
 
     @Override
     public int getDefensiveStrength() {
-        return attackingStrategy.getDefensiveStrength();
+        return defensiveStrength;
     }
 
     public void doubleDefensiveStrength(){
@@ -50,7 +49,7 @@ public class UnitImpl implements Unit {
 
     @Override
     public int getAttackingStrength() {
-        return attackingStrategy.getAttackStrength();
+        return 0;
     }
 
     public void moveUnit() {

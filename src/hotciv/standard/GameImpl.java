@@ -125,15 +125,13 @@ public class GameImpl implements Game {
             unitMap.remove(from);
             unitMap.get(to).moveUnit();
         }
-
-        if (battleOutcome == "Attacker"){
+        if (battleOutcome.equals("Attacker")){
             unitMap.put(to, new UnitImpl(getUnitAt(from).getTypeString(), getUnitAt(from).getOwner()));
             unitMap.remove(from);
             unitMap.get(to).moveUnit();
-        } if (battleOutcome == "Defender") {
+        } if (battleOutcome.equals("Defender")) {
             unitMap.remove(from);
         }
-
         if(movedToEnemyCity(to)){
             cityMap.put(to,new CityImpl(to,currentPlayer));
         }

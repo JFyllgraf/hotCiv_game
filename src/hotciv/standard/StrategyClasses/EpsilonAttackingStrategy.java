@@ -27,7 +27,7 @@ public class EpsilonAttackingStrategy implements AttackingStrategy{
     public int attackingUnitTotalAttackStrength(Game game, Position position){
         int rawUnitAttackStrength = getAttackStrength(game.getUnitAt(position).getTypeString());
         int boostByTerrain = Utility.getTerrainFactor(game,position);
-        int boostByFriendlyUnits = Utility.getFriendlySupport(game, position, game.getPlayerInTurn());
+        int boostByFriendlyUnits = Utility.getFriendlySupport(game, position, game.getUnitAt(position).getOwner());
         int randomDieFactor = dieDecisionStrategy.rollDie();
         return (rawUnitAttackStrength+boostByTerrain+boostByFriendlyUnits)*randomDieFactor;
 
@@ -35,7 +35,7 @@ public class EpsilonAttackingStrategy implements AttackingStrategy{
     public int defendingUnitTotalDefendingStrength(Game game, Position position){
         int rawUnitDefendStrength = getDefendStrength(game.getUnitAt(position).getTypeString());
         int boostByTerrain = Utility.getTerrainFactor(game,position);
-        int boostByFriendlyUnits = Utility.getFriendlySupport(game, position, game.getCityAt(position).getOwner());
+        int boostByFriendlyUnits = Utility.getFriendlySupport(game, position, game.getUnitAt(position).getOwner());
         int randomDieFactor = dieDecisionStrategy.rollDie();
         return (rawUnitDefendStrength + boostByTerrain + boostByFriendlyUnits)*randomDieFactor;
     }

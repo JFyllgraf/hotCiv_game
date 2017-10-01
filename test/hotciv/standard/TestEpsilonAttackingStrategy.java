@@ -47,8 +47,8 @@ public class TestEpsilonAttackingStrategy {
     public void shouldLetBlueLegionKillRedArcher(){
         game.moveUnit(new Position(2,0),new Position(3,1));
         game.endOfTurn();
-        game.moveUnit(new Position(3,1),new Position(3,2));
-        assertThat(game.getUnitAt(new Position(3,2)).getOwner(),is(Player.BLUE));
+        game.moveUnit(new Position(3,2),new Position(3,1));
+        assertThat(game.getUnitAt(new Position(3,1)).getOwner(),is(Player.BLUE));
     }
 
     @Test

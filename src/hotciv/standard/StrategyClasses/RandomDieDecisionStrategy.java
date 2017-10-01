@@ -6,7 +6,7 @@ public class RandomDieDecisionStrategy implements DieDecisionStrategy {
 
     @Override
     public int rollDie() {
-        return (int) Math.random() * 6;
+        return (int) (Math.random() * 6)+1;
     }
 
 }

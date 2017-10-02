@@ -60,6 +60,8 @@ public class GameImpl implements Game {
     private int redAttackWinCounter;
     private int blueAttackWinCounter;
 
+    private int gameRounds;
+
     public GameImpl(WinnerStrategy winnerStrategy, UnitActionStrategy unitActionStrategy, WorldLayoutStrategy worldLayoutStrategy, AttackingStrategy attackingStrategy){
         this.ageingStrategy = new AlphaAgeingStrategy();
         this.winnerStrategy = winnerStrategy;
@@ -77,6 +79,7 @@ public class GameImpl implements Game {
 
         currentPlayer=Player.RED;
         this.age = -4000;
+        gameRounds = 0;
 
         redAttackWinCounter = 0;
         blueAttackWinCounter = 0;
@@ -192,6 +195,8 @@ public class GameImpl implements Game {
             produceUnit(blueCityPos, bluePlayerProductionFocus);
 
             resetAllUnitsMovecount();
+
+            gameRounds++;
         }
     }
 
@@ -271,7 +276,7 @@ public class GameImpl implements Game {
         cityMap.put(position, new CityImpl(position, owner));
     }
 
-    public void updateAttackWinCounter(Position position){
+    private void updateAttackWinCounter(Position position){
         if(getUnitAt(position).getOwner() == Player.RED){
             redAttackWinCounter++;
         }if(getUnitAt(position).getOwner() == Player.BLUE){
@@ -288,6 +293,9 @@ public class GameImpl implements Game {
         return null;
     }
 
+    public int getGameRounds(){
+        return gameRounds;
+    }
 
 }
 

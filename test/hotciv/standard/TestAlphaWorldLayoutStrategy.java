@@ -3,6 +3,8 @@ package hotciv.standard;
 
 import hotciv.framework.GameConstants;
 import hotciv.framework.Position;
+import hotciv.standard.GameFactory.GameFactoryClasses.AlphaGameFactory;
+import hotciv.standard.GameFactory.GameFactoryInterfaces.GameFactory;
 import hotciv.standard.StrategyClasses.AlphaWorldLayoutStrategy;
 import hotciv.standard.StrategyInterfaces.WorldLayoutStrategy;
 import org.junit.Before;
@@ -18,8 +20,9 @@ public class TestAlphaWorldLayoutStrategy {
 
     @Before
     public void setup(){
-        worldLayoutStrategy = new AlphaWorldLayoutStrategy();
-        this.game = new GameImpl(null, null,  worldLayoutStrategy, null);
+        GameFactory alphaMaker = new AlphaGameFactory();
+
+        game = new GameImpl(alphaMaker);
     }
 
     @Test

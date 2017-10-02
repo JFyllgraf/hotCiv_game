@@ -1,5 +1,9 @@
 package hotciv.standard;
 import hotciv.framework.*;
+import hotciv.standard.GameFactory.GameFactoryClasses.AlphaGameFactory;
+import hotciv.standard.GameFactory.GameFactoryClasses.EpsilonGameFactory;
+import hotciv.standard.GameFactory.GameFactoryClasses.EpsilonGameFactoryFixedDice;
+import hotciv.standard.GameFactory.GameFactoryInterfaces.GameFactory;
 import hotciv.standard.StrategyClasses.*;
 import hotciv.standard.StrategyInterfaces.*;
 import org.junit.Before;
@@ -17,18 +21,18 @@ public class TestEpsilonAttackingStrategy {
     private UnitActionStrategy unitActionStrategy;
     private WorldLayoutStrategy worldLayoutStrategy;
     private EpsilonAttackingStrategy epsilonAttackingStrategy;
+    private GameFactory epsilonMaker;
     DieDecisionStrategy dieDecisionStrategy;
 
 
     @Before
     public void setup(){
+        epsilonMaker = new EpsilonGameFactoryFixedDice();
+
+        game = new GameImpl(epsilonMaker);
         gameForTestStub = new GameStubForBattleTesting();
-        winnerStrategy = new AlphaWinnerStrategy();
-        unitActionStrategy = new AlphaUnitActionStrategy();
-        worldLayoutStrategy = new AlphaWorldLayoutStrategy();
+
         dieDecisionStrategy = new FixedDieDecisionStrategy(6);
-        epsilonAttackingStrategy = new EpsilonAttackingStrategy(dieDecisionStrategy);
-        game = new GameImpl(winnerStrategy,unitActionStrategy, worldLayoutStrategy, epsilonAttackingStrategy);
     }
 
     private void advanceRound(){
@@ -44,32 +48,32 @@ public class TestEpsilonAttackingStrategy {
 
     @Test
     public void shouldReturn2AsArcherAttack(){
-        assertThat(epsilonAttackingStrategy.getAttackStrength((GameConstants.ARCHER)),is(2));
+        assertThat(((EpsilonAttackingStrategy)(epsilonMaker.attackingStrategy())).getAttackStrength((GameConstants.ARCHER)),is(2));
     }
 
     @Test
     public void shouldReturn3AsArcherDefence(){
-        assertThat(epsilonAttackingStrategy.getDefendStrength((GameConstants.ARCHER)),is(3));
+        assertThat(((EpsilonAttackingStrategy)(epsilonMaker.attackingStrategy())).getDefendStrength((GameConstants.ARCHER)),is(3));
     }
 
     @Test
     public void shouldReturn4AsLegionAttack(){
-        assertThat(epsilonAttackingStrategy.getAttackStrength((GameConstants.LEGION)),is(4));
+        assertThat(((EpsilonAttackingStrategy)(epsilonMaker.attackingStrategy())).getAttackStrength((GameConstants.LEGION)),is(4));
     }
 
     @Test
     public void shouldReturn2AsLegionDefence(){
-        assertThat(epsilonAttackingStrategy.getDefendStrength((GameConstants.LEGION)),is(2));
+        assertThat(((EpsilonAttackingStrategy)(epsilonMaker.attackingStrategy())).getDefendStrength((GameConstants.LEGION)),is(2));
     }
 
     @Test
     public void shouldReturn0AsSettlerAttack(){
-        assertThat(epsilonAttackingStrategy.getAttackStrength((GameConstants.SETTLER)),is(0));
+        assertThat(((EpsilonAttackingStrategy)(epsilonMaker.attackingStrategy())).getAttackStrength((GameConstants.SETTLER)),is(0));
     }
 
     @Test
     public void shouldReturn3AsSettlerDefence(){
-        assertThat(epsilonAttackingStrategy.getDefendStrength((GameConstants.SETTLER)),is(3));
+        assertThat(((EpsilonAttackingStrategy)(epsilonMaker.attackingStrategy())).getDefendStrength((GameConstants.SETTLER)),is(3));
     }
 
 
@@ -77,26 +81,26 @@ public class TestEpsilonAttackingStrategy {
 
     @Test
     public void shouldReturn18AsAttackStrengthWhenArcherStandsOnPlainWithNoTeamUnitsAroundWithFixed6Dice(){
-        assertThat(epsilonAttackingStrategy.attackingUnitTotalAttackStrength(gameForTestStub, new Position(5,5)),is(18));
+        assertThat(((EpsilonAttackingStrategy)(epsilonMaker.attackingStrategy())).attackingUnitTotalAttackStrength(gameForTestStub, new Position(5,5)),is(18));
     }
 
     @Test
     public void shouldReturn24AsAttackStrengthWhenArcherStandsInForrestWithFixed6Dice(){
-        assertThat(epsilonAttackingStrategy.attackingUnitTotalAttackStrength(gameForTestStub,new Position(1,2)),is(24));
+        assertThat(((EpsilonAttackingStrategy)(epsilonMaker.attackingStrategy())).attackingUnitTotalAttackStrength(gameForTestStub,new Position(1,2)),is(24));
     }
 
     @Test
     public void shouldReturn24AsAttackStrengthWhenArcherHasOneTeamUnitAroundWithFixed6Dice(){
-        assertThat(epsilonAttackingStrategy.attackingUnitTotalAttackStrength(gameForTestStub,new Position(3,2)),is(24));
+        assertThat(((EpsilonAttackingStrategy)(epsilonMaker.attackingStrategy())).attackingUnitTotalAttackStrength(gameForTestStub,new Position(3,2)),is(24));
     }
 
     @Test
     public void shouldReturn24AsDefenseStrengthWhenArcherOnPlainWithNoTeamUnitsAroundWithFixed6Dice(){
-        assertThat(epsilonAttackingStrategy.defendingUnitTotalDefendingStrength(gameForTestStub, new Position(5,5)),is(24));
+        assertThat(((EpsilonAttackingStrategy)(epsilonMaker.attackingStrategy())).defendingUnitTotalDefendingStrength(gameForTestStub, new Position(5,5)),is(24));
     }
     @Test
     public void shouldReturn36AsAttackStrengthWhenArcherOnForrestWith1TeamUnitAroundWithFixed6Dice(){
-        assertThat(epsilonAttackingStrategy.defendingUnitTotalDefendingStrength(gameForTestStub, new Position(8,8)),is(36));
+        assertThat(((EpsilonAttackingStrategy)(epsilonMaker.attackingStrategy())).defendingUnitTotalDefendingStrength(gameForTestStub, new Position(8,8)),is(36));
     }
 
     // ================================== TEST STUBS ===

@@ -2,6 +2,8 @@ package hotciv.standard;
 
 import hotciv.framework.Player;
 import hotciv.framework.Position;
+import hotciv.standard.GameFactory.GameFactoryClasses.BetaGameFactory;
+import hotciv.standard.GameFactory.GameFactoryInterfaces.GameFactory;
 import hotciv.standard.StrategyClasses.AlphaAttackingStrategy;
 import hotciv.standard.StrategyClasses.AlphaWorldLayoutStrategy;
 import hotciv.standard.StrategyClasses.BetaWinnerStrategy;
@@ -29,8 +31,11 @@ public class TestBetaWinnerStrategy {
         worldLayoutStrategy = new AlphaWorldLayoutStrategy();
         attackingStrategy = new AlphaAttackingStrategy();
 
+        GameFactory betaMaker = new BetaGameFactory();
 
-        game = new GameImpl(winnerStrategy,null, worldLayoutStrategy, attackingStrategy);
+        game = new GameImpl(betaMaker);
+
+
     }
 
     @Test

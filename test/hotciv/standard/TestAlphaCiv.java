@@ -4,6 +4,8 @@ import com.sun.org.apache.xpath.internal.SourceTree;
 import com.sun.prism.shader.Solid_TextureYV12_AlphaTest_Loader;
 import hotciv.framework.*;
 
+import hotciv.standard.GameFactory.GameFactoryClasses.AlphaGameFactory;
+import hotciv.standard.GameFactory.GameFactoryInterfaces.GameFactory;
 import hotciv.standard.StrategyClasses.AlphaAttackingStrategy;
 import hotciv.standard.StrategyClasses.AlphaUnitActionStrategy;
 import hotciv.standard.StrategyClasses.AlphaWinnerStrategy;
@@ -58,10 +60,6 @@ public class TestAlphaCiv {
     private Position redSettler;
     private Position blueLegion;
 
-    private WinnerStrategy winnerStrategy;
-    private UnitActionStrategy unitActionStrategy;
-    private WorldLayoutStrategy worldLayoutStrategy;
-    private AttackingStrategy attackingStrategy;
 
     private void advanceRound(){
         game.endOfTurn();
@@ -71,12 +69,9 @@ public class TestAlphaCiv {
 
     @Before
     public void setup(){
-        winnerStrategy = new AlphaWinnerStrategy();
-        unitActionStrategy = new AlphaUnitActionStrategy();
-        worldLayoutStrategy = new AlphaWorldLayoutStrategy();
-        attackingStrategy = new AlphaAttackingStrategy();
+        GameFactory alphaMaker = new AlphaGameFactory();
 
-        game = new GameImpl(winnerStrategy,unitActionStrategy, worldLayoutStrategy, attackingStrategy);
+        game = new GameImpl(alphaMaker);
 
         redCity = new Position(1,1);
         blueCity = new Position(4,1);

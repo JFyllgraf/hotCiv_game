@@ -2,6 +2,9 @@ package hotciv.standard;
 
 import hotciv.framework.Position;
 import hotciv.framework.Player;
+import hotciv.standard.GameFactory.GameFactoryClasses.AlphaGameFactory;
+import hotciv.standard.GameFactory.GameFactoryClasses.GammaGameFactory;
+import hotciv.standard.GameFactory.GameFactoryInterfaces.GameFactory;
 import hotciv.standard.StrategyClasses.AlphaUnitActionStrategy;
 import hotciv.standard.StrategyClasses.AlphaWorldLayoutStrategy;
 import hotciv.standard.StrategyClasses.GammaUnitActionStrategy;
@@ -21,9 +24,9 @@ public class TestGammaCivUnitAction {
 
     @Before
     public void setup(){
-        unitActionStrategy = new GammaUnitActionStrategy();
-        worldLayoutStrategy = new AlphaWorldLayoutStrategy();
-        this.game = new GameImpl(null, unitActionStrategy, worldLayoutStrategy,null);
+        GameFactory gammaMaker = new GammaGameFactory();
+
+        game = new GameImpl(gammaMaker);
     }
 
     @Test

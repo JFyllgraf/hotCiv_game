@@ -4,6 +4,9 @@ import hotciv.framework.Game;
 import hotciv.framework.GameConstants;
 import hotciv.framework.Player;
 import hotciv.framework.Position;
+import hotciv.standard.GameFactory.GameFactoryClasses.AlphaGameFactory;
+import hotciv.standard.GameFactory.GameFactoryClasses.ZetaGameFactory;
+import hotciv.standard.GameFactory.GameFactoryInterfaces.GameFactory;
 import hotciv.standard.StrategyClasses.*;
 import hotciv.standard.StrategyInterfaces.AttackingStrategy;
 import hotciv.standard.StrategyInterfaces.WinnerStrategy;
@@ -28,14 +31,9 @@ public class TestZetaCivWinnerStrategy {
 
     @Before
     public void setup(){
-        betaWinnerStrategy = new BetaWinnerStrategy();
-        epsilonWinnerStrategy = new EpsilonWinnerStrategy();
-        winnerStrategy = new ZetaCivAlternatingWinnerStrategy(betaWinnerStrategy, epsilonWinnerStrategy);
+        GameFactory zetaMaker = new ZetaGameFactory();
 
-        worldLayoutStrategy = new AlphaWorldLayoutStrategy();
-        attackingStrategy = new AlphaAttackingStrategy();
-
-        game = new GameImpl(winnerStrategy, null, worldLayoutStrategy, attackingStrategy);
+        game = new GameImpl(zetaMaker);
 
         blueCityPos = new Position(4,1);
     }
@@ -58,13 +56,10 @@ public class TestZetaCivWinnerStrategy {
     }
 
     @Test
-    public void shouldWinAfter3SuccessfulAttacksAfter20RoundsPassed(){
-        for(int i = 0; i < 21; i++){
+    public void shouldWinAfter3SuccesfulAttacksAfter20RoundsPassed(){
+        for(int i = 0; i < 22; i++){
             advanceRound();
         }
-
-        game = ((GameImpl)game);
-        System.out.println(((GameImpl) game).getGameRounds());
 
         game.moveUnit(new Position(2,0),new Position(3,1));
         game.endOfTurn();

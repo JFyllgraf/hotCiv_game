@@ -3,6 +3,10 @@ package hotciv.standard;
 import hotciv.framework.GameConstants;
 import hotciv.framework.Position;
 import hotciv.framework.Player;
+import hotciv.standard.GameFactory.GameFactoryClasses.AlphaGameFactory;
+import hotciv.standard.GameFactory.GameFactoryClasses.EpsilonGameFactoryFixedDice;
+import hotciv.standard.GameFactory.GameFactoryClasses.ZetaGameFactory;
+import hotciv.standard.GameFactory.GameFactoryInterfaces.GameFactory;
 import hotciv.standard.StrategyClasses.*;
 import hotciv.standard.StrategyInterfaces.*;
 import org.junit.Before;
@@ -15,19 +19,13 @@ import static org.junit.Assert.assertThat;
  * Created by csdev on 10/1/17.
  */
 public class TestEpsilonWinnerStrategy {
-    private WinnerStrategy winnerStrategy;
-    private WorldLayoutStrategy worldLayoutStrategy;
-    private AttackingStrategy attackingStrategy;
-    private DieDecisionStrategy dieDecisionStrategy;
+
     private GameImpl game;
 
     @Before
     public void setup() {
-        dieDecisionStrategy = new FixedDieDecisionStrategy(6);
-        winnerStrategy = new EpsilonWinnerStrategy();
-        worldLayoutStrategy = new AlphaWorldLayoutStrategy();
-        attackingStrategy = new EpsilonAttackingStrategy(dieDecisionStrategy);
-        this.game = new GameImpl(winnerStrategy, null, worldLayoutStrategy, attackingStrategy);
+        GameFactory epsilonMaker = new EpsilonGameFactoryFixedDice();
+        game = new GameImpl(epsilonMaker);
     }
 
     private void advanceRound(){

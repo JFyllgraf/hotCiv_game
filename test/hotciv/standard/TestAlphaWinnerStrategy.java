@@ -1,6 +1,8 @@
 package hotciv.standard;
 
 import hotciv.framework.Player;
+import hotciv.standard.GameFactory.GameFactoryClasses.AlphaGameFactory;
+import hotciv.standard.GameFactory.GameFactoryInterfaces.GameFactory;
 import hotciv.standard.StrategyClasses.AlphaAgeingStrategy;
 import hotciv.standard.StrategyClasses.AlphaUnitActionStrategy;
 import hotciv.standard.StrategyClasses.AlphaWinnerStrategy;
@@ -22,9 +24,9 @@ public class TestAlphaWinnerStrategy {
 
     @Before
     public void setup(){
-        worldLayoutStrategy = new AlphaWorldLayoutStrategy();
-        winnerStrategy = new AlphaWinnerStrategy();
-        game = new GameImpl(winnerStrategy, null, worldLayoutStrategy, null);
+        GameFactory alphaMaker = new AlphaGameFactory();
+
+        game = new GameImpl(alphaMaker);
     }
 
     private void advanceRound(){

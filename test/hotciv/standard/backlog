@@ -2,11 +2,5 @@
 ############## BACKLOG ########################
 ###############################################
 
-[] - Der mangler at blive implementeret pris for produktion af units.
-[] - Når produktion af units sker automatisk, mangler vi også at implementere koordinater.
-    Dvs. at når units bliver produceret i byen, skal de sættes på de rigtige koordinater rundt om byen. (clockwise)
-[] - Der mangler at blive implementeret få tests i forhold til attacking af units. Attacking units skal altid vinde, og der må kun være ét unit på hver tile.
-    Dette er stort set implementeret i koden pga. andre tests, men mangler at blive testet isoleret.
 
-[] - Implementerer compositional design for deltaciv.
 

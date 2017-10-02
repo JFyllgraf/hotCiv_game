@@ -104,22 +104,17 @@ ___________________________________________________________
 [76] - Refactor alphaciv to use attacking strategy (Necessary for EpsilonCiv)
 
 ##### For EpsilonCiv
-[] - Archer should have 2 attack strength
-[] - Archer should have 3 defence strength
-[] - Legion should have 2 defence strength
-[] - Legion should have 4 attack strength
-[] - Settler should have 0 attack strength
-[] - Settler should have 3 defence strength
-[] - Units attacking strength (including strength gained by team-units) should be multiplied by the dice roll
-[] - Defenders defence strength (including strength gained by team-units) should be multiplied by the dice roll
-[] - player's unit gets boosted defence by 1 by every team unit that surrounds the player's unit
-[] - player's unit gets boosted attack by 1 by every team unit that surrounds the player's unit
-##Different combat scenarios for epsilonCiv
-[] - A settler with 4 team archers surrounding win an attack against other players archer which has no surroundings.
-Fixed dice for settler: 6. Fixed for archer: 1.
-[] - When a blue legion placed in a blue town surrounded by two friendly archers and the legion attacks a red archer,
-who is in reach of the legion and is surrounded by 1 friendly archer. The legion is boosted by a dice of 3 and the archer
-is boosted by a dice of 3. Legion should win.
+[78] - Archer should have 2 attack strength
+[79] - Archer should have 3 defence strength
+[80] - Legion should have 2 defence strength
+[81] - Legion should have 4 attack strength
+[82] - Settler should have 0 attack strength
+[83] - Settler should have 3 defence strength
+
+######### Unit testing
+[84-89] - Testing different combinations
+
+######### Dice
 [77] - Create DieDecisionStrategy with random and fixed die roll
     [77] - Fixed die roll always returns the same value
 

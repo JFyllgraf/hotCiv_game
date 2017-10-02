@@ -1,12 +1,9 @@
 package hotciv.standard;
-import hotciv.framework.Player;
-import hotciv.framework.Position;
+import hotciv.framework.*;
 import hotciv.standard.StrategyClasses.*;
 import hotciv.standard.StrategyInterfaces.*;
 import org.junit.Before;
 import org.junit.Test;
-
-import javax.swing.plaf.synth.SynthOptionPaneUI;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
@@ -15,21 +12,23 @@ import static org.hamcrest.CoreMatchers.*;
  */
 public class TestEpsilonAttackingStrategy {
     private GameImpl game;
-
+    private Game gameForTestStub;
     private WinnerStrategy winnerStrategy;
     private UnitActionStrategy unitActionStrategy;
     private WorldLayoutStrategy worldLayoutStrategy;
-    private AttackingStrategy attackingStrategy;
+    private EpsilonAttackingStrategy epsilonAttackingStrategy;
     DieDecisionStrategy dieDecisionStrategy;
+
 
     @Before
     public void setup(){
+        gameForTestStub = new GameStubForBattleTesting();
         winnerStrategy = new AlphaWinnerStrategy();
         unitActionStrategy = new AlphaUnitActionStrategy();
         worldLayoutStrategy = new AlphaWorldLayoutStrategy();
         dieDecisionStrategy = new FixedDieDecisionStrategy(6);
-        attackingStrategy = new EpsilonAttackingStrategy(dieDecisionStrategy);
-        game = new GameImpl(winnerStrategy,unitActionStrategy, worldLayoutStrategy, attackingStrategy);
+        epsilonAttackingStrategy = new EpsilonAttackingStrategy(dieDecisionStrategy);
+        game = new GameImpl(winnerStrategy,unitActionStrategy, worldLayoutStrategy, epsilonAttackingStrategy);
     }
 
     private void advanceRound(){
@@ -44,26 +43,128 @@ public class TestEpsilonAttackingStrategy {
     }
 
     @Test
-    public void shouldLetBlueLegionKillRedArcher(){
-        game.moveUnit(new Position(2,0),new Position(3,1));
-        game.endOfTurn();
-        game.moveUnit(new Position(3,2),new Position(3,1));
-        assertThat(game.getUnitAt(new Position(3,1)).getOwner(),is(Player.BLUE));
+    public void shouldReturn2AsArcherAttack(){
+        assertThat(epsilonAttackingStrategy.getAttackStrength((GameConstants.ARCHER)),is(2));
     }
 
     @Test
-    public void shouldLetLegionWinAgainstArcherWhenArcherAttacks(){
-        game.moveUnit(new Position(2,0), new Position(3,1));
-        advanceRound();
-        game.moveUnit(new Position(3,1),new Position(3,2));
-        assertThat(game.getUnitAt(new Position(3,2)).getOwner(),is(Player.BLUE));
+    public void shouldReturn3AsArcherDefence(){
+        assertThat(epsilonAttackingStrategy.getDefendStrength((GameConstants.ARCHER)),is(3));
     }
 
     @Test
-    public void shouldNotLetSettlerWinAgainstLegion(){
-        game.moveUnit(new Position(4,3), new Position(3,3));
-        advanceRound();
-        game.moveUnit(new Position(3,3),new Position(3,2));
-        assertThat(game.getUnitAt(new Position(3,2)).getOwner(),is(Player.BLUE));
+    public void shouldReturn4AsLegionAttack(){
+        assertThat(epsilonAttackingStrategy.getAttackStrength((GameConstants.LEGION)),is(4));
     }
+
+    @Test
+    public void shouldReturn2AsLegionDefence(){
+        assertThat(epsilonAttackingStrategy.getDefendStrength((GameConstants.LEGION)),is(2));
+    }
+
+    @Test
+    public void shouldReturn0AsSettlerAttack(){
+        assertThat(epsilonAttackingStrategy.getAttackStrength((GameConstants.SETTLER)),is(0));
+    }
+
+    @Test
+    public void shouldReturn3AsSettlerDefence(){
+        assertThat(epsilonAttackingStrategy.getDefendStrength((GameConstants.SETTLER)),is(3));
+    }
+
+
+    //UNIT TESTING
+
+    @Test
+    public void shouldReturn18AsAttackStrengthWhenArcherStandsOnPlainWithNoTeamUnitsAroundWithFixed6Dice(){
+        assertThat(epsilonAttackingStrategy.attackingUnitTotalAttackStrength(gameForTestStub, new Position(5,5)),is(18));
+    }
+
+    @Test
+    public void shouldReturn24AsAttackStrengthWhenArcherStandsInForrestWithFixed6Dice(){
+        assertThat(epsilonAttackingStrategy.attackingUnitTotalAttackStrength(gameForTestStub,new Position(1,2)),is(24));
+    }
+
+    @Test
+    public void shouldReturn24AsAttackStrengthWhenArcherHasOneTeamUnitAroundWithFixed6Dice(){
+        assertThat(epsilonAttackingStrategy.attackingUnitTotalAttackStrength(gameForTestStub,new Position(3,2)),is(24));
+    }
+
+    @Test
+    public void shouldReturn24AsDefenseStrengthWhenArcherOnPlainWithNoTeamUnitsAroundWithFixed6Dice(){
+        assertThat(epsilonAttackingStrategy.defendingUnitTotalDefendingStrength(gameForTestStub, new Position(5,5)),is(24));
+    }
+    @Test
+    public void shouldReturn36AsAttackStrengthWhenArcherOnForrestWith1TeamUnitAroundWithFixed6Dice(){
+        assertThat(epsilonAttackingStrategy.defendingUnitTotalDefendingStrength(gameForTestStub, new Position(8,8)),is(36));
+    }
+
+    // ================================== TEST STUBS ===
+    class StubTile implements Tile {
+        private String type;
+        public StubTile(String type, int r, int c) { this.type = type; }
+        public String getTypeString() { return type; }
+    }
+
+    class StubUnit implements Unit {
+        private String type; private Player owner;
+        public StubUnit(String type, Player owner) {
+            this.type = type; this.owner = owner;
+        }
+        public String getTypeString() { return type; }
+        public Player getOwner() { return owner; }
+        public int getMoveCount() { return 0; }
+        public int getDefensiveStrength() { return 0; }
+        public int getAttackingStrength() { return 0; }
+    }
+    class GameStubForBattleTesting implements Game {
+        public Tile getTileAt(Position p) {
+            if ( p.getRow() == 1 && p.getColumn() == 2 ||
+                 p.getRow() == 8 && p.getColumn() == 8) {
+                return new hotciv.standard.StubTile(GameConstants.FOREST, 1, 2);
+            }
+            return new hotciv.standard.StubTile(GameConstants.PLAINS, 3, 2);
+        }
+        public Unit getUnitAt(Position p) {
+            if ( p.getRow() == 3 && p.getColumn() == 2 ||
+                    p.getRow() == 2 && p.getColumn() == 2 ||
+                    p.getRow() == 5 && p.getColumn() == 5  ||
+                    p.getRow() == 8 && p.getColumn() == 8 ||
+                    p.getRow() == 8 && p.getColumn() == 9){
+                return new hotciv.standard.StubUnit(GameConstants.ARCHER, Player.BLUE);
+            }
+            if ( p.getRow() == 1 && p.getColumn() == 2 ) {
+                return new hotciv.standard.StubUnit(GameConstants.ARCHER, Player.RED);
+            }
+            return null;
+        }
+        public City getCityAt(Position p) {
+            if ( p.getRow() == 1 && p.getColumn() == 1 ) {
+                return new City() {
+                    public Player getOwner() { return Player.RED; }
+                    public int getSize() { return 1; }
+                    public String getProduction() {
+                        return null;
+                    }
+                    public String getWorkforceFocus() {
+                        return null;
+                    }
+                };
+            }
+            return null;
+        }
+
+        // the rest is unused test stub methods...
+        public void changeProductionInCityAt(Position p, String unitType) {}
+        public void changeWorkForceFocusInCityAt(Position p, String balance) {}
+        public void endOfTurn() {}
+        public Player getPlayerInTurn() {return null;}
+        public Player getWinner() {return null;}
+        public int getAge() { return 0; }
+        public boolean moveUnit(Position from, Position to) {return false;}
+        public void performUnitActionAt( Position p ) {}
+    }
+
 }
+
+

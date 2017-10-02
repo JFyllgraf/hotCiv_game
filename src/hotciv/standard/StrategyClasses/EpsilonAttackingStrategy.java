@@ -30,7 +30,7 @@ public class EpsilonAttackingStrategy implements AttackingStrategy{
         return "Defender";
     }
 
-    private int attackingUnitTotalAttackStrength(Game game, Position position){
+    public int attackingUnitTotalAttackStrength(Game game, Position position){
         int rawUnitAttackStrength = getAttackStrength(game.getUnitAt(position).getTypeString());
         int boostByTerrain = Utility.getTerrainFactor(game,position);
         int boostByFriendlyUnits = Utility.getFriendlySupport(game, position, game.getUnitAt(position).getOwner());
@@ -38,7 +38,7 @@ public class EpsilonAttackingStrategy implements AttackingStrategy{
         return (rawUnitAttackStrength+boostByTerrain+boostByFriendlyUnits)*randomDieFactor;
     }
 
-    private int defendingUnitTotalDefendingStrength(Game game, Position position){
+    public int defendingUnitTotalDefendingStrength(Game game, Position position){
         int rawUnitDefendStrength = getDefendStrength(game.getUnitAt(position).getTypeString());
         int boostByTerrain = Utility.getTerrainFactor(game,position);
         int boostByFriendlyUnits = Utility.getFriendlySupport(game, position, game.getUnitAt(position).getOwner());
@@ -46,7 +46,7 @@ public class EpsilonAttackingStrategy implements AttackingStrategy{
         return (rawUnitDefendStrength + boostByTerrain + boostByFriendlyUnits)*randomDieFactor;
     }
 
-    private int getAttackStrength(String unitType){
+    public int getAttackStrength(String unitType){
         switch (unitType) {
             case GameConstants.ARCHER:
                 return 2;
@@ -58,7 +58,7 @@ public class EpsilonAttackingStrategy implements AttackingStrategy{
         return 0;
     }
 
-    private int getDefendStrength(String unitType){
+    public int getDefendStrength(String unitType){
         switch (unitType) {
             case GameConstants.ARCHER:
                 return 3;

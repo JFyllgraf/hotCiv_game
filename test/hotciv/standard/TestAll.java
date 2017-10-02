@@ -2,7 +2,7 @@ package hotciv.standard;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
-
+//Release 5
 @RunWith(Suite.class)
 @Suite.SuiteClasses(
         { TestAlphaCiv.class,

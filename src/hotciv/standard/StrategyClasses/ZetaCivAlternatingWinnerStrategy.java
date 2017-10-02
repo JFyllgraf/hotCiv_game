@@ -9,12 +9,12 @@ import hotciv.standard.StrategyInterfaces.WinnerStrategy;
 
 import java.util.HashMap;
 
-public class AlternatingWinnerStrategy implements WinnerStrategy {
+public class ZetaCivAlternatingWinnerStrategy implements WinnerStrategy {
 
     private WinnerStrategy betaWinnerStrategy, epsilonWinnerStrategy, currentState;
 
 
-    public AlternatingWinnerStrategy(WinnerStrategy betaWinnerStrategy, WinnerStrategy epsilonWinnerStrategy){
+    public ZetaCivAlternatingWinnerStrategy(WinnerStrategy betaWinnerStrategy, WinnerStrategy epsilonWinnerStrategy){
         this.betaWinnerStrategy = betaWinnerStrategy;
         this.epsilonWinnerStrategy = epsilonWinnerStrategy;
         currentState = null;

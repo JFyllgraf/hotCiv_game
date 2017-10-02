@@ -4,6 +4,9 @@ import hotciv.framework.Game;
 import hotciv.framework.GameConstants;
 import hotciv.framework.Player;
 import hotciv.framework.Position;
+import hotciv.standard.GameFactory.GameFactoryClasses.AlphaGameFactory;
+import hotciv.standard.GameFactory.GameFactoryClasses.ZetaGameFactory;
+import hotciv.standard.GameFactory.GameFactoryInterfaces.GameFactory;
 import hotciv.standard.StrategyClasses.*;
 import hotciv.standard.StrategyInterfaces.AttackingStrategy;
 import hotciv.standard.StrategyInterfaces.WinnerStrategy;
@@ -28,14 +31,9 @@ public class TestZetaCivWinnerStrategy {
 
     @Before
     public void setup(){
-        betaWinnerStrategy = new BetaWinnerStrategy();
-        epsilonWinnerStrategy = new EpsilonWinnerStrategy();
-        winnerStrategy = new AlternatingWinnerStrategy(betaWinnerStrategy, epsilonWinnerStrategy);
+        GameFactory zetaMaker = new ZetaGameFactory();
 
-        worldLayoutStrategy = new AlphaWorldLayoutStrategy();
-        attackingStrategy = new AlphaAttackingStrategy();
-
-        game = new GameImpl(winnerStrategy, null, worldLayoutStrategy, attackingStrategy);
+        game = new GameImpl(zetaMaker);
 
         blueCityPos = new Position(4,1);
     }

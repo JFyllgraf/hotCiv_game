@@ -2,6 +2,10 @@ package hotciv.standard;
 
 import hotciv.framework.Player;
 import hotciv.framework.Position;
+import hotciv.standard.GameFactory.GameFactoryClasses.BetaGameFactory;
+import hotciv.standard.GameFactory.GameFactoryClasses.DeltaGameFactory;
+import hotciv.standard.GameFactory.GameFactoryClasses.GammaGameFactory;
+import hotciv.standard.GameFactory.GameFactoryInterfaces.GameFactory;
 import hotciv.standard.StrategyClasses.DeltaWorldLayoutStrategy;
 import hotciv.standard.StrategyInterfaces.WorldLayoutStrategy;
 import org.junit.Before;
@@ -17,8 +21,9 @@ public class TestDeltaWorldLayoutStrategy {
 
     @Before
     public void setup(){
-        this.worldLayoutStrategy = new DeltaWorldLayoutStrategy();
-        this.game = new GameImpl(null, null, worldLayoutStrategy,null);
+        GameFactory deltaMaker = new DeltaGameFactory();
+
+        game = new GameImpl(deltaMaker);
     }
 
     @Test

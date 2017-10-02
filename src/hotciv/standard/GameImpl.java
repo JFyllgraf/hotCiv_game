@@ -1,6 +1,7 @@
 package hotciv.standard;
 
 import hotciv.framework.*;
+import hotciv.standard.GameFactory.GameFactoryInterfaces.GameFactory;
 import hotciv.standard.StrategyClasses.AlphaAgeingStrategy;
 import hotciv.standard.StrategyClasses.EpsilonAttackingStrategy;
 import hotciv.standard.StrategyClasses.EpsilonWinnerStrategy;
@@ -62,12 +63,12 @@ public class GameImpl implements Game {
 
     private int gameRounds;
 
-    public GameImpl(WinnerStrategy winnerStrategy, UnitActionStrategy unitActionStrategy, WorldLayoutStrategy worldLayoutStrategy, AttackingStrategy attackingStrategy){
-        this.ageingStrategy = new AlphaAgeingStrategy();
-        this.winnerStrategy = winnerStrategy;
-        this.unitActionStrategy = unitActionStrategy;
-        this.worldLayoutStrategy = worldLayoutStrategy;
-        this.attackingStrategy = attackingStrategy;
+    public GameImpl(GameFactory factoryMaker){
+        ageingStrategy = factoryMaker.ageingStrategy();
+        winnerStrategy = factoryMaker.winnerStrategy();
+        unitActionStrategy = factoryMaker.unitActionStrategy();
+        worldLayoutStrategy = factoryMaker.worldLayoutStrategy();
+        attackingStrategy = factoryMaker.attackingStrategy();
 
         redCityPos = new Position(1,1);
         blueCityPos = new Position(4,1);

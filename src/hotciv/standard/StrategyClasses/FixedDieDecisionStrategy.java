@@ -9,6 +9,7 @@ public class FixedDieDecisionStrategy implements DieDecisionStrategy {
     public FixedDieDecisionStrategy(int fixedValue){
         dieValue = fixedValue;
     }
+
     @Override
     public int rollDie() {
         return dieValue;

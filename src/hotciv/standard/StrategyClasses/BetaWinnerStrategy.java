@@ -3,7 +3,9 @@ package hotciv.standard.StrategyClasses;
 import hotciv.framework.Game;
 import hotciv.framework.Player;
 import hotciv.framework.Position;
+import hotciv.framework.Unit;
 import hotciv.standard.CityImpl;
+import hotciv.standard.GameImpl;
 import hotciv.standard.StrategyInterfaces.WinnerStrategy;
 
 import java.util.HashMap;
@@ -15,7 +17,7 @@ public class BetaWinnerStrategy implements WinnerStrategy {
     private int blueCityCounter;
 
     @Override
-    public Player getWinner(Game game, HashMap<Position, CityImpl> map) {
+    public Player getWinner(GameImpl game, HashMap<Position, CityImpl> map) {
         for(Map.Entry<Position, CityImpl> entry: map.entrySet()){
             if (entry.getValue().getOwner() == Player.RED){
               redCityCounter++;
@@ -29,5 +31,10 @@ public class BetaWinnerStrategy implements WinnerStrategy {
             return Player.RED;
         }
         return null;
+    }
+
+    @Override
+    public void updateUnitAttackCounter(GameImpl game, Player player) {
+
     }
 }

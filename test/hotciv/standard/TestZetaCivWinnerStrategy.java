@@ -30,7 +30,7 @@ public class TestZetaCivWinnerStrategy {
     public void setup(){
         betaWinnerStrategy = new BetaWinnerStrategy();
         epsilonWinnerStrategy = new EpsilonWinnerStrategy();
-        winnerStrategy = new AlternatingWinnerStrategy(betaWinnerStrategy, epsilonWinnerStrategy);
+        winnerStrategy = new ZetaCivAlternatingWinnerStrategy(betaWinnerStrategy, epsilonWinnerStrategy);
 
         worldLayoutStrategy = new AlphaWorldLayoutStrategy();
         attackingStrategy = new AlphaAttackingStrategy();
@@ -58,10 +58,13 @@ public class TestZetaCivWinnerStrategy {
     }
 
     @Test
-    public void shouldWinAfter3SuccesfulAttacksAfter20RoundsPassed(){
-        for(int i = 0; i < 22; i++){
+    public void shouldWinAfter3SuccessfulAttacksAfter20RoundsPassed(){
+        for(int i = 0; i < 21; i++){
             advanceRound();
         }
+
+        game = ((GameImpl)game);
+        System.out.println(((GameImpl) game).getGameRounds());
 
         game.moveUnit(new Position(2,0),new Position(3,1));
         game.endOfTurn();

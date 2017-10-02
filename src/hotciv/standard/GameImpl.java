@@ -137,7 +137,7 @@ public class GameImpl implements Game {
             unitMap.get(to).moveUnit();
         }
         if (battleOutcome.equals("Attacker")){
-            updateAttackWinCounter(from);
+            winnerStrategy.updateUnitAttackCounter(this, currentPlayer);
             unitMap.put(to, new UnitImpl(getUnitAt(from).getTypeString(), getUnitAt(from).getOwner()));
             unitMap.remove(from);
             unitMap.get(to).moveUnit();
@@ -274,23 +274,6 @@ public class GameImpl implements Game {
 
     public void putCityAt(Position position, Player owner){
         cityMap.put(position, new CityImpl(position, owner));
-    }
-
-    private void updateAttackWinCounter(Position position){
-        if(getUnitAt(position).getOwner() == Player.RED){
-            redAttackWinCounter++;
-        }if(getUnitAt(position).getOwner() == Player.BLUE){
-            blueAttackWinCounter++;
-        }
-    }
-
-    public Player getAttackWinCounter(){
-        if (redAttackWinCounter >= 3){
-            return Player.RED;
-        } if (blueAttackWinCounter >= 3){
-            return Player.BLUE;
-        }
-        return null;
     }
 
     public int getGameRounds(){

@@ -18,7 +18,8 @@ import org.junit.runners.Suite;
                 TestEpsilonAttackingStrategy.class,
                 TestUtility.class,
                 TestEpsilonWinnerStrategy.class,
-                TestZetaCivWinnerStrategy.class
+                TestZetaCivWinnerStrategy.class,
+                TestSemiCiv.class
         }
 )
 

@@ -7,29 +7,10 @@ import hotciv.standard.StrategyInterfaces.*;
 /**
  * Created by csdev on 10/2/17.
  */
-public class DeltaGameFactory implements GameFactory {
-    @Override
-    public AgeingStrategy ageingStrategy() {
-        return null;
-    }
-
-    @Override
-    public AttackingStrategy attackingStrategy() {
-        return null;
-    }
-
+public class DeltaGameFactory extends AlphaGameFactory {
     @Override
     public WorldLayoutStrategy worldLayoutStrategy() {
         return new DeltaWorldLayoutStrategy();
     }
 
-    @Override
-    public WinnerStrategy winnerStrategy() {
-        return null;
-    }
-
-    @Override
-    public UnitActionStrategy unitActionStrategy() {
-        return null;
-    }
 }

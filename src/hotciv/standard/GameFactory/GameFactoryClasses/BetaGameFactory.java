@@ -10,20 +10,10 @@ import hotciv.standard.StrategyInterfaces.*;
 /**
  * Created by csdev on 10/2/17.
  */
-public class BetaGameFactory implements GameFactory {
+public class BetaGameFactory extends AlphaGameFactory {
     @Override
     public AgeingStrategy ageingStrategy() {
         return new BetaAgeingStrategy();
-    }
-
-    @Override
-    public AttackingStrategy attackingStrategy() {
-        return new AlphaAttackingStrategy();
-    }
-
-    @Override
-    public WorldLayoutStrategy worldLayoutStrategy() {
-        return new AlphaWorldLayoutStrategy();
     }
 
     @Override

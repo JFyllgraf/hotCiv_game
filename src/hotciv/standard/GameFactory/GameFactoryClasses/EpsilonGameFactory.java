@@ -13,4 +13,9 @@ public class EpsilonGameFactory extends AlphaGameFactory {
     public AttackingStrategy attackingStrategy() {
         return new EpsilonAttackingStrategy(new RandomDieDecisionStrategy());
     }
+
+    @Override
+    public WinnerStrategy winnerStrategy() {
+        return new EpsilonWinnerStrategy();
+    }
 }

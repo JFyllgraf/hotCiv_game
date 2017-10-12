@@ -44,7 +44,7 @@ UNITS
 [33] - Units have their movement restored after each round
 [35] - Units can only move as far as their movecount
 [64] - Archers default defence is 3
-[ ] - Should produce units clockwise around city. Starting in the city and then around.
+[90 ] - Should produce units clockwise around city. Starting in the city and then around.
 
 
 TILES
@@ -119,4 +119,9 @@ ___________________________________________________________
 [77] - Create DieDecisionStrategy with random and fixed die roll
     [77] - Fixed die roll always returns the same value
 
+
+########## For ThetaCiv
+[91] Galley ShouldHave8Attack
+[92] Galley Should have 2 defence strength
+[93] Galley can move on ocean
 

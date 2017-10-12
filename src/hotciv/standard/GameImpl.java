@@ -127,7 +127,7 @@ public class GameImpl implements Game {
     public boolean moveUnit(Position from, Position to) {
         if (!isPlayersOwnUnit(from))return false;
         if (!hasMoveCountLeft(from))return false;
-        if (!isLegalTile(to))return false;
+        if (!isLegalTile(from,to))return false;
         if (!distanceIsLegal(from, to))return false;
 
         String battleOutcome = "";
@@ -174,12 +174,19 @@ public class GameImpl implements Game {
         return (unitMap.get(from).getOwner() == currentPlayer);
     }
 
-    private boolean isLegalTile(Position to){
+    private boolean isLegalTile(Position from, Position to){
         if((to.getRow() < mapSize && to.getRow() >= 0) && (to.getColumn() < mapSize && to.getColumn() >= 0)) {
-            return !((tileMap.get(to).getTypeString().equals(GameConstants.OCEANS)) || (tileMap.get(to).getTypeString().equals(GameConstants.MOUNTAINS)));
-        }
+            if(getUnitAt(from).getTypeString()!=ExpansionGameConstants.GALLEY) {
+                return !((tileMap.get(to).getTypeString().equals(GameConstants.OCEANS)) || (tileMap.get(to).getTypeString().equals(GameConstants.MOUNTAINS)));
+            }
+            else if(getUnitAt(from).getTypeString()==ExpansionGameConstants.GALLEY){
+                return !((tileMap.get(to).getTypeString().equals(GameConstants.PLAINS)) || (tileMap.get(to).getTypeString().equals(GameConstants.MOUNTAINS)) || (tileMap.get(to).getTypeString().equals(GameConstants.HILLS)) || (tileMap.get(to).getTypeString().equals(GameConstants.HILLS)));
+
+            }
+            }
         return false;
     }
+
 
     @Override
     public void endOfTurn() {
@@ -214,6 +221,8 @@ public class GameImpl implements Game {
             case GameConstants.LEGION:
                 return 15;
             case GameConstants.SETTLER:
+                return 30;
+            case ExpansionGameConstants.GALLEY:
                 return 30;
         }
         return 0;

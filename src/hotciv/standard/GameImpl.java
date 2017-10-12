@@ -7,6 +7,7 @@ import hotciv.standard.StrategyClasses.EpsilonAttackingStrategy;
 import hotciv.standard.StrategyClasses.EpsilonWinnerStrategy;
 import hotciv.standard.StrategyInterfaces.*;
 //H
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -262,9 +263,28 @@ public class GameImpl implements Game {
 
     public void produceUnit(Position position, UnitImpl unit){
         if(isAtCity(position,unit) && enoughProduction(position)){
-            unitMap.put(position, unit);
+            putUnitClockWise(position, unit);
             CityImpl city = (CityImpl)getCityAt(position);
             city.setTreasury(-getCost(city.getProduction()));
+        }
+    }
+
+    public void putUnitClockWise(Position position, UnitImpl unit){
+        ArrayList<Position> posList = new ArrayList<>();
+        posList.add(new Position(position.getRow(),position.getColumn()));
+        posList.add(new Position(position.getRow()-1,position.getColumn()));
+        posList.add(new Position(position.getRow()-1,position.getColumn()+1));
+        posList.add(new Position(position.getRow(),position.getColumn()+1));
+        posList.add(new Position(position.getRow()+1,position.getColumn()+1));
+        posList.add(new Position(position.getRow()+1,position.getColumn()));
+        posList.add(new Position(position.getRow()+1,position.getColumn()-1));
+        posList.add(new Position(position.getRow(),position.getColumn()-1));
+        posList.add(new Position(position.getRow()-1,position.getColumn()-1));
+        for(int i = 0; i<posList.size(); i++){
+             if(getUnitAt(posList.get(i)) == null){
+                 unitMap.put(posList.get(i),unit);
+                 break;
+             }
         }
     }
 

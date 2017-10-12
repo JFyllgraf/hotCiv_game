@@ -370,5 +370,19 @@ public class TestAlphaCiv {
         assertThat(game.getUnitAt(new Position(2,0)).getDefensiveStrength(),is(3));
     }
 
+    @Test
+    public void shouldProduceUnitAboveRightWhenCityHasAndThereIsRockAboveAndFreeUpRight(){
+        advanceRound();
+        advanceRound();
+        advanceRound();
+        advanceRound();
+        advanceRound();
+        advanceRound();
+        advanceRound();
+        advanceRound();
+        advanceRound();
+        assertThat(game.getUnitAt(new Position(0,2)).getOwner(), is(Player.RED));
+    }
+
 
 }

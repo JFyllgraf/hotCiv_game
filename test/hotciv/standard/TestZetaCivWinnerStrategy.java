@@ -60,25 +60,20 @@ public class TestZetaCivWinnerStrategy {
         for(int i = 0; i < 22; i++){
             advanceRound();
         }
-
-        game.moveUnit(new Position(2,0),new Position(3,1));
         game.endOfTurn();
-        game.moveUnit(new Position(3,2),new Position(4,3));
-        assertThat(game.getUnitAt(new Position(4,3)).getOwner(),is(Player.BLUE));
-        game.endOfTurn();
-        game.moveUnit(new Position(3,1), new Position(3,2));
-        game.endOfTurn();
-        game.moveUnit(new Position(4,3),new Position(3,2));
-        assertThat(game.getUnitAt(new Position(3,2)).getOwner(),is(Player.BLUE));
-        game.endOfTurn();
-        advanceRound();
-        assertThat(game.getUnitAt(new Position(1,1)).getTypeString(),is(GameConstants.ARCHER));
-        game.moveUnit(new Position(1,1), new Position(2,1));
-        advanceRound();
-        game.moveUnit(new Position(2,1), new Position(3,1));
-        game.endOfTurn();
-        game.moveUnit(new Position(3,2),new Position(3,1));
         assertThat(game.getUnitAt(new Position(3,1)).getOwner(),is(Player.BLUE));
+        assertThat(game.getUnitAt(new Position(2,1)).getOwner(),is(Player.RED));
+        game.moveUnit(new Position(3,1),new Position(2,1));
+        assertThat(game.getUnitAt(new Position(2,1)).getOwner(),is(Player.BLUE));
+        advanceRound();
+        assertThat(game.getUnitAt(new Position(2,0)).getOwner(),is(Player.RED));
+        game.moveUnit(new Position(2,1),new Position(2,0));
+        assertThat(game.getUnitAt(new Position(2,0)).getOwner(),is(Player.BLUE));
+        advanceRound();
+        game.moveUnit(new Position(2,0),new Position(2,1));
+        advanceRound();
+        game.moveUnit(new Position(2,1),new Position(1,2));
+        assertThat(game.getUnitAt(new Position(1,2)).getOwner(),is(Player.BLUE));
         assertThat(game.getWinner(),is(Player.BLUE));
     }
 }

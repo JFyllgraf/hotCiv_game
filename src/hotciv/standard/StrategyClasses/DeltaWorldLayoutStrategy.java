@@ -76,9 +76,9 @@ public class DeltaWorldLayoutStrategy implements WorldLayoutStrategy {
     }
 
     public HashMap setDefaultUnits(){
-        //unitMap.put(new Position(3,2),new UnitImpl(GameConstants.LEGION,Player.BLUE));
-        //unitMap.put(new Position(4,3),new UnitImpl(GameConstants.SETTLER,Player.RED));
-        //unitMap.put(new Position(2,0),new UnitImpl(GameConstants.ARCHER, Player.RED));
+        unitMap.put(new Position(3,2),new UnitImpl(GameConstants.LEGION,Player.BLUE));
+        unitMap.put(new Position(4,3),new UnitImpl(GameConstants.SETTLER,Player.RED));
+        unitMap.put(new Position(2,0),new UnitImpl(GameConstants.ARCHER, Player.RED));
         return unitMap;
     }
 

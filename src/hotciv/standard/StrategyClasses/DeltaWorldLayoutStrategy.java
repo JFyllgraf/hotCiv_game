@@ -1,5 +1,6 @@
 package hotciv.standard.StrategyClasses;
 
+import hotciv.framework.ExpansionGameConstants;
 import hotciv.framework.GameConstants;
 import hotciv.framework.Player;
 import hotciv.framework.Position;
@@ -72,13 +73,17 @@ public class DeltaWorldLayoutStrategy implements WorldLayoutStrategy {
     public HashMap setDefaultCities() {
         cityMap.put(redCityPos, new CityImpl(redCityPos, Player.RED));
         cityMap.put(blueCityPos, new CityImpl(blueCityPos,Player.BLUE));
+        cityMap.put(redCityPos, new CityImpl(new Position(7,7), Player.RED));
         return cityMap;
     }
+
 
     public HashMap setDefaultUnits(){
         unitMap.put(new Position(3,2),new UnitImpl(GameConstants.LEGION,Player.BLUE));
         unitMap.put(new Position(4,3),new UnitImpl(GameConstants.SETTLER,Player.RED));
         unitMap.put(new Position(2,0),new UnitImpl(GameConstants.ARCHER, Player.RED));
+        unitMap.put(new Position(7,7),new UnitImpl(GameConstants.ARCHER, Player.RED));
+        unitMap.put(new Position(6,6),new UnitImpl(ExpansionGameConstants.GALLEY, Player.RED));
         return unitMap;
     }
 

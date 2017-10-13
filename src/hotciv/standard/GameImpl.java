@@ -180,7 +180,7 @@ public class GameImpl implements Game {
                 return !((tileMap.get(to).getTypeString().equals(GameConstants.OCEANS)) || (tileMap.get(to).getTypeString().equals(GameConstants.MOUNTAINS)));
             }
             else if(getUnitAt(from).getTypeString()==ExpansionGameConstants.GALLEY){
-                return !((tileMap.get(to).getTypeString().equals(GameConstants.PLAINS)) || (tileMap.get(to).getTypeString().equals(GameConstants.MOUNTAINS)) || (tileMap.get(to).getTypeString().equals(GameConstants.HILLS)) || (tileMap.get(to).getTypeString().equals(GameConstants.HILLS)));
+                return !((tileMap.get(to).getTypeString().equals(GameConstants.PLAINS)) || (tileMap.get(to).getTypeString().equals(GameConstants.MOUNTAINS)) || (tileMap.get(to).getTypeString().equals(GameConstants.HILLS)) || (tileMap.get(to).getTypeString().equals(GameConstants.FOREST)));
 
             }
             }
@@ -232,6 +232,9 @@ public class GameImpl implements Game {
         for(Map.Entry<Position, UnitImpl> entry : unitMap.entrySet()){
             if(entry.getValue().getMoveCount() == 0){
                 entry.getValue().setMoveCount();
+                if(entry.getValue().getTypeString()==ExpansionGameConstants.GALLEY){
+                    entry.getValue().setGalleyMoveCount();
+                }
             }
         }
     }

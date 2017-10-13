@@ -1,5 +1,6 @@
 package hotciv.standard;
 
+import hotciv.framework.ExpansionGameConstants;
 import hotciv.framework.Player;
 import hotciv.framework.Unit;
 import hotciv.standard.StrategyClasses.AlphaAttackingStrategy;
@@ -18,7 +19,12 @@ public class UnitImpl implements Unit {
     public UnitImpl(String gameconstant, Player owner) {
         this.unitType = gameconstant;
         this.owner = owner;
-        this.moveCount = 1;
+        if(gameconstant== ExpansionGameConstants.GALLEY){
+            this.moveCount = 2;
+        }
+        else {
+            this.moveCount = 1;
+        }
         this.defensiveStrength = 3;
     }
 
@@ -58,6 +64,11 @@ public class UnitImpl implements Unit {
     public void setMoveCount() {
         if(this.moveCount>=0) {
             this.moveCount = 1;
+        }
+    }
+    public void setGalleyMoveCount(){
+        if(this.moveCount>=0){
+            this.moveCount = 2;
         }
     }
 

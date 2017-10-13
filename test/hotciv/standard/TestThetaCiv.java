@@ -21,6 +21,7 @@ import static org.hamcrest.CoreMatchers.is;
  * Created by csdev on 10/12/17.
  */
 public class TestThetaCiv {
+    //Release 6
     private ThetaAttackingStrategy thetaAttackingStrategy;
     private DeltaWorldLayoutStrategy deltaWorldLayoutStrategy;
     private Game game;
@@ -31,8 +32,6 @@ public class TestThetaCiv {
         thetaMaker = new ThetaGameFactory();
         game = new GameImpl(thetaMaker);
     }
-
-
 
     @Test
     public void shouldHave8AsAttack() {

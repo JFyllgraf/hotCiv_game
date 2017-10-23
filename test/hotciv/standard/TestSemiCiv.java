@@ -37,7 +37,7 @@ public class TestSemiCiv {
 
 
     @Test
-    public void shouldDoubleStrenthForArcherWhenActionIsPerformed(){
+    public void shouldDoubleStrengthForArcherWhenActionIsPerformed(){
         //Smoke test for Unitaction
         game.performUnitActionAt(new Position(2,0));
         assertThat(game.getUnitAt(new Position(2,0)).getDefensiveStrength(), CoreMatchers.is(6));

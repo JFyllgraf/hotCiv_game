@@ -1,5 +1,9 @@
 TEST LIST
 
+_______________________________________
+###### Original Testlist for AlphaCiv ######
+_______________________________________
+
 CITIES
 [4] - Red's city is at (1,1)
 [18] - Blue's city is at (4,1)
@@ -46,7 +50,6 @@ UNITS
 [64] - Archers default defence is 3
 [ ] - Should produce units clockwise around city. Starting in the city and then around.
 
-
 TILES
 [11] - There is ocean at (1,0)
 [12] - There is Hills at (0,1)
@@ -66,13 +69,22 @@ IMPLEMENTED METHODS THAT HAVE TO BE TESTED
 [17] - return the correct player in turn
 
 ___________________________________________________________
-Compositional Proposal Testlist
+#####Compositional Proposal Testlist (Other HotCiv versions)#####
 ___________________________________________________________
-//Unit Testing
+
+##### AlphaCiv refactoring to work with strategies
 [48-49]- refactor AlphaCiv to use a AlphaCiv Aging strategy
     [49] - Game should age 100 years each round
+[58] - Refactor AlphaCiv to use AlphaCiv winner strategy
+[61] - Refactor alphaCiv to use AlphaCiv unit action strategy (Does nothing)
+[68] - Refactor Alhphaciv to use AlphaCiv World Layout strategy
+[72] - Refactor AlphaCiv to use AlphaCiv Attacking Strategy
+    [73] - Should return 3 as defensive Strength
+    [74] - Should return 0 as attacking strength
+    [75] - The attacker wins any combat no matter attacking- and defensive strength.
+[76] - Refactor alphaciv to use attacking strategy (Necessary for EpsilonCiv)
 
-//Unit Testing
+##### BetaCiv (unit testing)
 [50-57] - handle aging structure for BetaCiv
     [50] - Game should age 100 years between 4000 and 100 BC
     [51] - Game should age 99 years between 100 and 1 BC
@@ -83,26 +95,22 @@ ___________________________________________________________
     [56] - Game should age 5 between 1900 and 1970 AD
     [57] - Game should age 1 from 1970 AD and beyond
 
-//Integration Testing
-[58] - Refactor AlphaCiv to use AlphaCiv winner strategy
+##### BetaCiv (Integration Testing)
 [60] - When a player conqures all cities, he should win the game for betaStrategy
-[61] - Refactor alphaCiv to use AlphaCiv unit action strategy (Does nothing)
+
+##### GammaCiv (Integration Testing)
 [62] - Settlers action produces a city on it's position. (GammaCiv)
 [63] - Settlers are removed from the game when they have performed their action. (GammaCiv)
 [65] - Archers defensive streangth is doubled when their action is performed (GammaCiv)
 [66] - Archers cannot move when their action has been performed (GammaCiv)
 [67] - Archers can now move again, when their action performed is used again (GammaCiv)
-[68] - Refactor Alhphaciv to use AlphaCiv World Layout strategy
+
+##### DeltaCiv (Integration Testing)
 [69-71] - When world layout is created, it should reflect figure 36.1 from the book, there should be a red city at (8,12) and a blue city at (4,5)
         and it should be easy for programmers to change the world layout without changing source code - For DeltaCiv.
     [69] - should have red City at 8,12 (DeltaCiv)
     [70] - should have blue City at 4,5 (DeltaCiv)
     [71] - Tiles should represent figure 36.1 image from the book (DeltaCiv)
-[72] - Refactor AlphaCiv to use AlphaCiv Attacking Strategy
-    [73] - Should return 3 as defensive Strength
-    [74] - Should return 0 as attacking strength
-    [75] - The attacker wins any combat no matter attacking- and defensive strength.
-[76] - Refactor alphaciv to use attacking strategy (Necessary for EpsilonCiv)
 
 ##### For EpsilonCiv
 [78] - Archer should have 2 attack strength
@@ -111,12 +119,13 @@ ___________________________________________________________
 [81] - Legion should have 4 attack strength
 [82] - Settler should have 0 attack strength
 [83] - Settler should have 3 defence strength
+[84-89] - Testing different combinations of attacking and defensive strength for units on the map
 
-######### Unit testing
-[84-89] - Testing different combinations
-
-######### Dice
+##### Dice
 [77] - Create DieDecisionStrategy with random and fixed die roll
     [77] - Fixed die roll always returns the same value
+
+##### SemiCiv (Smoketests)
+[90]  - 6 smoketests for unitaction, beta ageing, delta world layout, respectively.
 
 

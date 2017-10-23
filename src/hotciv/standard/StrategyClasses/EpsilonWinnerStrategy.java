@@ -32,7 +32,6 @@ public class EpsilonWinnerStrategy implements WinnerStrategy {
         } if (blueAttackWinCounter >= 3){
             return Player.BLUE;
         }
-        System.out.println("Red: " + redAttackWinCounter + "Blue: " + blueAttackWinCounter);
         return null;
     }
 

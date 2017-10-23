@@ -128,4 +128,14 @@ ___________________________________________________________
 ##### SemiCiv (Smoketests)
 [90]  - 6 smoketests for unitaction, beta ageing, delta world layout, respectively.
 
-
+##### ThetaCiv
+[91] - should be able to produce Galleys.
+[] - Galleys should cost 30 productions
+[] - Galleys should be able to travel 2 distances
+[] - Galley should only be able to move on oceans
+[] - Galleys defence is 2
+[] - Galleys attack is 8
+[] - Galley cannot attack units on land
+[] - Galley give friendly support to landunits if nearby
+[] - Galleys should be able to collinize by changing to a settler
+[] - Galley is removed when changed to settler.

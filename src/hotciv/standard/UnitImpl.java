@@ -1,5 +1,6 @@
 package hotciv.standard;
 
+import hotciv.framework.GameConstants;
 import hotciv.framework.Player;
 import hotciv.framework.Unit;
 import hotciv.standard.StrategyClasses.AlphaAttackingStrategy;
@@ -13,14 +14,26 @@ public class UnitImpl implements Unit {
     private final String unitType;
     private final Player owner;
     private int moveCount;
+
     private int defensiveStrength;
+    private int attackingStrength;
 
 
     public UnitImpl(String gameconstant, Player owner) {
         this.unitType = gameconstant;
         this.owner = owner;
         this.moveCount = 1;
-        this.defensiveStrength = 3;
+
+        if (gameconstant == GameConstants.ARCHER){
+            this.attackingStrength = 2;
+            this.defensiveStrength = 3;
+        } if (gameconstant == GameConstants.LEGION){
+            this.attackingStrength = 4;
+            this.defensiveStrength = 2;
+        } if (gameconstant == GameConstants.SETTLER){
+            this.attackingStrength = 0;
+            this.defensiveStrength = 3;
+        }
     }
 
     @Override
@@ -49,7 +62,7 @@ public class UnitImpl implements Unit {
 
     @Override
     public int getAttackingStrength() {
-        return 0;
+        return attackingStrength;
     }
 
     public void moveUnit() {

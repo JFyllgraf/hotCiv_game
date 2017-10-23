@@ -46,36 +46,6 @@ public class TestEpsilonAttackingStrategy {
         assertThat(dieDecisionStrategy.rollDie(), is(6));
     }
 
-    @Test
-    public void shouldReturn2AsArcherAttack(){
-        assertThat(((EpsilonAttackingStrategy)(epsilonMaker.attackingStrategy())).getAttackStrength((GameConstants.ARCHER)),is(2));
-    }
-
-    @Test
-    public void shouldReturn3AsArcherDefence(){
-        assertThat(((EpsilonAttackingStrategy)(epsilonMaker.attackingStrategy())).getDefendStrength((GameConstants.ARCHER)),is(3));
-    }
-
-    @Test
-    public void shouldReturn4AsLegionAttack(){
-        assertThat(((EpsilonAttackingStrategy)(epsilonMaker.attackingStrategy())).getAttackStrength((GameConstants.LEGION)),is(4));
-    }
-
-    @Test
-    public void shouldReturn2AsLegionDefence(){
-        assertThat(((EpsilonAttackingStrategy)(epsilonMaker.attackingStrategy())).getDefendStrength((GameConstants.LEGION)),is(2));
-    }
-
-    @Test
-    public void shouldReturn0AsSettlerAttack(){
-        assertThat(((EpsilonAttackingStrategy)(epsilonMaker.attackingStrategy())).getAttackStrength((GameConstants.SETTLER)),is(0));
-    }
-
-    @Test
-    public void shouldReturn3AsSettlerDefence(){
-        assertThat(((EpsilonAttackingStrategy)(epsilonMaker.attackingStrategy())).getDefendStrength((GameConstants.SETTLER)),is(3));
-    }
-
 
     //UNIT TESTING
 
@@ -112,22 +82,39 @@ public class TestEpsilonAttackingStrategy {
 
     class StubUnit implements Unit {
         private String type; private Player owner;
+
         public StubUnit(String type, Player owner) {
             this.type = type; this.owner = owner;
         }
+        public int getDefensiveStrength() {
+            if (type == GameConstants.ARCHER){
+                return 3;
+            } if (type == GameConstants.LEGION){
+                return 2;
+            } if (type == GameConstants.SETTLER){
+                return 3;
+            } return 0;
+        }
+        public int getAttackingStrength() {
+            if (type == GameConstants.ARCHER){
+                return 2;
+            } if (type == GameConstants.SETTLER){
+                return 4;
+            } return 0;
+        }
+
         public String getTypeString() { return type; }
         public Player getOwner() { return owner; }
         public int getMoveCount() { return 0; }
-        public int getDefensiveStrength() { return 0; }
-        public int getAttackingStrength() { return 0; }
+
     }
     class GameStubForBattleTesting implements Game {
         public Tile getTileAt(Position p) {
             if ( p.getRow() == 1 && p.getColumn() == 2 ||
                  p.getRow() == 8 && p.getColumn() == 8) {
-                return new hotciv.standard.StubTile(GameConstants.FOREST, 1, 2);
+                return new StubTile(GameConstants.FOREST, 1, 2);
             }
-            return new hotciv.standard.StubTile(GameConstants.PLAINS, 3, 2);
+            return new StubTile(GameConstants.PLAINS, 3, 2);
         }
         public Unit getUnitAt(Position p) {
             if ( p.getRow() == 3 && p.getColumn() == 2 ||
@@ -135,10 +122,10 @@ public class TestEpsilonAttackingStrategy {
                     p.getRow() == 5 && p.getColumn() == 5  ||
                     p.getRow() == 8 && p.getColumn() == 8 ||
                     p.getRow() == 8 && p.getColumn() == 9){
-                return new hotciv.standard.StubUnit(GameConstants.ARCHER, Player.BLUE);
+                return new StubUnit(GameConstants.ARCHER, Player.BLUE);
             }
             if ( p.getRow() == 1 && p.getColumn() == 2 ) {
-                return new hotciv.standard.StubUnit(GameConstants.ARCHER, Player.RED);
+                return new StubUnit(GameConstants.ARCHER, Player.RED);
             }
             return null;
         }

@@ -15,6 +15,7 @@ public class UnitImpl implements Unit {
     private int moveCount;
     private int defensiveStrength;
 
+
     public UnitImpl(String gameconstant, Player owner) {
         this.unitType = gameconstant;
         this.owner = owner;

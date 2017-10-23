@@ -39,6 +39,7 @@ import java.util.Map;
  */
 
 public class GameImpl implements Game {
+    //Do over from theta implementation
     private Player currentPlayer;
     private int mapSize = GameConstants.WORLDSIZE;
     private String plain = GameConstants.PLAINS;

@@ -39,7 +39,7 @@ public class TestLogDecorator {
 
     @Test
     public void shouldPrintWhenPlayerMovesUnits(){
-        game.moveUnit(new Position(2,0), new Position(3,1));
+        game.moveUnit(new Position(2,0), new Position(3,1)); //Moves red archer from 2,0 to 3,1
         ArrayList<String> sl = getStringArray();
         assertThat(game.getUnitAt(new Position(3,1)).getTypeString(), is("archer"));
         assertThat(sl.get(0), is("RED has moved archer from [2,0] to [3,1]"));

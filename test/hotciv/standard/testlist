@@ -139,3 +139,8 @@ ___________________________________________________________
 [] - Galley give friendly support to landunits if nearby
 [] - Galleys should be able to collinize by changing to a settler
 [] - Galley is removed when changed to settler.
+
+
+##### EXTRA
+[] - Add a transcripting class with the decorator pattern
+[] - Make tests for the different transcripts implemented

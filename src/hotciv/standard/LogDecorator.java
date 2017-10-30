@@ -2,12 +2,17 @@ package hotciv.standard;
 
 import hotciv.framework.*;
 
+import java.io.PrintStream;
+
 public class LogDecorator implements Game {
 
     private Game game;
+    private PrintStream printStream;
 
-    public LogDecorator(Game game){
+    public LogDecorator(Game game, PrintStream printStream){
         this.game = game;
+        this.printStream = printStream;
+        System.setOut(new PrintStream(printStream));
     }
 
     @Override
@@ -50,7 +55,7 @@ public class LogDecorator implements Game {
 
     @Override
     public void endOfTurn() {
-        System.out.print(game.getPlayerInTurn() + " ends turn");
+        System.out.println(game.getPlayerInTurn() + " ends turn.");
         game.endOfTurn();
     }
 

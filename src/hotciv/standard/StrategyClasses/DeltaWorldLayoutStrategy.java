@@ -57,7 +57,7 @@ public class DeltaWorldLayoutStrategy implements WorldLayoutStrategy {
             for ( int c = 0; c < GameConstants.WORLDSIZE; c++ ) {
                 char tileChar = line.charAt(c);
                 String type = "error";
-                tileChecker(tileChar, type);
+                type = tileChecker(tileChar, type);
                 Position p = new Position(r,c);
                 tileMap.put( p, new TileImpl(type));
             }

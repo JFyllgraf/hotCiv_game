@@ -20,8 +20,7 @@ import org.junit.runners.Suite;
                 TestEpsilonWinnerStrategy.class,
                 TestZetaCivWinnerStrategy.class,
                 TestSemiCiv.class,
-                TestLogDecorator.class,
-                ManualFractalTest.class
+                TestLogDecorator.class
         }
 )
 

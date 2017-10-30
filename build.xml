@@ -146,7 +146,11 @@ HotCiv build management for SWEA Course
           <classpath refid="class-path"/>
       </java>
   </target>
-
+    <target name="fractal" depends="build.all">
+        <java classname="hotciv.standard.ManualFractalTest">
+            <classpath refid="class-path"/>
+        </java>
+    </target>
   <!-- Run JUnit with JaCoCo code coverage -->
   <target name="run.junit" depends="build.all">
     <jacoco:coverage destfile="${jacoco.exec}" >
@@ -208,11 +212,6 @@ HotCiv build management for SWEA Course
     <echo message="To see report, browse to index.html at ${jacoco.report.dir}."/>
   </target>
 
-  <target name="fractal" depends="build.all">
-      <java classname="hotciv.standard.ManualFractalTest">
-          <classpath refid="class-path"/>
-      </java>
-  </target>
     <!--<target name="test" depends="build-all">
         <java classname="org.junit.runner.JUnitCore">
             <arg value=""/>

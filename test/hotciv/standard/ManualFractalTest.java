@@ -25,11 +25,9 @@ public class ManualFractalTest {
 
     public static void main(String[] args){
         GameFactory fractalGameMaker = new FractalGameFactory();
-        String[] layout = new String[]{};
         String layoutString = "";
         game = new GameImpl(fractalGameMaker);
         for ( int r = 0; r < GameConstants.WORLDSIZE; r++ ) {
-            System.out.println(layoutString);
             layoutString = "";
             for ( int c = 0; c < GameConstants.WORLDSIZE; c++ ) {
                 if (game.getTileAt(new Position(r,c)).getTypeString().equals(GameConstants.OCEANS)) {
@@ -50,6 +48,7 @@ public class ManualFractalTest {
                 }
 
             }
+            System.out.println(layoutString);
         }
     }
 }

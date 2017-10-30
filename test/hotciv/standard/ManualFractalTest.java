@@ -22,6 +22,10 @@ public class ManualFractalTest {
 
     private static GameImpl game;
 
+    @Before
+    public void Setup(){
+
+    }
 
     public static void main(String[] args){
         GameFactory fractalGameMaker = new FractalGameFactory();
@@ -50,5 +54,10 @@ public class ManualFractalTest {
             }
             System.out.println(layoutString);
         }
+    }
+
+    @Test
+    public void shouldHaveThisTestToWork(){
+
     }
 }

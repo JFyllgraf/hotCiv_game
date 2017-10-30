@@ -233,9 +233,7 @@ public class GameImpl implements Game {
         for(Map.Entry<Position, UnitImpl> entry : unitMap.entrySet()){
             if(entry.getValue().getMoveCount() == 0){
                 entry.getValue().setMoveCount();
-                if(entry.getValue().getTypeString()==ExpansionGameConstants.GALLEY){
-                    entry.getValue().setGalleyMoveCount();
-                }
+
             }
         }
     }

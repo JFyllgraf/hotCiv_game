@@ -57,17 +57,22 @@ public class DeltaWorldLayoutStrategy implements WorldLayoutStrategy {
             for ( int c = 0; c < GameConstants.WORLDSIZE; c++ ) {
                 char tileChar = line.charAt(c);
                 String type = "error";
-                if ( tileChar == '.' ) { type = GameConstants.OCEANS; }
-                if ( tileChar == 'o' ) { type = GameConstants.PLAINS; }
-                if ( tileChar == 'M' ) { type = GameConstants.MOUNTAINS; }
-                if ( tileChar == 'f' ) { type = GameConstants.FOREST; }
-                if ( tileChar == 'h' ) { type = GameConstants.HILLS; }
+                tileChecker(tileChar, type);
                 Position p = new Position(r,c);
                 tileMap.put( p, new TileImpl(type));
             }
         }
         return tileMap;
     }
+
+    public void tileChecker(char tileChar, String type){
+        if ( tileChar == '.' ) { type = GameConstants.OCEANS; }
+        if ( tileChar == 'o' ) { type = GameConstants.PLAINS; }
+        if ( tileChar == 'M' ) { type = GameConstants.MOUNTAINS; }
+        if ( tileChar == 'f' ) { type = GameConstants.FOREST; }
+        if ( tileChar == 'h' ) { type = GameConstants.HILLS; }
+    }
+
 
     public HashMap setDefaultCities() {
         cityMap.put(redCityPos, new CityImpl(redCityPos, Player.RED));

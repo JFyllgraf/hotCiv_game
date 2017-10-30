@@ -3,6 +3,7 @@ package hotciv.standard.Adapters;
 import hotciv.framework.GameConstants;
 import hotciv.framework.Position;
 import hotciv.framework.Tile;
+import hotciv.standard.StrategyClasses.DeltaWorldLayoutStrategy;
 import hotciv.standard.StrategyInterfaces.WorldLayoutStrategy;
 import hotciv.standard.TileImpl;
 import thirdparty.ThirdPartyFractalGenerator;
@@ -15,10 +16,13 @@ import java.util.HashMap;
 public class FractalMapAdapterStrategy implements WorldLayoutStrategy {
     private ThirdPartyFractalGenerator thirdparty;
     private HashMap<Position, TileImpl> tileMap;
+    private DeltaWorldLayoutStrategy deltaWorldLayoutStrategy = new DeltaWorldLayoutStrategy();
+
 
     public FractalMapAdapterStrategy(){
         thirdparty = new ThirdPartyFractalGenerator();
         tileMap = new HashMap<>();
+
 
     }
     @Override
@@ -27,11 +31,7 @@ public class FractalMapAdapterStrategy implements WorldLayoutStrategy {
             for ( int c = 0; c < GameConstants.WORLDSIZE; c++ ) {
                 char tileChar = thirdparty.getLandscapeAt(r,c);
                 String type = "error";
-                if ( tileChar == '.' ) { type = GameConstants.OCEANS; }
-                if ( tileChar == 'o' ) { type = GameConstants.PLAINS; }
-                if ( tileChar == 'M' ) { type = GameConstants.MOUNTAINS; }
-                if ( tileChar == 'f' ) { type = GameConstants.FOREST; }
-                if ( tileChar == 'h' ) { type = GameConstants.HILLS; }
+                deltaWorldLayoutStrategy.tileChecker(tileChar, type);
                 Position p = new Position(r,c);
                 tileMap.put( p, new TileImpl(type));
             }

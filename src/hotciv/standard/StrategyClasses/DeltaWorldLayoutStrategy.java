@@ -65,12 +65,13 @@ public class DeltaWorldLayoutStrategy implements WorldLayoutStrategy {
         return tileMap;
     }
 
-    public void tileChecker(char tileChar, String type){
+    public String tileChecker(char tileChar, String type){
         if ( tileChar == '.' ) { type = GameConstants.OCEANS; }
         if ( tileChar == 'o' ) { type = GameConstants.PLAINS; }
         if ( tileChar == 'M' ) { type = GameConstants.MOUNTAINS; }
         if ( tileChar == 'f' ) { type = GameConstants.FOREST; }
         if ( tileChar == 'h' ) { type = GameConstants.HILLS; }
+        return type;
     }
 
 

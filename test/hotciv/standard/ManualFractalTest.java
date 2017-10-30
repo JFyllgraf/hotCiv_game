@@ -37,6 +37,7 @@ public class ManualFractalTest {
                 }
                 if (game.getTileAt(new Position(r,c)).getTypeString().equals(GameConstants.PLAINS)) {
                         layoutString = layoutString + "o";
+
                 }
                 if (game.getTileAt(new Position(r,c)).getTypeString() == GameConstants.MOUNTAINS) {
                         layoutString = layoutString + "M";

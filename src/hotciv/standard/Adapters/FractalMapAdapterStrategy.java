@@ -31,7 +31,7 @@ public class FractalMapAdapterStrategy implements WorldLayoutStrategy {
             for ( int c = 0; c < GameConstants.WORLDSIZE; c++ ) {
                 char tileChar = thirdparty.getLandscapeAt(r,c);
                 String type = "error";
-                deltaWorldLayoutStrategy.tileChecker(tileChar, type);
+                type = deltaWorldLayoutStrategy.tileChecker(tileChar, type);
                 Position p = new Position(r,c);
                 tileMap.put( p, new TileImpl(type));
             }

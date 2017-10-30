@@ -59,6 +59,23 @@ public class TestLogDecorator {
         assertThat(sl.get(0), is( "RED changes production in city at [1,1] to legion"));
     }
 
+    @Test
+    public void shouldToggleTranscriptingWhenLocalMethodIsCalled(){
+        game.getAge();
+        ArrayList<String> sl = getStringArray();
+        assertThat(sl.get(0), is("Game age is: -4000"));
+        transcriptToggle(); //Toggles transcript off
+
+        game.endOfTurn();
+        sl = getStringArray();
+        assertThat(sl.size(), is(1)); //Did not print to the array
+        transcriptToggle(); //Toggles transcript on again
+
+        game.endOfTurn();
+        sl = getStringArray();
+        assertThat(sl.get(1), is("RED ends turn."));  //Another line is added to the array
+    }
+
     private ArrayList<String> getStringArray(){
         BufferedReader reader = new BufferedReader(new InputStreamReader(new ByteArrayInputStream(outputStream.toByteArray())));
         ArrayList<String> stringList = new ArrayList<>();
@@ -70,5 +87,14 @@ public class TestLogDecorator {
             return stringList;
         }
         return stringList;
+    }
+
+    private void transcriptToggle(){
+        if (game == decoratee){
+            decoratee = new GameImpl(new AlphaGameFactory());
+            game = new LogDecorator(decoratee, new PrintStream(outputStream));
+        } else {
+            game = decoratee;
+        }
     }
 }

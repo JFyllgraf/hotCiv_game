@@ -17,8 +17,7 @@ public class FractalMapAdapterStrategy implements WorldLayoutStrategy {
     private ThirdPartyFractalGenerator thirdparty;
     private HashMap<Position, TileImpl> tileMap;
     private DeltaWorldLayoutStrategy deltaWorldLayoutStrategy = new DeltaWorldLayoutStrategy();
-
-
+    
     public FractalMapAdapterStrategy(){
         thirdparty = new ThirdPartyFractalGenerator();
         tileMap = new HashMap<>();

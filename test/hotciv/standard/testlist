@@ -141,6 +141,9 @@ ___________________________________________________________
 [] - Galley is removed when changed to settler.
 
 
+#### Manual test for Fractal Adapter
+[] - Print all tiles
+
 ##### EXTRA
 [92] - Add a transcripting class with the decorator pattern
 [93] - Make tests for the different transcripts implemented

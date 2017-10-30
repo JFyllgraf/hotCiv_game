@@ -214,12 +214,14 @@ public class TestAlphaCiv {
         game.moveUnit(redArcher,new Position(3,0));
         assertThat(game.getUnitAt(new Position(3,0)).getTypeString(),is(GameConstants.ARCHER));
     }
+
     @Test
     public void shouldDeleteUnitFromWhenMoving(){
         assertThat(game.getUnitAt(redArcher).getTypeString(),is(GameConstants.ARCHER));
         game.moveUnit(redArcher,new Position(3,0));
         assertNull(game.getUnitAt(redArcher));
     }
+
     @Test
     public void shouldOnlyBePossibleForThePlayerToMoveHisOwnUnits(){
         assertFalse(game.moveUnit(blueLegion,new Position(4,2)));
@@ -270,7 +272,6 @@ public class TestAlphaCiv {
     @Test
     public void shouldBeIllegalToMoveOutsideTheMap(){
         assertThat(game.moveUnit(redArcher, new Position(2,-1)), is(false));
-
     }
 
     @Test

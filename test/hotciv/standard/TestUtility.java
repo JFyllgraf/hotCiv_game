@@ -121,7 +121,7 @@ class StubUnit implements Unit {
 }
 
 
-/** A test stub for testing the battle calculation methods in
+/** A test hotciv.standard.stub for testing the battle calculation methods in
  * Utility. The terrains are
  * 0,0 - forest;
  * 1,0 - hill;
@@ -167,7 +167,7 @@ class GameStubForBattleTesting implements Game {
         return null;
     }
 
-    // the rest is unused test stub methods...
+    // the rest is unused test hotciv.standard.stub methods...
     public void changeProductionInCityAt(Position p, String unitType) {}
     public void changeWorkForceFocusInCityAt(Position p, String balance) {}
     public void endOfTurn() {}
@@ -176,5 +176,15 @@ class GameStubForBattleTesting implements Game {
     public int getAge() { return 0; }
     public boolean moveUnit(Position from, Position to) {return false;}
     public void performUnitActionAt( Position p ) {}
-    
+
+    @Override
+    public void addObserver(GameObserver observer) {
+
+    }
+
+    @Override
+    public void setTileFocus(Position position) {
+
+    }
+
 }

@@ -74,4 +74,14 @@ public class LogDecorator implements Game {
     public void performUnitActionAt(Position p) {
         game.performUnitActionAt(p);
     }
+
+    @Override
+    public void addObserver(GameObserver observer) {
+
+    }
+
+    @Override
+    public void setTileFocus(Position position) {
+
+    }
 }

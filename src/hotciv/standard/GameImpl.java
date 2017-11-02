@@ -260,6 +260,16 @@ public class GameImpl implements Game {
         unitActionStrategy.performAction(this, p);
     }
 
+    @Override
+    public void addObserver(GameObserver observer) {
+
+    }
+
+    @Override
+    public void setTileFocus(Position position) {
+
+    }
+
     private void setDefaultMap() {
         this.cityMap = worldLayoutStrategy.setDefaultCities();
         this.tileMap = worldLayoutStrategy.setDefaultTiles();

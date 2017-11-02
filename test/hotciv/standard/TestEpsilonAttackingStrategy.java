@@ -145,7 +145,7 @@ public class TestEpsilonAttackingStrategy {
             return null;
         }
 
-        // the rest is unused test stub methods...
+        // the rest is unused test hotciv.standard.stub methods...
         public void changeProductionInCityAt(Position p, String unitType) {}
         public void changeWorkForceFocusInCityAt(Position p, String balance) {}
         public void endOfTurn() {}
@@ -154,6 +154,16 @@ public class TestEpsilonAttackingStrategy {
         public int getAge() { return 0; }
         public boolean moveUnit(Position from, Position to) {return false;}
         public void performUnitActionAt( Position p ) {}
+
+        @Override
+        public void addObserver(GameObserver observer) {
+
+        }
+
+        @Override
+        public void setTileFocus(Position position) {
+
+        }
     }
 
 }

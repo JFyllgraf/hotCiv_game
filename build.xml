@@ -291,6 +291,13 @@
         </java>
     </target>
 
+    <target name="turn" depends="build.all">
+        <java fork="yes" classname="hotciv.standard.visual.ShowEndOfTurn">
+            <classpath>
+                <path refid="class-path"/>
+            </classpath>
+        </java>
+    </target>
 
 
 </project>

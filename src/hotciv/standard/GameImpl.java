@@ -9,6 +9,7 @@ import hotciv.standard.StrategyInterfaces.*;
 //H
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -38,7 +39,7 @@ import java.util.Map;
  * limitations under the License.
  */
 
-public class GameImpl implements Game, GameObserver {
+public class GameImpl implements Game {
     //Do over from theta implementation
     private Player currentPlayer;
     private int mapSize = GameConstants.WORLDSIZE;
@@ -57,6 +58,8 @@ public class GameImpl implements Game, GameObserver {
     private Position blueCityPos;
     private UnitImpl redPlayerProductionFocus;
     private UnitImpl bluePlayerProductionFocus;
+
+    private List<GameObserver> observers = new ArrayList<GameObserver>();
 
     private int age;
 
@@ -87,7 +90,6 @@ public class GameImpl implements Game, GameObserver {
         redAttackWinCounter = 0;
         blueAttackWinCounter = 0;
     }
-
 
 
     @Override
@@ -322,19 +324,5 @@ public class GameImpl implements Game, GameObserver {
         return gameRounds;
     }
 
-    @Override
-    public void worldChangedAt(Position pos) {
-
-    }
-
-    @Override
-    public void turnEnds(Player nextPlayer, int age) {
-
-    }
-
-    @Override
-    public void tileFocusChangedAt(Position position) {
-
-    }
 }
 

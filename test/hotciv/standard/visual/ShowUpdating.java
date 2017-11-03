@@ -82,6 +82,25 @@ class UpdateTool extends NullTool {
       game.setTileFocus(new Position(4,3));
       break;
     }
+    case 5: {
+      editor.showStatus("State change: Archer killed Legion");
+      game.moveUnit(new Position(2,2),new Position(3,2));
+      break;
+    }
+    case 6: {
+        editor.showStatus("State change: End of Turn (over to blue)");
+        game.endOfTurn();
+        break;
+    }
+    case 7:{
+      editor.showStatus("State change: End of turn (over to red)");
+      game.endOfTurn();
+    }
+      case 8: {
+        editor.showStatus("Collonize");
+        game.performUnitActionAt(new Position(4,3));
+        break;
+      }
       // ADD CASES FOR OTHER EVENTS THAT GAME MUST SEND...
     default: {
       editor.showStatus("No more changes in my list...");

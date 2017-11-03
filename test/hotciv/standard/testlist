@@ -148,4 +148,5 @@ ___________________________________________________________
 [92] - Add a transcripting class with the decorator pattern
 [93] - Make tests for the different transcripts implemented
 [94] - Make a way to toggle between the transcript class and the original
+[95] - Test notification of GameObserver
 ###

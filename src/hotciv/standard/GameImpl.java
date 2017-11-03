@@ -38,7 +38,7 @@ import java.util.Map;
  * limitations under the License.
  */
 
-public class GameImpl implements Game {
+public class GameImpl implements Game, GameObserver {
     //Do over from theta implementation
     private Player currentPlayer;
     private int mapSize = GameConstants.WORLDSIZE;
@@ -322,5 +322,19 @@ public class GameImpl implements Game {
         return gameRounds;
     }
 
+    @Override
+    public void worldChangedAt(Position pos) {
+
+    }
+
+    @Override
+    public void turnEnds(Player nextPlayer, int age) {
+
+    }
+
+    @Override
+    public void tileFocusChangedAt(Position position) {
+
+    }
 }
 

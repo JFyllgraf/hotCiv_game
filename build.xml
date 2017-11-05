@@ -298,6 +298,20 @@
             </classpath>
         </java>
     </target>
+    <target name="move" depends="build.all">
+        <java fork="yes" classname="hotciv.standard.visual.ShowMove">
+            <classpath>
+                <path refid="class-path"/>
+            </classpath>
+        </java>
+    </target>
+    <target name="setfocus" depends="build.all">
+        <java fork="yes" classname="hotciv.standard.visual.ShowSetFocus">
+            <classpath>
+                <path refid="class-path"/>
+            </classpath>
+        </java>
+    </target>
 
 
 </project>

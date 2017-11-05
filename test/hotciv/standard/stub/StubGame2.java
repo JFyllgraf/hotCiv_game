@@ -62,8 +62,12 @@ public class StubGame2 implements Game {
   // Stub only allows moving red archer
   public boolean moveUnit( Position from, Position to ) { 
     System.out.println( "-- StubGame2 / moveUnit called: "+from+"->"+to );
-    if ( from.equals(pos_archer_red) ) {
-      pos_archer_red = to;
+    if(to.getRow() <= from.getRow()+1 && to.getRow() >= from.getRow()-1){
+      if(to.getColumn() <= from.getColumn()+1 && to.getColumn() >= from.getColumn()-1){
+        if ( from.equals(pos_archer_red) ) {
+          pos_archer_red = to;
+        }
+      }
     }
     // notify our observer(s) about the changes on the tiles
     gameObserver.worldChangedAt(from);
@@ -100,13 +104,14 @@ public class StubGame2 implements Game {
     pos_galley_red = new Position( 6, 4);
 
     // the only one I need to store for this hotciv.standard.stub
-    red_archer = new StubUnit( GameConstants.ARCHER, Player.RED );   
+    red_archer = new StubUnit( GameConstants.ARCHER, Player.RED );
 
     inTurn = Player.RED;
   }
 
   // A simple implementation to draw the map of DeltaCiv
-  protected Map<Position,Tile> world; 
+  protected Map<Position,Tile> world;
+  protected Map<Position, City> cityWorld;
   public Tile getTileAt( Position p ) { return world.get(p); }
 
 
@@ -115,11 +120,11 @@ public class StubGame2 implements Game {
    * values provide a second world layout.
    */
   protected void defineWorld(int worldType) {
-    world = new HashMap<Position,Tile>();
-    for ( int r = 0; r < GameConstants.WORLDSIZE; r++ ) {
-      for ( int c = 0; c < GameConstants.WORLDSIZE; c++ ) {
-        Position p = new Position(r,c);
-        world.put( p, new StubTile(GameConstants.PLAINS));
+    world = new HashMap<Position, Tile>();
+    for (int r = 0; r < GameConstants.WORLDSIZE; r++) {
+      for (int c = 0; c < GameConstants.WORLDSIZE; c++) {
+        Position p = new Position(r, c);
+        world.put(p, new StubTile(GameConstants.PLAINS));
       }
     }
   }
@@ -133,9 +138,13 @@ public class StubGame2 implements Game {
 
   }
 
+  public void createCityAt(Position position){
+
+  }
+
   public void setTileFocus(Position position) {
     System.out.println("-- StubGame2 / setTileFocus called.");
-    System.out.println(" *** IMPLEMENTATION PENDING ***");
+    gameObserver.tileFocusChangedAt(position);
   }
 
 }

@@ -97,8 +97,7 @@ class UpdateTool extends NullTool {
       game.endOfTurn();
     }
       case 8: {
-        editor.showStatus("Collonize");
-        game.performUnitActionAt(new Position(4,3));
+
         break;
       }
       // ADD CASES FOR OTHER EVENTS THAT GAME MUST SEND...

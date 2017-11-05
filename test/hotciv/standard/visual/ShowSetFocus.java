@@ -1,10 +1,13 @@
 package hotciv.standard.visual;
 
+import hotciv.view.GfxConstants;
 import minidraw.standard.*;
 import minidraw.framework.*;
 
 import hotciv.framework.*;
 import hotciv.standard.stub.*;
+
+import java.awt.event.MouseEvent;
 
 /** Template code for exercise FRS 36.40.
 
@@ -34,6 +37,42 @@ public class ShowSetFocus {
     editor.showStatus("Click a tile to see Game's setFocus method being called.");
 
     // Replace the setting of the tool with your SetFocusTool implementation.
-    editor.setTool( new SelectionTool(editor) );
+    editor.setTool( new SetFocusTool(editor,game) );
   }
+}
+
+class SetFocusTool extends NullTool{
+  private Game game;
+  private Drawing drawing;
+  private DrawingEditor editor;
+  private Figure unitOnMove;
+  SetFocusTool(DrawingEditor editor, Game game) {
+    this.game = game;
+    this.editor = editor;
+    drawing = editor.drawing();
+  }
+
+  //Helping methods//
+  private boolean isInsideMapBorders(int x, int y) {
+    Position position = coordinateToPos(x, y);
+    return !(position.getRow() < 0 || position.getRow() >= GameConstants.WORLDSIZE
+            || position.getColumn() < 0 || position.getColumn() >= GameConstants.WORLDSIZE);
+  }
+
+  private Position coordinateToPos(int x, int y) {
+    int r = (y - GfxConstants.MAP_OFFSET_Y) / GfxConstants.TILESIZE;
+    int c = (x - GfxConstants.MAP_OFFSET_X) / GfxConstants.TILESIZE;
+    return new Position(r,c);
+  }
+
+  //behaviour methods//
+  @Override public void mouseDown(MouseEvent e, int x, int y) {
+    if (!isInsideMapBorders(x,y))
+      return;
+    game.setTileFocus(coordinateToPos(x,y));
+  }
+
+
+
+
 }

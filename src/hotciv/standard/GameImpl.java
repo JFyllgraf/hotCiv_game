@@ -152,7 +152,7 @@ public class GameImpl implements Game {
         if(movedToEnemyCity(to)){
             cityMap.put(to,new CityImpl(to,currentPlayer));
         }
-
+        notifyAllObservers(to);
         return true;
     }
 
@@ -249,22 +249,29 @@ public class GameImpl implements Game {
 
     @Override
     public void changeWorkForceFocusInCityAt(Position p, String balance) {
-
+        notifyAllObservers(p);
     }
 
     @Override
     public void changeProductionInCityAt(Position p, String unitType) {
-
+        notifyAllObservers(p);
     }
 
     @Override
     public void performUnitActionAt(Position p) {
         unitActionStrategy.performAction(this, p);
+        notifyAllObservers(p);
     }
 
     @Override
     public void addObserver(GameObserver observer) {
+        observers.add(observer);
+    }
 
+    public void notifyAllObservers(Position pos){
+        for (GameObserver o : observers){
+            o.worldChangedAt(pos);
+        }
     }
 
     @Override
@@ -289,6 +296,7 @@ public class GameImpl implements Game {
             putUnitClockWise(position, unit);
             CityImpl city = (CityImpl)getCityAt(position);
             city.setTreasury(-getCost(city.getProduction()));
+            notifyAllObservers(position);
         }
     }
 

@@ -20,7 +20,8 @@ import org.junit.runners.Suite;
                 TestEpsilonWinnerStrategy.class,
                 TestZetaCivWinnerStrategy.class,
                 TestSemiCiv.class,
-                TestLogDecorator.class
+                TestLogDecorator.class,
+                TestGameObserver.class
         }
 )
 

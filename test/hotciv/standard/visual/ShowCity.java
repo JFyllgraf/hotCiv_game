@@ -1,15 +1,16 @@
 package hotciv.standard.visual;
 
+import hotciv.standard.stub.CityStub;
+import hotciv.standard.stub.StubGame1;
+import hotciv.standard.visual.tools.ChangeCityTool;
 import minidraw.standard.*;
 import minidraw.framework.*;
 
 import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
 
 import hotciv.framework.*;
 import hotciv.view.*;
-import hotciv.standard.stub.*;
 
 /** Test the CityFigure.
  * 
@@ -48,19 +49,6 @@ public class ShowCity {
   }
 }
 
-class ChangeCityTool extends NullTool {
-  private CityStub city;
-  private CityFigure cityFigure;
-  public ChangeCityTool(CityStub c, CityFigure cf) {
-    city = c;
-    cityFigure = cf;
-  }
-  public void mouseDown(MouseEvent e, int x, int y) {
-    city.makeAChange();
-    cityFigure.changed();
-  }
-}
-
 class HotCivFactory3 implements Factory {
   private Game game;
   public HotCivFactory3(Game g) { game = g; }
@@ -80,26 +68,3 @@ class HotCivFactory3 implements Factory {
   }
 }
 
-// a test hotciv.standard.stub implementation just to
-// force some graphical updates.
-class CityStub implements City {
-  boolean redOwns = true;
-  // a testing method just to make some
-  // state changes
-  public void  makeAChange() {
-    redOwns = ! redOwns;
-  }
-  public Player getOwner() {
-    return (redOwns ? Player.RED : Player.BLUE);
-  }
-
-  public int getSize() {
-    return (redOwns ? 4 : 9);
-  }
-  public String getProduction() {
-    return null;
-  }
-  public String getWorkforceFocus() {
-    return null;
-  }
-}

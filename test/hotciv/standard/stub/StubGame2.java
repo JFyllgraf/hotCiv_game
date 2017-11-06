@@ -45,12 +45,14 @@ public class StubGame2 implements Game {
   private Position red_city_pos;
   private Unit red_archer;
   private City redCity;
+  private boolean settlerPressed = false;
+  private int year;
   public Unit getUnitAt(Position p) {
     if ( p.equals(pos_archer_red) ) {
       return red_archer;
     }
-    if ( p.equals(pos_settler_red) ) {
-      return new StubUnit( GameConstants.SETTLER, Player.RED );
+    if ( p.equals(pos_settler_red) && !settlerPressed) {
+      return new StubUnit(GameConstants.SETTLER, Player.RED);
     }
     if ( p.equals(pos_legion_blue) ) {
       return new StubUnit( GameConstants.LEGION, Player.BLUE );
@@ -85,10 +87,14 @@ public class StubGame2 implements Game {
               Player.BLUE : 
               Player.RED );
     // no age increments
-    gameObserver.turnEnds(inTurn, -4000);
+    if(inTurn==Player.RED){
+      year = year + 100;
+    }
+    gameObserver.turnEnds(inTurn, year);
+    System.out.println(year);
   }
   public Player getPlayerInTurn() { return inTurn; }
-  
+
 
   // === Observer handling ===
   protected GameObserver gameObserver;
@@ -105,13 +111,11 @@ public class StubGame2 implements Game {
     pos_settler_red = new Position( 4, 3);
     pos_galley_red = new Position( 6, 4);
     red_city_pos = new Position(7,7);
-
+    year = -4000;
     // the only one I need to store for this hotciv.standard.stub
     red_archer = new StubUnit( GameConstants.ARCHER, Player.RED );
     redCity = new CityStub();
     inTurn = Player.RED;
-
-
   }
 
   // A simple implementation to draw the map of DeltaCiv
@@ -134,13 +138,25 @@ public class StubGame2 implements Game {
     }
   }
 
-  public City getCityAt( Position p ) { if(p.equals(red_city_pos)){return redCity;} return null; }
+  public City getCityAt( Position p ) {
+    if(p.equals(red_city_pos)) {
+      return redCity;
+    }
+    if(p.equals(pos_settler_red) && settlerPressed) {
+      return new CityStub();
+    }
+    return null;
+  }
   public Player getWinner() { return null; }
   public int getAge() { return 0; }  
   public void changeWorkForceFocusInCityAt( Position p, String balance ) {}
   public void changeProductionInCityAt( Position p, String unitType ) {}
   public void performUnitActionAt( Position p ) {
-
+    System.out.println("Unit action performed at: " + p);
+    if(getUnitAt(p).getTypeString() == GameConstants.SETTLER){
+      settlerPressed = true;
+      gameObserver.worldChangedAt(p);
+    }
   }
 
   public void createCityAt(Position position){
@@ -154,38 +170,3 @@ public class StubGame2 implements Game {
 
 }
 
-class StubUnit implements  Unit {
-  private String type;
-  private Player owner;
-  public StubUnit(String type, Player owner) {
-    this.type = type;
-    this.owner = owner;
-  }
-  public String getTypeString() { return type; }
-  public Player getOwner() { return owner; }
-  public int getMoveCount() { return 1; }
-  public int getDefensiveStrength() { return 0; }
-  public int getAttackingStrength() { return 0; }
-}
-
-class CityStub implements City {
-  boolean redOwns = true;
-  // a testing method just to make some
-  // state changes
-  public void  makeAChange() {
-    redOwns = ! redOwns;
-  }
-  public Player getOwner() {
-    return (redOwns ? Player.RED : Player.BLUE);
-  }
-
-  public int getSize() {
-    return (redOwns ? 4 : 9);
-  }
-  public String getProduction() {
-    return null;
-  }
-  public String getWorkforceFocus() {
-    return null;
-  }
-}

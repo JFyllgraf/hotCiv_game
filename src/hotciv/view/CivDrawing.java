@@ -148,6 +148,7 @@ public class CivDrawing
   private ImageFigure cityShieldIcon;
   private ImageFigure productionFocusIcon;
   private ImageFigure workForceFocusIcon;
+  private TextFigure movescount;
   private void defineIcons() {
     // very much a template implementation :)
     turnShieldIcon = 
@@ -170,6 +171,10 @@ public class CivDrawing
             new ImageFigure( "hammer",
                     new Point( GfxConstants.WORKFORCEFOCUS_X,
                             GfxConstants.WORKFORCEFOCUS_Y ) );
+    movescount =
+            new TextFigure("",
+                    new Point(GfxConstants.UNIT_COUNT_X,
+                    GfxConstants.UNIT_COUNT_Y) );
 
     // insert in delegate figure list to ensure graphical
     // rendering.
@@ -178,6 +183,7 @@ public class CivDrawing
     delegate.add(cityShieldIcon);
     delegate.add(productionFocusIcon);
     delegate.add(workForceFocusIcon);
+    delegate.add(movescount);
   }
  
   // === Observer Methods ===
@@ -188,6 +194,9 @@ public class CivDrawing
     // this is a really brute-force algorithm: destroy
     // all known units and build up the entire set again
     for ( Figure f : figureMap.values() ) {
+      delegate.remove(f);
+    }
+    for ( Figure f : cityFigureMap.values() ) {
       delegate.remove(f);
     }
     defineUnitMap();
@@ -214,26 +223,31 @@ public class CivDrawing
                 new ImageFigure("redshield",
                         new Point(GfxConstants.UNIT_SHIELD_X,
                                 GfxConstants.UNIT_SHIELD_Y));
+        movescount.setText(String.valueOf(unit.getMoveCount()));
       } else if (game.getUnitAt(position).getOwner() == Player.BLUE) {
         unitShieldIcon =
                 new ImageFigure("blueshield",
                         new Point(GfxConstants.UNIT_SHIELD_X,
                                 GfxConstants.UNIT_SHIELD_Y));
+        movescount.setText(String.valueOf(unit.getMoveCount()));
       }
     }
     if(city != null){
       if (game.getCityAt(position).getOwner() == Player.RED) {
         cityShieldIcon =
                 new ImageFigure("redshield",
-                        new Point(GfxConstants.UNIT_SHIELD_X,
-                                GfxConstants.UNIT_SHIELD_Y));
+                        new Point(GfxConstants.CITY_SHIELD_X,
+                                GfxConstants.CITY_SHIELD_Y));
+        movescount.setText("-");
       } else if (game.getCityAt(position).getOwner() == Player.BLUE) {
         cityShieldIcon =
                 new ImageFigure("blueshield",
-                        new Point(GfxConstants.UNIT_SHIELD_X,
-                                GfxConstants.UNIT_SHIELD_Y));
+                        new Point(GfxConstants.CITY_SHIELD_X,
+                                GfxConstants.CITY_SHIELD_Y));
+        movescount.setText("-");
       }
     }
+
     delegate.add(unitShieldIcon);
     delegate.add(cityShieldIcon);
   }

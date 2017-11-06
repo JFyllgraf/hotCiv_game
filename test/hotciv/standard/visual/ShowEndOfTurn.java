@@ -1,16 +1,11 @@
 package hotciv.standard.visual;
 
-import hotciv.view.CivDrawing;
-import hotciv.view.GfxConstants;
+import hotciv.standard.visual.tools.EndOfTurnTool;
 import minidraw.standard.*;
 import minidraw.framework.*;
 
 import hotciv.framework.*;
 import hotciv.standard.stub.*;
-
-import java.awt.event.MouseEvent;
-
-import static hotciv.view.GfxConstants.*;
 
 /** Template code for exercise FRS 36.42.
 
@@ -44,19 +39,3 @@ public class ShowEndOfTurn {
   }
 }
 
-class EndOfTurnTool extends NullTool{
-  private Game game;
-  private DrawingEditor editor;
-  private CivDrawing drawing;
-  public EndOfTurnTool(DrawingEditor editor, Game game) {
-    this.editor = editor;
-    this.game = game;
-  }
-
-  public void mouseDown(MouseEvent e, int x, int y) {
-    if(editor.drawing().findFigure(GfxConstants.TURN_SHIELD_X, GfxConstants.TURN_SHIELD_Y).displayBox().contains(x,y)) {
-      game.endOfTurn();
-    }
-  }
-
-}

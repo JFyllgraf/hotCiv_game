@@ -314,11 +314,25 @@
     </target>
 
     <target name="action" depends="build.all">
-    <java fork="yes" classname="hotciv.standard.visual.ShowAction">
-        <classpath>
-            <path refid="class-path"/>
-        </classpath>
-    </java>
+        <java fork="yes" classname="hotciv.standard.visual.ShowAction">
+            <classpath>
+                <path refid="class-path"/>
+            </classpath>
+        </java>
+    </target>
+    <target name="comp" depends="build.all">
+        <java fork="yes" classname="hotciv.standard.visual.ShowComposition">
+            <classpath>
+                <path refid="class-path"/>
+            </classpath>
+        </java>
+    </target>
+    <target name="semi" depends="build.all">
+        <java fork="yes" classname="hotciv.standard.visual.ShowSemi">
+            <classpath>
+                <path refid="class-path"/>
+            </classpath>
+        </java>
     </target>
 
 

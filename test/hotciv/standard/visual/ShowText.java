@@ -1,10 +1,10 @@
 package hotciv.standard.visual;
 
+import hotciv.standard.visual.tools.ChangeAgeTool;
 import minidraw.standard.*;
 import minidraw.framework.*;
 
 import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
 
 import hotciv.framework.*;
@@ -44,18 +44,6 @@ public class ShowText {
     editor.drawing().add(tf);
     editor.setTool( new ChangeAgeTool(tf) );
 
-  }
-}
-
-class ChangeAgeTool extends NullTool {
-  private TextFigure textFigure;
-  public ChangeAgeTool(TextFigure tf) {
-    textFigure = tf;
-  }
-  int count = 0;
-  public void mouseDown(MouseEvent e, int x, int y) {
-    count++;
-    textFigure.setText( ""+(4000-count*100)+" BC" );
   }
 }
 

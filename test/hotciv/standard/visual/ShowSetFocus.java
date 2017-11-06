@@ -1,5 +1,6 @@
 package hotciv.standard.visual;
 
+import hotciv.view.CityFigure;
 import hotciv.view.GfxConstants;
 import minidraw.standard.*;
 import minidraw.framework.*;
@@ -7,6 +8,7 @@ import minidraw.framework.*;
 import hotciv.framework.*;
 import hotciv.standard.stub.*;
 
+import java.awt.*;
 import java.awt.event.MouseEvent;
 
 /** Template code for exercise FRS 36.40.
@@ -35,8 +37,6 @@ public class ShowSetFocus {
                                new HotCivFactory4(game) );
     editor.open();
     editor.showStatus("Click a tile to see Game's setFocus method being called.");
-
-    // Replace the setting of the tool with your SetFocusTool implementation.
     editor.setTool( new SetFocusTool(editor,game) );
   }
 }
@@ -45,7 +45,6 @@ class SetFocusTool extends NullTool{
   private Game game;
   private Drawing drawing;
   private DrawingEditor editor;
-  private Figure unitOnMove;
   SetFocusTool(DrawingEditor editor, Game game) {
     this.game = game;
     this.editor = editor;
@@ -67,8 +66,9 @@ class SetFocusTool extends NullTool{
 
   //behaviour methods//
   @Override public void mouseDown(MouseEvent e, int x, int y) {
-    if (!isInsideMapBorders(x,y))
+    if(!isInsideMapBorders(x,y)){
       return;
+    }
     game.setTileFocus(coordinateToPos(x,y));
   }
 

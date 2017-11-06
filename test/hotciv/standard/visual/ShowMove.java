@@ -93,7 +93,8 @@ class MoveTool extends NullTool {
     Position unitPos = coordinateToPos(x, y);
     if (unitOnMove == null)
       return;
-    if (!isInsideMapBorders(x, y) || !game.moveUnit(startingPos, unitPos)) {
+    boolean validMove = game.moveUnit(startingPos,unitPos);
+    if (!isInsideMapBorders(x, y) || !validMove) {
       unitOnMove.moveBy(startingPosX, startingPosY);
       unitOnMove = null;
     }

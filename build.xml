@@ -313,5 +313,13 @@
         </java>
     </target>
 
+    <target name="action" depends="build.all">
+    <java fork="yes" classname="hotciv.standard.visual.ShowAction">
+        <classpath>
+            <path refid="class-path"/>
+        </classpath>
+    </java>
+    </target>
+
 
 </project>

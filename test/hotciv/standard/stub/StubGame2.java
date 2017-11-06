@@ -1,8 +1,10 @@
 package hotciv.standard.stub;
 
 import hotciv.framework.*;
+import hotciv.standard.CityImpl;
 
 import java.util.*;
+
 
 /** Test hotciv.standard.stub for game for hotciv.standard.visual testing of
  * minidraw based graphics.
@@ -40,9 +42,9 @@ public class StubGame2 implements Game {
   private Position pos_legion_blue;
   private Position pos_settler_red;
   private Position pos_galley_red;
-
+  private Position red_city_pos;
   private Unit red_archer;
-
+  private City redCity;
   public Unit getUnitAt(Position p) {
     if ( p.equals(pos_archer_red) ) {
       return red_archer;
@@ -72,7 +74,7 @@ public class StubGame2 implements Game {
     // notify our observer(s) about the changes on the tiles
     gameObserver.worldChangedAt(from);
     gameObserver.worldChangedAt(to);
-    return true; 
+    return true;
   }
 
   // === Turn handling ===
@@ -102,11 +104,14 @@ public class StubGame2 implements Game {
     pos_legion_blue = new Position( 3, 2);
     pos_settler_red = new Position( 4, 3);
     pos_galley_red = new Position( 6, 4);
+    red_city_pos = new Position(7,7);
 
     // the only one I need to store for this hotciv.standard.stub
     red_archer = new StubUnit( GameConstants.ARCHER, Player.RED );
-
+    redCity = new CityStub();
     inTurn = Player.RED;
+
+
   }
 
   // A simple implementation to draw the map of DeltaCiv
@@ -129,7 +134,7 @@ public class StubGame2 implements Game {
     }
   }
 
-  public City getCityAt( Position p ) { return null; }
+  public City getCityAt( Position p ) { if(p.equals(red_city_pos)){return redCity;} return null; }
   public Player getWinner() { return null; }
   public int getAge() { return 0; }  
   public void changeWorkForceFocusInCityAt( Position p, String balance ) {}
@@ -161,4 +166,26 @@ class StubUnit implements  Unit {
   public int getMoveCount() { return 1; }
   public int getDefensiveStrength() { return 0; }
   public int getAttackingStrength() { return 0; }
+}
+
+class CityStub implements City {
+  boolean redOwns = true;
+  // a testing method just to make some
+  // state changes
+  public void  makeAChange() {
+    redOwns = ! redOwns;
+  }
+  public Player getOwner() {
+    return (redOwns ? Player.RED : Player.BLUE);
+  }
+
+  public int getSize() {
+    return (redOwns ? 4 : 9);
+  }
+  public String getProduction() {
+    return null;
+  }
+  public String getWorkforceFocus() {
+    return null;
+  }
 }

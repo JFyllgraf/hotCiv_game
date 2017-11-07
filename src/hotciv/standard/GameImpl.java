@@ -68,22 +68,22 @@ public class GameImpl implements Game {
 
     private int gameRounds;
 
-    public GameImpl(GameFactory factoryMaker){
+    public GameImpl(GameFactory factoryMaker) {
         ageingStrategy = factoryMaker.ageingStrategy();
         winnerStrategy = factoryMaker.winnerStrategy();
         unitActionStrategy = factoryMaker.unitActionStrategy();
         worldLayoutStrategy = factoryMaker.worldLayoutStrategy();
         attackingStrategy = factoryMaker.attackingStrategy();
 
-        redCityPos = new Position(1,1);
-        blueCityPos = new Position(4,1);
+        redCityPos = new Position(1, 1);
+        blueCityPos = new Position(4, 1);
 
-        this.redPlayerProductionFocus = new UnitImpl(GameConstants.ARCHER,Player.RED);
-        this.bluePlayerProductionFocus = new UnitImpl(GameConstants.SETTLER,Player.BLUE);
+        this.redPlayerProductionFocus = new UnitImpl(GameConstants.ARCHER, Player.RED);
+        this.bluePlayerProductionFocus = new UnitImpl(GameConstants.SETTLER, Player.BLUE);
 
         setDefaultMap();
 
-        currentPlayer=Player.RED;
+        currentPlayer = Player.RED;
         this.age = -4000;
         gameRounds = 0;
 
@@ -104,7 +104,7 @@ public class GameImpl implements Game {
 
     @Override
     public City getCityAt(Position p) {
-        if(cityMap.get(p)!=null){
+        if (cityMap.get(p) != null) {
             return cityMap.get(p);
         }
         return null;
@@ -128,80 +128,79 @@ public class GameImpl implements Game {
 
     @Override
     public boolean moveUnit(Position from, Position to) {
-        if (!isPlayersOwnUnit(from))return false;
-        if (!hasMoveCountLeft(from))return false;
-        if (!isLegalTile(from,to))return false;
-        if (!distanceIsLegal(from, to))return false;
+        if (!isPlayersOwnUnit(from)) return false;
+        if (!hasMoveCountLeft(from)) return false;
+        if (!isLegalTile(from, to)) return false;
+        if (!distanceIsLegal(from, to)) return false;
 
         String battleOutcome = "";
-        if (getUnitAt(to) != null){
+        if (getUnitAt(to) != null) {
             battleOutcome = attackingStrategy.attackUnit(this, from, to);
         } else {
             unitMap.put(to, new UnitImpl(getUnitAt(from).getTypeString(), getUnitAt(from).getOwner()));
             unitMap.remove(from);
             unitMap.get(to).moveUnit();
         }
-        if (battleOutcome.equals("Attacker")){
+        if (battleOutcome.equals("Attacker")) {
             winnerStrategy.updateUnitAttackCounter(this, currentPlayer);
             unitMap.put(to, new UnitImpl(getUnitAt(from).getTypeString(), getUnitAt(from).getOwner()));
             unitMap.remove(from);
             unitMap.get(to).moveUnit();
-        } if (battleOutcome.equals("Defender")) {
+        }
+        if (battleOutcome.equals("Defender")) {
             unitMap.remove(from);
         }
-        if(movedToEnemyCity(to)){
-            cityMap.put(to,new CityImpl(to,currentPlayer));
+        if (movedToEnemyCity(to)) {
+            cityMap.put(to, new CityImpl(to, currentPlayer));
         }
         notifyAllObservers(to);
         return true;
     }
 
-    private boolean movedToEnemyCity(Position to){
+    private boolean movedToEnemyCity(Position to) {
         return (getCityAt(to) != null) && (getCityAt(to).getOwner() != currentPlayer) && (getCityAt(to).getOwner() != null);
     }
 
-    private boolean hasMoveCountLeft(Position from){
-        return (unitMap.get(from).getMoveCount()>0);
+    private boolean hasMoveCountLeft(Position from) {
+        return (unitMap.get(from).getMoveCount() > 0);
     }
 
-    private boolean distanceIsLegal(Position from, Position to){
-        if(to.getRow() <= from.getRow()+1 && to.getRow() >= from.getRow()-1){
-            if(to.getColumn() <= from.getColumn()+1 && to.getColumn() >= from.getColumn()-1){
+    private boolean distanceIsLegal(Position from, Position to) {
+        if (to.getRow() <= from.getRow() + 1 && to.getRow() >= from.getRow() - 1) {
+            if (to.getColumn() <= from.getColumn() + 1 && to.getColumn() >= from.getColumn() - 1) {
                 return true;
             }
         }
         return false;
     }
 
-    private boolean isPlayersOwnUnit(Position from){
+    private boolean isPlayersOwnUnit(Position from) {
         return (unitMap.get(from).getOwner() == currentPlayer);
     }
 
-    private boolean isLegalTile(Position from, Position to){
-        if((to.getRow() < mapSize && to.getRow() >= 0) && (to.getColumn() < mapSize && to.getColumn() >= 0)) {
-            if(getUnitAt(from).getTypeString()!=ExpansionGameConstants.GALLEY) {
+    private boolean isLegalTile(Position from, Position to) {
+        if ((to.getRow() < mapSize && to.getRow() >= 0) && (to.getColumn() < mapSize && to.getColumn() >= 0)) {
+            if (getUnitAt(from).getTypeString() != ExpansionGameConstants.GALLEY) {
                 return !((tileMap.get(to).getTypeString().equals(GameConstants.OCEANS)) || (tileMap.get(to).getTypeString().equals(GameConstants.MOUNTAINS)));
-            }
-            else if(getUnitAt(from).getTypeString()==ExpansionGameConstants.GALLEY){
+            } else if (getUnitAt(from).getTypeString() == ExpansionGameConstants.GALLEY) {
                 return !((tileMap.get(to).getTypeString().equals(GameConstants.PLAINS)) || (tileMap.get(to).getTypeString().equals(GameConstants.MOUNTAINS)) || (tileMap.get(to).getTypeString().equals(GameConstants.HILLS)) || (tileMap.get(to).getTypeString().equals(GameConstants.FOREST)));
 
             }
-            }
+        }
         return false;
     }
 
 
     @Override
     public void endOfTurn() {
-        if(currentPlayer == Player.RED){
+        if (currentPlayer == Player.RED) {
             currentPlayer = Player.BLUE;
-        }
-        else if(currentPlayer == Player.BLUE){
+        } else if (currentPlayer == Player.BLUE) {
             currentPlayer = Player.RED;
 
             this.age = ageingStrategy.incrementAge(age);
 
-           increaseAllCitiesProduction();
+            increaseAllCitiesProduction();
 
             produceUnit(redCityPos, redPlayerProductionFocus);
             produceUnit(blueCityPos, bluePlayerProductionFocus);
@@ -210,14 +209,18 @@ public class GameImpl implements Game {
 
             gameRounds++;
         }
+
+        for (GameObserver observer : observers){
+            observer.turnEnds(currentPlayer, age);
+        }
     }
 
-    private boolean enoughProduction(Position position){
+    private boolean enoughProduction(Position position) {
         //returns true if the citys treasury is higher than the cost of the unit.
         return ((CityImpl) getCityAt(position)).getTreasury() >= getCost(getCityAt(position).getProduction());
     }
 
-    public int getCost(String unitType){
+    public int getCost(String unitType) {
         switch (unitType) {
             case GameConstants.ARCHER:
                 return 10;
@@ -231,17 +234,17 @@ public class GameImpl implements Game {
         return 0;
     }
 
-    private void resetAllUnitsMovecount(){
-        for(Map.Entry<Position, UnitImpl> entry : unitMap.entrySet()){
-            if(entry.getValue().getMoveCount() == 0){
+    private void resetAllUnitsMovecount() {
+        for (Map.Entry<Position, UnitImpl> entry : unitMap.entrySet()) {
+            if (entry.getValue().getMoveCount() == 0) {
                 entry.getValue().setMoveCount();
 
             }
         }
     }
 
-    private void increaseAllCitiesProduction(){
-        for(Map.Entry<Position, CityImpl> entry: cityMap.entrySet()){
+    private void increaseAllCitiesProduction() {
+        for (Map.Entry<Position, CityImpl> entry : cityMap.entrySet()) {
             entry.getValue().setTreasury(6);
         }
     }
@@ -260,7 +263,9 @@ public class GameImpl implements Game {
     @Override
     public void performUnitActionAt(Position p) {
         unitActionStrategy.performAction(this, p);
+        System.out.println("Unit action performed at: " + p);
         notifyAllObservers(p);
+
     }
 
     @Override
@@ -268,15 +273,19 @@ public class GameImpl implements Game {
         observers.add(observer);
     }
 
-    public void notifyAllObservers(Position pos){
-        for (GameObserver o : observers){
+    public void notifyAllObservers(Position pos) {
+        for (GameObserver o : observers) {
             o.worldChangedAt(pos);
         }
     }
 
+
+
     @Override
     public void setTileFocus(Position position) {
-
+        for (GameObserver observer : observers){
+            observer.tileFocusChangedAt(position);
+        }
     }
 
     private void setDefaultMap() {
@@ -291,44 +300,44 @@ public class GameImpl implements Game {
         }
     }
 
-    public void produceUnit(Position position, UnitImpl unit){
-        if(isAtCity(position,unit) && enoughProduction(position)){
+    public void produceUnit(Position position, UnitImpl unit) {
+        if (isAtCity(position, unit) && enoughProduction(position)) {
             putUnitClockWise(position, unit);
-            CityImpl city = (CityImpl)getCityAt(position);
+            CityImpl city = (CityImpl) getCityAt(position);
             city.setTreasury(-getCost(city.getProduction()));
             notifyAllObservers(position);
         }
     }
 
-    public void putUnitClockWise(Position position, UnitImpl unit){
+    public void putUnitClockWise(Position position, UnitImpl unit) {
         ArrayList<Position> posList = new ArrayList<>();
-        posList.add(new Position(position.getRow(),position.getColumn()));
-        posList.add(new Position(position.getRow()-1,position.getColumn()));
-        posList.add(new Position(position.getRow()-1,position.getColumn()+1));
-        posList.add(new Position(position.getRow(),position.getColumn()+1));
-        posList.add(new Position(position.getRow()+1,position.getColumn()+1));
-        posList.add(new Position(position.getRow()+1,position.getColumn()));
-        posList.add(new Position(position.getRow()+1,position.getColumn()-1));
-        posList.add(new Position(position.getRow(),position.getColumn()-1));
-        posList.add(new Position(position.getRow()-1,position.getColumn()-1));
-        for(int i = 0; i<posList.size(); i++){
-             if(getUnitAt(posList.get(i)) == null){
-                 unitMap.put(posList.get(i),unit);
-                 break;
-             }
+        posList.add(new Position(position.getRow(), position.getColumn()));
+        posList.add(new Position(position.getRow() - 1, position.getColumn()));
+        posList.add(new Position(position.getRow() - 1, position.getColumn() + 1));
+        posList.add(new Position(position.getRow(), position.getColumn() + 1));
+        posList.add(new Position(position.getRow() + 1, position.getColumn() + 1));
+        posList.add(new Position(position.getRow() + 1, position.getColumn()));
+        posList.add(new Position(position.getRow() + 1, position.getColumn() - 1));
+        posList.add(new Position(position.getRow(), position.getColumn() - 1));
+        posList.add(new Position(position.getRow() - 1, position.getColumn() - 1));
+        for (int i = 0; i < posList.size(); i++) {
+            if (getUnitAt(posList.get(i)) == null) {
+                unitMap.put(posList.get(i), unit);
+                break;
+            }
         }
     }
 
     //Checks if position contains the coordinates of blue or red city and if it is owned by the proper owner
-    private boolean isAtCity(Position position, UnitImpl unit){
+    private boolean isAtCity(Position position, UnitImpl unit) {
         return (position.getRow() == 1 && position.getColumn() == 1 && unit.getOwner() == Player.RED) || (position.getRow() == 4 && position.getColumn() == 1 && unit.getOwner() == Player.BLUE);
     }
 
-    public void putCityAt(Position position, Player owner){
+    public void putCityAt(Position position, Player owner) {
         cityMap.put(position, new CityImpl(position, owner));
     }
 
-    public int getGameRounds(){
+    public int getGameRounds() {
         return gameRounds;
     }
 

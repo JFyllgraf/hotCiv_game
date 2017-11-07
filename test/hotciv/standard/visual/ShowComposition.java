@@ -32,6 +32,7 @@ public class ShowComposition {
       new MiniDrawApplication( "Click and/or drag any item to see all game actions",  
                                new HotCivFactory4(game) );
     editor.open();
+
     editor.showStatus("Click and drag any item to see Game's proper response.");
 
     // Replace the setting of the tool with your CompositionTool implementation.

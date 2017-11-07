@@ -149,6 +149,7 @@ public class CivDrawing
   private ImageFigure productionFocusIcon;
   private ImageFigure workForceFocusIcon;
   private TextFigure movescount;
+  private TextFigure ageDisplay;
   private void defineIcons() {
     // very much a template implementation :)
     turnShieldIcon = 
@@ -175,6 +176,8 @@ public class CivDrawing
             new TextFigure("",
                     new Point(GfxConstants.UNIT_COUNT_X,
                     GfxConstants.UNIT_COUNT_Y) );
+    ageDisplay =
+            new TextFigure("-4000", new Point(GfxConstants.AGE_TEXT_X,GfxConstants.AGE_TEXT_Y));
 
     // insert in delegate figure list to ensure graphical
     // rendering.
@@ -184,6 +187,7 @@ public class CivDrawing
     delegate.add(productionFocusIcon);
     delegate.add(workForceFocusIcon);
     delegate.add(movescount);
+    delegate.add(ageDisplay);
   }
  
   // === Observer Methods ===
@@ -211,6 +215,8 @@ public class CivDrawing
     turnShieldIcon.set( playername+"shield",
                         new Point( GfxConstants.TURN_SHIELD_X,
                                    GfxConstants.TURN_SHIELD_Y ) );
+    ageDisplay.setText(String.valueOf(game.getAge()));
+    delegate.add(turnShieldIcon);
   }
 
   public void tileFocusChangedAt(Position position) {

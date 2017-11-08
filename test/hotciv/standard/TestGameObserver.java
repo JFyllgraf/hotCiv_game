@@ -59,7 +59,7 @@ public class TestGameObserver {
     public void shouldNotifyObserverWhenPerformingUnitAction(){
         game.performUnitActionAt(new Position(2,0));
         ArrayList<String> sl = getStringArray();
-        assertThat(sl.get(0), is("World has been changed at postition: [2,0]"));
+        assertThat(sl.get(0), is("Unit action performed at: [2,0]"));
     }
 
     @Test

@@ -71,6 +71,8 @@ public class ShowCompositionTool extends NullTool {
       setFocusTool.mouseDown(e, x, y);
       moveTool.mouseDown(e, x, y);
       showActionTool.mouseDown(e, x, y);
+      System.out.println(game.getPlayerInTurn());
+      System.out.println(game.getUnitAt(new Position(x,y)));
     }
 
     if(e.isShiftDown() && game.getCityAt(coordinateToPos(x,y)) != null){

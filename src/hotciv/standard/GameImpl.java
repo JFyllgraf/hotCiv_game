@@ -213,11 +213,21 @@ public class GameImpl implements Game {
         for (GameObserver observer : observers){
             observer.turnEnds(currentPlayer, age);
         }
+
     }
 
     private boolean enoughProduction(Position position) {
         //returns true if the citys treasury is higher than the cost of the unit.
-        return ((CityImpl) getCityAt(position)).getTreasury() >= getCost(getCityAt(position).getProduction());
+        CityImpl city = (CityImpl) getCityAt(position);
+        if(city == null){
+            return false;
+        }
+        else{
+            int cityTreasury = city.getTreasury();
+            int costOfProductionUnit = getCost(getCityAt(position).getProduction());
+            return cityTreasury >= costOfProductionUnit;
+        }
+
     }
 
     public int getCost(String unitType) {

@@ -48,7 +48,7 @@ public class CityImpl implements City {
         productionFocus = newProductionFocus;
     }
 
-    protected int getTreasury(){
+    public int getTreasury(){
         return treasury;
     }
 

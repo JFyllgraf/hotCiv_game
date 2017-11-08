@@ -313,7 +313,6 @@ public class GameImpl implements Game {
             putUnitClockWise(position, unit);
             CityImpl city = (CityImpl) getCityAt(position);
             city.setTreasury(-getCost(city.getProduction()));
-            notifyAllObservers(position);
         }
     }
 
@@ -331,6 +330,7 @@ public class GameImpl implements Game {
         for (int i = 0; i < posList.size(); i++) {
             if (getUnitAt(posList.get(i)) == null) {
                 unitMap.put(posList.get(i), unit);
+                notifyAllObservers(posList.get(i));
                 break;
             }
         }

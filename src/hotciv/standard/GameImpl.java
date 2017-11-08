@@ -273,9 +273,7 @@ public class GameImpl implements Game {
     @Override
     public void performUnitActionAt(Position p) {
         unitActionStrategy.performAction(this, p);
-        System.out.println("Unit action performed at: " + p);
         notifyAllObservers(p);
-
     }
 
     @Override

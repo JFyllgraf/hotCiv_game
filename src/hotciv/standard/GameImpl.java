@@ -198,6 +198,7 @@ public class GameImpl implements Game {
         } else if (currentPlayer == Player.BLUE) {
             currentPlayer = Player.RED;
 
+            int previousAge = age;
             this.age = ageingStrategy.incrementAge(age);
 
             increaseAllCitiesProduction();

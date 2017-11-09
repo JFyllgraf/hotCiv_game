@@ -17,16 +17,16 @@ public class ObserverImpl implements GameObserver {
 
     @Override
     public void worldChangedAt(Position pos) {
-        System.out.println("World has been changed at postition: " + pos.toString());
+        System.out.println("World has been changed at position: " + pos.toString());
     }
 
     @Override
     public void turnEnds(Player nextPlayer, int age) {
-
+        System.out.println("Turn has ended at age " + age + " and next player is " + nextPlayer);
     }
 
     @Override
     public void tileFocusChangedAt(Position position) {
-
+        System.out.println("World has been changed at position: " + position.toString());
     }
 }

@@ -46,6 +46,7 @@ public class CivDrawing
   implements Drawing, GameObserver {
   
   private Drawing delegate;
+  //Release8
 
   /** the Game instance that this UnitDrawing is going to render units
    * from */
